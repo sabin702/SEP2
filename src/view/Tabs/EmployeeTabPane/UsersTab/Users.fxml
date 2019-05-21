@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+
+<ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="471.0" prefWidth="717.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.Tabs.EmployeeTabPane.UsersTab.UsersView">
+   <content>
+      <TableView prefHeight="470.0" prefWidth="718.0">
+        <columns>
+          <TableColumn fx:id="nameColumn" prefWidth="147.0" text="Name" />
+          <TableColumn fx:id="surnameColumn" prefWidth="148.0" text="Surname" />
+            <TableColumn fx:id="birthColumn" prefWidth="178.0" text="Date of birth" />
+            <TableColumn fx:id="usernameColumn" prefWidth="232.0" text="Username" />
+        </columns>
+      </TableView>
+   </content>
+</ScrollPane>
