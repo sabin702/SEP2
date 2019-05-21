@@ -6,21 +6,43 @@ import java.sql.DriverManager;
 import java.sql.Statement;
 
 public class ManageDatabase {
-    public static void main(String[] args) {
+
         Connection c = null;
         Statement stmt = null;
+   /*
+        private String registration;
+        private String make;
+        private int mileage;
+        private String color;
+        private int year;
+        private int availability;
 
-        public void addCar () {
+    public ManageDatabase(Connection c, Statement stmt, String registration, String make, int mileage, String color, int year, int availability) {
+        this.c = c;
+        this.stmt = stmt;
+        this.registration = registration;
+        this.make = make;
+        this.mileage = mileage;-
+        this.color = color;
+        this.year = year;
+        this.availability = availability;
+    }
+*/
+
+    public ManageDatabase() {
+    }
+
+    public void addCar(String registration, String make, int mileage, String color, int production, int availability){
             try {
                 Class.forName("org.postgresql.Driver");
                 c = DriverManager
                         .getConnection("jdbc:postgresql://localhost:5432/postgres",
-                                "postgres", "PASSWORD");
+                                "postgres", "password");
 
                 System.out.println("Database open ok");
 
                 stmt = c.createStatement();
-                String sql = "INSERT INTO  \"SEP2\".car " + "VALUES  (registration,make,mileage,color,production,availability)";
+                String sql = "INSERT INTO  \"SEP2\".car " + "VALUES('" + registration + "','" + make + "'," + mileage +",'" + color + "'," + production + "," + availability + ")";
                 stmt.executeUpdate(sql);
 
 
@@ -38,7 +60,7 @@ public class ManageDatabase {
                 Class.forName("org.postgresql.Driver");
                 c = DriverManager
                         .getConnection("jdbc:postgresql://localhost:5432/postgres",
-                                "postgres", "PASSWORD");
+                                "postgres", "password");
 
                 System.out.println("Database open ok");
 
@@ -60,7 +82,7 @@ public class ManageDatabase {
                 Class.forName("org.postgresql.Driver");
                 c = DriverManager
                         .getConnection("jdbc:postgresql://localhost:5432/postgres",
-                                "postgres", "PASSWORD");
+                                "postgres", "password");
 
                 System.out.println("Database open ok");
 
@@ -82,7 +104,7 @@ public class ManageDatabase {
                 Class.forName("org.postgresql.Driver");
                 c = DriverManager
                         .getConnection("jdbc:postgresql://localhost:5432/postgres",
-                                "postgres", "PASSWORD");
+                                "postgres", "password");
 
                 System.out.println("Database open ok");
 
@@ -100,12 +122,12 @@ public class ManageDatabase {
             System.out.println("Database update ok");
         }
 
-        public void addEmployee () {
+        public void addEmployee() {
             try {
                 Class.forName("org.postgresql.Driver");
                 c = DriverManager
                         .getConnection("jdbc:postgresql://localhost:5432/postgres",
-                                "postgres", "PASSWORD");
+                                "postgres", "password");
 
                 System.out.println("Database open ok");
 
@@ -122,12 +144,12 @@ public class ManageDatabase {
             }
             System.out.println("Database update ok");
         }
-        public void deleteEmployee () {
+        public void deleteEmployee() {
             try {
                 Class.forName("org.postgresql.Driver");
                 c = DriverManager
                         .getConnection("jdbc:postgresql://localhost:5432/postgres",
-                                "postgres", "PASSWORD");
+                                "postgres", "password");
 
                 System.out.println("Database open ok");
 
@@ -145,12 +167,12 @@ public class ManageDatabase {
             System.out.println("Database update ok");
         }
 
-        public void addReservation () {
+        public void addReservation() {
             try {
                 Class.forName("org.postgresql.Driver");
                 c = DriverManager
                         .getConnection("jdbc:postgresql://localhost:5432/postgres",
-                                "postgres", "PASSWORD");
+                                "postgres", "password");
 
                 System.out.println("Database open ok");
 
@@ -172,7 +194,7 @@ public class ManageDatabase {
                 Class.forName("org.postgresql.Driver");
                 c = DriverManager
                         .getConnection("jdbc:postgresql://localhost:5432/postgres",
-                                "postgres", "PASSWORD");
+                                "postgres", "password");
 
                 System.out.println("Database open ok");
 
@@ -190,8 +212,8 @@ public class ManageDatabase {
             System.out.println("Database update ok");
         }
 
-    }
 }
+
 
 
 
