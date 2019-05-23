@@ -21,5 +21,5 @@ public interface IServerModel extends Remote {
 
     ReservationList getReservations() throws RemoteException;
 
-    void addCustomer(String username, String password) throws RemoteException;
+    void addCustomer(String username, String password, String firstName, String lastName, Date dateOfBirth) throws RemoteException;
 }

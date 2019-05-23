@@ -1,6 +1,7 @@
 package Employee_Client;
 
 import DataModel.CarList;
+import DataModel.Customer;
 import server.IServerModel;
 import server.ServerModel;
 
@@ -14,11 +15,13 @@ public class Client {
 
     IServerModel serverModel;
     CarList cars;
+    Customer customer;
 
-    public Client() throws RemoteException, NotBoundException {
+    public Client(Customer customer) throws RemoteException, NotBoundException {
         Registry registry = LocateRegistry.getRegistry("localhost", 1099);
         serverModel = (IServerModel) registry.lookup("servers");
         cars = new CarList();
+        this.customer = customer;
     }
 
     public void addCarToDatabase(String registration, String make, int mileage, String color, int productionYear, int availability){
@@ -64,9 +67,9 @@ public class Client {
         serverModel.deleteReservation(reservationId);
     }
 
-    public void addCustomer(String username, String passowrd){
+    public void addCustomer(Customer customer){
         try {
-            serverModel.addCustomer(username, passowrd);
+            serverModel.addCustomer(customer.getUsername(), customer.getPassword(), customer.getFirstName(), customer.getLastName(), customer.getBirthDate());
             System.out.println("Successfully added customer");
         } catch (RemoteException e) {
             e.printStackTrace();

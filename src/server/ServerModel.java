@@ -48,7 +48,7 @@ public class ServerModel implements IServerModel{
     }
 
     @Override
-    public void addCustomer(String username, String password) {
-        database.addCustomer(username, password);
+    public void addCustomer(String username, String password, String firstName, String lastName, Date dateOfBirth) {
+        database.addCustomer(username, password, firstName, lastName, dateOfBirth);
     }
 }

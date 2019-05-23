@@ -234,8 +234,12 @@ public class Database {
         return reservations;
     }
 
-    public void addCustomer(String username, String password){
-        String sql = "INSERT INTO  \"SEP2\".customer " + "VALUES('" + username + "','" + password + "')";
+    public void addCustomer(String username, String password, String firstName, String lastName, Date dateOfBirth){
+        String sql = "INSERT INTO  \"SEP2\".customer " + "VALUES('" + username + "','"
+                + password + "','"
+                + firstName + "','"
+                + lastName + "','"
+                + dateOfBirth + "')";
 
         try {
             c = DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres",
