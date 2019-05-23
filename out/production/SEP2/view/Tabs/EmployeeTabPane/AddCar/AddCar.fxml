@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="461.0" prefWidth="602.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.Tabs.EmployeeTabPane.AddCar.AddCarView">
+   <children>
+      <TextField fx:id="registrationNumber" layoutX="226.0" layoutY="30.0" />
+      <TextField fx:id="carMake" layoutX="227.0" layoutY="92.0" />
+      <TextField fx:id="carMileage" layoutX="227.0" layoutY="153.0" />
+      <TextField fx:id="carColor" layoutX="227.0" layoutY="211.0" />
+      <Label layoutX="107.0" layoutY="34.0" text="Registration number:" />
+      <Label layoutX="187.0" layoutY="96.0" text="Make:" />
+      <Label layoutX="175.0" layoutY="157.0" text="Mileage:" />
+      <Label layoutX="187.0" layoutY="215.0" text="Color:" />
+      <TextField fx:id="carProduction" layoutX="226.0" layoutY="266.0" />
+      <Label layoutX="132.0" layoutY="270.0" text="Production year:" />
+      <Button layoutX="272.0" layoutY="421.0" mnemonicParsing="false" onAction="#addCar" text="Add Car" />
+      <ComboBox fx:id="carCategory" layoutX="227.0" layoutY="321.0" prefWidth="150.0" />
+      <Label layoutX="162.0" layoutY="325.0" text="Category:" />
+      <TextField fx:id="carPrice" layoutX="227.0" layoutY="380.0" />
+      <Label layoutX="182.0" layoutY="384.0" text="Price:" />
+   </children>
+</AnchorPane>
