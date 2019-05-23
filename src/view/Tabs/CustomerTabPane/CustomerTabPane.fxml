@@ -7,10 +7,10 @@
   <tabs>
     <Tab fx:id="makeReservationTab" text="Make reservation">
       <content>
-        <fx:include fx:id="makeReservation" source="MakeReservationTab/MakeReservation.fxml" />
+        <fx:include fx:id="makeReservationView" source="MakeReservationTab/MakeReservation.fxml" />
       </content>
     </Tab>
-    <Tab fx:id="viewReservationsTab" text="view reservations">
+    <Tab fx:id="viewReservationsTab" text="View reservations">
       <content>
         <fx:include fx:id="viewReservationsView" source="ViewReservationsTab/ViewReservations.fxml" />
       </content>

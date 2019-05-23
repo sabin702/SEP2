@@ -4,8 +4,10 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
+import viewmodel.CarsTab.AddCarViewModel;
 
 public class AddCarView {
+    private AddCarViewModel viewModel;
 
     @FXML
     private TextField registrationNumber;
@@ -30,6 +32,10 @@ public class AddCarView {
 
     @FXML
     void addCar(ActionEvent event) {
+
+    }
+    public void init(AddCarViewModel addCarViewModel){
+        this.viewModel = addCarViewModel;
 
     }
 

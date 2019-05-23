@@ -3,8 +3,10 @@ package view.Tabs.EmployeeTabPane.ReservationsTab;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
+import viewmodel.ReservationsTab.ReservationsViewModel;
 
 public class ReservationsView {
+    private ReservationsViewModel viewModel;
 
     @FXML
     private TableColumn<?, ?> idColumn;
@@ -44,6 +46,10 @@ public class ReservationsView {
     @FXML
     void deleteReservation(ActionEvent event) {
 
+    }
+
+    public void init(ReservationsViewModel reservationsViewModel){
+        this.viewModel = reservationsViewModel;
     }
 
 }

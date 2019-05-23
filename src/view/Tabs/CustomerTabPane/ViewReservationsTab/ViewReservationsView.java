@@ -6,6 +6,10 @@ import javafx.scene.control.TableColumn;
 import viewmodel.ViewReservationsTab.ViewReservationsViewModel;
 
 public class ViewReservationsView {
+    private ViewReservationsViewModel viewModel;
+    public void init(ViewReservationsViewModel viewReservationsViewModel){
+        this.viewModel = viewReservationsViewModel;
+    }
     @FXML
     private TableColumn<?, ?> dateFromColumn;
 
@@ -36,6 +40,8 @@ public class ViewReservationsView {
     void deleteReservation(ActionEvent event) {
 
     }
+
+
 
 }
 

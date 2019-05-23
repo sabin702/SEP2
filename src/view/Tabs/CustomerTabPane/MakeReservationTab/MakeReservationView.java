@@ -9,6 +9,11 @@ import javafx.scene.control.TextField;
 import viewmodel.MakeReservationTab.MakeReservationViewModel;
 
 public class MakeReservationView {
+    private MakeReservationViewModel viewModel;
+    public void init(MakeReservationViewModel makeReservationViewModel){
+        this.viewModel = makeReservationViewModel;
+
+    }
     @FXML
     private DatePicker dateFrom;
 
@@ -36,5 +41,7 @@ public class MakeReservationView {
     void confirmReservation(ActionEvent event) {
 
     }
+
+
 
 }

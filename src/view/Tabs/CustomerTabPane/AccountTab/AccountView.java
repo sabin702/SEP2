@@ -2,11 +2,14 @@ package view.Tabs.CustomerTabPane.AccountTab;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.CheckBox;
+import javafx.scene.control.TextField;
 import viewmodel.AccountTab.AccountViewModel;
 
-import java.awt.*;
+import java.io.IOException;
 
 public class AccountView {
+
+    private AccountViewModel viewModel;
     @FXML
     private TextField nameTextField;
 
@@ -29,7 +32,8 @@ public class AccountView {
     private AccountViewModel accountViewModel;
 
     @FXML
-    void logOut(ActionEvent event) {
+    void logOut(ActionEvent event) throws IOException {
+        viewModel.openCreateAccountAndLogin();
 
     }
 
@@ -41,6 +45,9 @@ public class AccountView {
     @FXML
     void setPasswordVisible(ActionEvent event) {
 
+    }
+    public void init(AccountViewModel accountViewModel){
+        this.accountViewModel = accountViewModel;
     }
 
 }
