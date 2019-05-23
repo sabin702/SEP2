@@ -10,6 +10,13 @@ import javafx.fxml.FXML;
 import viewmodel.ViewModelProvider;
 
 public class EmployeeTabPaneView {
+
+    public void init(ViewModelProvider vmp) {
+        reservationsViewController.init(vmp.getReservationsViewModel());
+        carsViewController.init(vmp.getCarsViewModel());
+        usersViewController.init(vmp.getUsersViewModel());
+    }
+
     @FXML
     private TabPane employeeTabPane;
     @FXML
@@ -25,13 +32,4 @@ public class EmployeeTabPaneView {
     @FXML
     private UsersView usersViewController;
 
-
-    public void init(ViewModelProvider vmp) {
-        reservationsViewController.init(vmp.getReservationsViewModel());
-        carsViewController.init(vmp.getCarsViewModel());
-        usersViewController.init(vmp.getUsersViewModel());
-
-
-
-    }
 }

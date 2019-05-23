@@ -1,11 +1,13 @@
 package Employee_Client;
 
+import database.Database;
+
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 
 public class RMIEmployee implements REmployee {
 
-    ManageDatabase database;
+    Database database;
 
     public RMIEmployee() throws RemoteException {
         UnicastRemoteObject.exportObject(this, 1099);

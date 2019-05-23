@@ -16,8 +16,6 @@ public class CustomerTabPaneView {
         accountViewController.init(vmp.getAccountViewModel());
         makeReservationViewController.init(vmp.getMakeReservationViewModel());
         viewReservationsViewController.init(vmp.getViewReservationsViewModel());
-
-
     }
 
     @FXML

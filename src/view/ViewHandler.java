@@ -21,18 +21,26 @@ public class ViewHandler {
     public ViewHandler(Stage stage, ViewModelProvider vmp) {
         this.stage = stage;
         viewModelProvider = vmp;
-        vmp.instantiateViewModels(this);
+
 
     }
 
     public void startEmployee() throws Exception {
         openEmployeeTabPane();
+
     }
-    public void startCustomer() throws Exception{
+
+    public void startCustomer() throws Exception {
+        viewModelProvider.instantiateCreateAccountAndLogInViewModel(this);
         openCreateAccountAndLogIn();
+
     }
 
     public void openEmployeeTabPane() throws IOException {
+        viewModelProvider.instantiateReservationsViewModel();
+        viewModelProvider.instantiateCarsViewModel();
+        viewModelProvider.instantiateUsersViewModel();
+        viewModelProvider.instantiateAddCarViewModel(this);
         FXMLLoader loader = new FXMLLoader();
 
         loader.setLocation(getClass().getResource("/view/Tabs/EmployeeTabPane/EmployeeTabPane.fxml"));
@@ -54,8 +62,10 @@ public class ViewHandler {
     }
 
 
-
     public void openCustomerTabPane() throws IOException {
+        viewModelProvider.instantiateMakeReservationViewModel();
+        viewModelProvider.instantiateViewReservationsViewModel();
+        viewModelProvider.instantiateAccountViewModel(this);
         FXMLLoader loader = new FXMLLoader();
 
         loader.setLocation(getClass().getResource("/view/Tabs/CustomerTabPane/CustomerTabPane.fxml"));
@@ -76,7 +86,9 @@ public class ViewHandler {
         stage.show();
 
     }
+
     public void openAddCar() throws IOException {
+        viewModelProvider.instantiateAddCarViewModel(this);
         FXMLLoader loader = new FXMLLoader();
 
         loader.setLocation(getClass().getResource("/view/Tabs/EmployeeTabPane/AddCar/AddCar.fxml"));
@@ -89,6 +101,7 @@ public class ViewHandler {
         AddCarView view = loader.getController();
         view.init(viewModelProvider.getAddCarViewModel());
 
+
         Scene scene = new Scene(root);
 
         stage.setTitle("Add Car");
@@ -96,7 +109,9 @@ public class ViewHandler {
         stage.setScene(scene);
         stage.show();
     }
-    public void openCreateAccountAndLogIn () throws IOException {
+
+    public void openCreateAccountAndLogIn() throws IOException {
+
         FXMLLoader loader = new FXMLLoader();
 
         loader.setLocation(getClass().getResource("/view/CreateAccountAndLogIn/CreateAccountAndLogIn.fxml"));
@@ -107,7 +122,8 @@ public class ViewHandler {
             e.printStackTrace();
         }
         CreateAccountAndLogInView view = loader.getController();
-         view.init(viewModelProvider.getCreateAccountAndLogInViewModel());
+        view.init(viewModelProvider.getCreateAccountAndLogInViewModel());
+        viewModelProvider.instantiateCreateAccountAndLogInViewModel(this);
 
         Scene scene = new Scene(root);
 
@@ -117,7 +133,9 @@ public class ViewHandler {
         stage.show();
 
     }
+
     public void openCreateAccount() throws IOException {
+        viewModelProvider.instantiateCreateAccountViewModel(this);
         FXMLLoader loader = new FXMLLoader();
 
         loader.setLocation(getClass().getResource("/view/CreateAccountAndLogIn/CreateAccount.fxml"));
@@ -130,6 +148,7 @@ public class ViewHandler {
         CreateAccountView view = loader.getController();
         view.init(viewModelProvider.getCreateAccountViewModel());
 
+
         Scene scene = new Scene(root);
 
         stage.setTitle("Create account");
@@ -138,7 +157,9 @@ public class ViewHandler {
         stage.show();
 
     }
+
     public void openLogIn() {
+        viewModelProvider.instantiateLogInViewModel(this);
         FXMLLoader loader = new FXMLLoader();
 
         loader.setLocation(getClass().getResource("/view/CreateAccountAndLogIn/LogIn.fxml"));
@@ -151,7 +172,8 @@ public class ViewHandler {
             e.printStackTrace();
         }
         LogInView view = loader.getController();
-         view.init(viewModelProvider.getLogInViewModel());
+        view.init(viewModelProvider.getLogInViewModel());
+
 
         Scene scene = new Scene(root);
 

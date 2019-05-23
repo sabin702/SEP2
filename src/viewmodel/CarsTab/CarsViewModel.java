@@ -6,8 +6,8 @@ import java.io.IOException;
 
 public class CarsViewModel {
     private ViewHandler viewHandler;
-    public CarsViewModel (ViewHandler viewHandler){
-        this.viewHandler = viewHandler;
+    public CarsViewModel (){
+
     }
 
     public void openAddCar() throws IOException {

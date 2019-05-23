@@ -1,7 +1,7 @@
 package viewmodel;
 
 
-import view.Tabs.EmployeeTabPane.AddCar.AddCarView;
+
 import view.ViewHandler;
 import viewmodel.AccountAndLogIn.CreateAccountAndLogInViewModel;
 import viewmodel.AccountAndLogIn.CreateAccountViewModel;
@@ -29,68 +29,66 @@ public class ViewModelProvider {
     private ViewReservationsViewModel viewReservationsViewModel;
 
 
-    public void instantiateViewModels(ViewHandler viewHandler){
-
-        logInViewModel = new LogInViewModel(viewHandler);
-        createAccountAndLogInViewModel = new CreateAccountAndLogInViewModel(viewHandler);
-        createAccountViewModel = new CreateAccountViewModel(viewHandler);
-        addCarViewModel = new AddCarViewModel(viewHandler);
-        carsViewModel = new CarsViewModel(viewHandler);
-        accountViewModel = new AccountViewModel();
-        makeReservationViewModel = new MakeReservationViewModel(viewHandler);
-        reservationsViewModel = new ReservationsViewModel();
-        usersViewModel = new UsersViewModel(viewHandler);
-        viewReservationsViewModel = new ViewReservationsViewModel();
+    public void instantiateLogInViewModel(ViewHandler viewHandler) {
+        if (logInViewModel == null) {
+            logInViewModel = new LogInViewModel(viewHandler);
+        }
     }
 
-    /*public void instantiateCustomerTabPanelViewModel() {
-
+    public void instantiateCreateAccountAndLogInViewModel(ViewHandler viewHandler) {
+        if (createAccountAndLogInViewModel == null) {
+            createAccountAndLogInViewModel = new CreateAccountAndLogInViewModel(viewHandler);
+        }
     }
 
-    public void instantiateLogInViewModel() {
-
+    public void instantiateCreateAccountViewModel(ViewHandler viewHandler) {
+        if (createAccountViewModel == null) {
+            createAccountViewModel = new CreateAccountViewModel(viewHandler);
+        }
     }
 
-    public void instantiateCreateAccountAndLogInViewModel() {
-
-    }
-
-    public void instantiateCreateAccountViewModel() {
-
-    }
-
-    public void instantiateAddCarViewModel() {
-
+    public void instantiateAddCarViewModel(ViewHandler viewHandler) {
+        if (addCarViewModel == null) {
+            addCarViewModel = new AddCarViewModel(viewHandler);
+        }
     }
 
     public void instantiateCarsViewModel() {
-
+        if (carsViewModel == null) {
+            carsViewModel = new CarsViewModel();
+        }
     }
 
-    public void instantiateAccountViewModel() {
-
+    public void instantiateAccountViewModel(ViewHandler viewHandler) {
+        if (accountViewModel == null) {
+            accountViewModel = new AccountViewModel(viewHandler);
+        }
     }
 
-    public void instantiateEmployeeTabPaneViewModel() {
-
-    }
 
     public void instantiateMakeReservationViewModel() {
-
+        if (makeReservationViewModel == null) {
+            makeReservationViewModel = new MakeReservationViewModel();
+        }
     }
 
     public void instantiateReservationsViewModel() {
-
+        if (reservationsViewModel == null) {
+            reservationsViewModel = new ReservationsViewModel();
+        }
     }
 
     public void instantiateUsersViewModel() {
-
+        if (usersViewModel == null) {
+            usersViewModel = new UsersViewModel();
+        }
     }
 
     public void instantiateViewReservationsViewModel() {
-
-    }*/
-
+        if (viewReservationsViewModel == null) {
+            viewReservationsViewModel = new ViewReservationsViewModel();
+        }
+    }
 
 
     public LogInViewModel getLogInViewModel() {

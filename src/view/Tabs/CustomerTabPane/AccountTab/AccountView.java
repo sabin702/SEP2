@@ -10,6 +10,8 @@ import java.io.IOException;
 public class AccountView {
 
     private AccountViewModel viewModel;
+
+
     @FXML
     private TextField nameTextField;
 
@@ -34,7 +36,6 @@ public class AccountView {
     @FXML
     void logOut(ActionEvent event) throws IOException {
         viewModel.openCreateAccountAndLogin();
-
     }
 
     @FXML
@@ -46,8 +47,10 @@ public class AccountView {
     void setPasswordVisible(ActionEvent event) {
 
     }
+
     public void init(AccountViewModel accountViewModel){
-        this.accountViewModel = accountViewModel;
+        this.viewModel = accountViewModel;
     }
+
 
 }

@@ -36,7 +36,6 @@ public class CreateAccountView {
 
     public void init(CreateAccountViewModel createAccountViewModel) {
         this.viewModel = createAccountViewModel;
-
     }
 
 }
