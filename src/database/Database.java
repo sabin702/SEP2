@@ -130,27 +130,20 @@ public class Database {
     }
 
     public void deleteReservation(String registrationId){
-        if(registrationId.length() > 6){
-            try {
-                stmt.close();
-                c.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
 
-            String sql = "DELETE FROM \"SEP2\".reservation" + "WHERE registrationId =" + registrationId;
+        String sql = "DELETE FROM \"SEP2\".reservation" + "WHERE registrationId =" + registrationId;
 
-            try {
-                Class.forName("org.postgresql.Driver");
-                c = DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres",
-                        "postgres", "password");
-                System.out.println("Database open ok");
+        try {
+            Class.forName("org.postgresql.Driver");
+            c = DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres",
+                    "postgres", "password");
+            System.out.println("Database open ok");
 
-                stmt = c.createStatement();
-            } catch (ClassNotFoundException | SQLException e) {
-                e.printStackTrace();
-            }
+            stmt = c.createStatement();
+        } catch (ClassNotFoundException | SQLException e) {
+            e.printStackTrace();
         }
+
     }
 
     public void getCar(){
@@ -258,6 +251,21 @@ public class Database {
             c.close();
         } catch (SQLException e) {
             System.out.println("Unsuccessful sql insert (addCar() method in Database.java)");
+            e.printStackTrace();
+        }
+    }
+
+    public void deleteCustomer(String username){
+        String sql = "DELETE FROM \"SEP2\".customer" + "WHERE username =" + username;
+
+        try {
+            Class.forName("org.postgresql.Driver");
+            c = DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres",
+                    "postgres", "password");
+            System.out.println("Database open ok");
+
+            stmt = c.createStatement();
+        } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
         }
     }

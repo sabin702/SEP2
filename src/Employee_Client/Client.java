@@ -2,6 +2,7 @@ package Employee_Client;
 
 import DataModel.CarList;
 import DataModel.Customer;
+import Model.CustomerModel;
 import server.IServerModel;
 import server.ServerModel;
 
@@ -15,13 +16,13 @@ public class Client {
 
     IServerModel serverModel;
     CarList cars;
-    Customer customer;
+    CustomerModel model;
 
-    public Client(Customer customer) throws RemoteException, NotBoundException {
+    public Client(CustomerModel model) throws RemoteException, NotBoundException {
         Registry registry = LocateRegistry.getRegistry("localhost", 1099);
         serverModel = (IServerModel) registry.lookup("servers");
         cars = new CarList();
-        this.customer = customer;
+        this.model = model;
     }
 
     public void addCarToDatabase(String registration, String make, int mileage, String color, int productionYear, int availability){

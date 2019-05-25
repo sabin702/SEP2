@@ -1,5 +1,7 @@
 package Employee_Client;
 
+import Model.CustomerModel;
+import Model.CustomerModelImpl;
 import server.IServerModel;
 import server.ServerModel;
 
@@ -13,7 +15,8 @@ public class ClientMain {
 
     public static void main(String[] args) throws RemoteException, NotBoundException, ParseException {
         IServerModel serverModel = new ServerModel();
-        Client client = new Client();
+        CustomerModel model = new CustomerModelImpl();
+        Client client = new Client(model);
 
         //client.addCarToDatabase("M12345", "Mercedes", 30, "gray", 2015, 1);
 
