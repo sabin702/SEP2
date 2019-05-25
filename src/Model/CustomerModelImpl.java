@@ -2,26 +2,39 @@ package Model;
 
 import DataModel.Customer;
 import DataModel.ReservationList;
-import server.IServerModel;
-import server.ServerModel;
+import Employee_Client.ClientImpl;
+import Employee_Client.Client;
 
+import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 
 public class CustomerModelImpl implements CustomerModel {
 
-    private IServerModel serverModel;
+    private Client client;
 
     public CustomerModelImpl() throws RemoteException {
-        serverModel = new ServerModel();
+        try {
+            client = new ClientImpl(this);
+        } catch (NotBoundException e) {
+            System.out.println("oops");
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void setClient(Client client) {
+        this.client = client;
     }
 
     @Override
     public void createAccount(Customer customer) {
-        try {
-            serverModel.addCustomer(customer.getUsername(), customer.getPassword(), customer.getFirstName(), customer.getLastName(), customer.getBirthDate());
-        } catch (RemoteException e) {
-            e.printStackTrace();
+        if(client == null){
+            System.out.println("Pointless");
         }
+
+
+        //serverModel.addCustomer(customer.getUsername(), customer.getPassword(), customer.getFirstName(), customer.getLastName(), customer.getBirthDate());
+        client.addCustomer(customer);
     }
 
     @Override

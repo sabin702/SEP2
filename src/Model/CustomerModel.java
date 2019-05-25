@@ -2,8 +2,11 @@ package Model;
 
 import DataModel.Customer;
 import DataModel.ReservationList;
+import Employee_Client.Client;
 
 public interface CustomerModel {
+
+    void setClient(Client client);
 
     void createAccount(Customer customer);
 
@@ -16,4 +19,5 @@ public interface CustomerModel {
     void changeUserData();
 
     ReservationList viewReservations();
+
 }

@@ -2,8 +2,11 @@ package Employee_Client;
 
 import Model.CustomerModel;
 import Model.CustomerModelImpl;
+import javafx.application.Application;
 import server.IServerModel;
 import server.ServerModel;
+import view.ViewHandler;
+import viewmodel.ViewModelProvider;
 
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
@@ -11,13 +14,11 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class ClientMain {
+public class CustomerClientMain {
 
-    public static void main(String[] args) throws RemoteException, NotBoundException, ParseException {
-        IServerModel serverModel = new ServerModel();
-        CustomerModel model = new CustomerModelImpl();
-        Client client = new Client(model);
+    public static void main(String[] args){
 
+        Application.launch(CustomerMain.class);
         //client.addCarToDatabase("M12345", "Mercedes", 30, "gray", 2015, 1);
 
         //client.getCars();
