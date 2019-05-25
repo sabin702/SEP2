@@ -10,10 +10,10 @@
    <children>
       <Button layoutX="27.0" layoutY="14.0" mnemonicParsing="false" onAction="#addCarWindow" prefHeight="57.0" prefWidth="90.0" text="Add" />
       <Button layoutX="27.0" layoutY="198.0" mnemonicParsing="false" onAction="#deleteCar" prefHeight="57.0" prefWidth="90.0" text="Delete" />
-      <Button layoutX="27.0" layoutY="382.0" mnemonicParsing="false" onAction="#editCar" prefHeight="57.0" prefWidth="90.0" text="Edit" />
+      <Button fx:id="editButton" layoutX="27.0" layoutY="382.0" mnemonicParsing="false" onAction="#editCar" prefHeight="57.0" prefWidth="90.0" text="Edit" />
       <ScrollPane layoutX="148.0" prefHeight="453.0" prefWidth="574.0">
          <content>
-            <TableView prefHeight="449.0" prefWidth="573.0">
+            <TableView fx:id="tableView" prefHeight="449.0" prefWidth="573.0">
                <columns>
                   <TableColumn fx:id="registrationColumn" prefWidth="99.0" text="Registration" />
                   <TableColumn fx:id="makeColumn" prefWidth="109.0" text="Make" />

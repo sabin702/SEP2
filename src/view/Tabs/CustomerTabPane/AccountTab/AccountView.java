@@ -1,6 +1,8 @@
 package view.Tabs.CustomerTabPane.AccountTab;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
 import viewmodel.AccountTab.AccountViewModel;
@@ -11,15 +13,13 @@ public class AccountView {
 
     private AccountViewModel viewModel;
 
-
+    @FXML
+    private Button editButton;
     @FXML
     private TextField nameTextField;
 
     @FXML
     private TextField surnameTextField;
-
-    @FXML
-    private TextField usernameTextField;
 
     @FXML
     private TextField passwordTextField;
@@ -29,8 +29,13 @@ public class AccountView {
 
     @FXML
     void editUserData(ActionEvent event) {
-
+        if (editButton.getText().equals("Edit")) {
+            editButton.setText("Save");
+        } else if (editButton.getText().equals("Save"))
+            editButton.setText("Edit");
     }
+
+
     private AccountViewModel accountViewModel;
 
     @FXML
@@ -38,17 +43,13 @@ public class AccountView {
         viewModel.openCreateAccountAndLogin();
     }
 
-    @FXML
-    void saveUserData(ActionEvent event) {
-
-    }
 
     @FXML
     void setPasswordVisible(ActionEvent event) {
 
     }
 
-    public void init(AccountViewModel accountViewModel){
+    public void init(AccountViewModel accountViewModel) {
         this.viewModel = accountViewModel;
     }
 

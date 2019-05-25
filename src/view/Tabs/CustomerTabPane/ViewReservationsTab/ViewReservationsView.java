@@ -3,6 +3,7 @@ package view.Tabs.CustomerTabPane.ViewReservationsTab;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import viewmodel.ViewReservationsTab.ViewReservationsViewModel;
 
 public class ViewReservationsView {
@@ -10,6 +11,8 @@ public class ViewReservationsView {
     public void init(ViewReservationsViewModel viewReservationsViewModel){
         this.viewModel = viewReservationsViewModel;
     }
+    @FXML
+    private TableView<?> tableView;
     @FXML
     private TableColumn<?, ?> dateFromColumn;
 

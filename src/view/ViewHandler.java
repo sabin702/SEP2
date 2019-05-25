@@ -26,6 +26,7 @@ public class ViewHandler {
     }
 
     public void startEmployee() throws Exception {
+
         openEmployeeTabPane();
 
     }
@@ -44,7 +45,7 @@ public class ViewHandler {
         FXMLLoader loader = new FXMLLoader();
 
         loader.setLocation(getClass().getResource("/view/Tabs/EmployeeTabPane/EmployeeTabPane.fxml"));
-        Parent root = loader.load();
+        Parent root = null;
         try {
             root = loader.load();
         } catch (IOException e) {

@@ -3,11 +3,14 @@ package view.Tabs.EmployeeTabPane.ReservationsTab;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import viewmodel.ReservationsTab.ReservationsViewModel;
 
 public class ReservationsView {
     private ReservationsViewModel viewModel;
 
+    @FXML
+    private TableView<?> tableView;
     @FXML
     private TableColumn<?, ?> idColumn;
 

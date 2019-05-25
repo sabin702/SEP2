@@ -6,12 +6,11 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.Tabs.CustomerTabPane.ViewReservationsTab.ViewReservationsView">
    <children>
       <ScrollPane layoutX="152.0" prefHeight="400.0" prefWidth="494.0">
          <content>
-            <TableView prefHeight="408.0" prefWidth="544.0">
+            <TableView fx:id="tableView" prefHeight="408.0" prefWidth="544.0">
               <columns>
                 <TableColumn fx:id="dateFromColumn" prefWidth="75.0" text="From" />
                 <TableColumn fx:id="dateToColumn" prefWidth="75.0" text="To" />

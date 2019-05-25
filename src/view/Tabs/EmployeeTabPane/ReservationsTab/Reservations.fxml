@@ -10,7 +10,7 @@
    <children>
       <ScrollPane layoutX="126.0" prefHeight="510.0" prefWidth="619.0">
          <content>
-            <TableView prefHeight="511.0" prefWidth="620.0">
+            <TableView fx:id="tableView" prefHeight="511.0" prefWidth="620.0">
               <columns>
                 <TableColumn fx:id="idColumn" prefWidth="75.0" text="ID" />
                 <TableColumn fx:id="customerColumn" prefWidth="75.0" text="Customer" />
