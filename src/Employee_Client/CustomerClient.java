@@ -21,6 +21,8 @@ public interface CustomerClient {
 
     void addCustomer(Customer customer) throws RemoteException;
 
+    
+
     void deleteCustomer(String username);
 
     Customer getCustomer(String username);
