@@ -3,10 +3,11 @@ package Model;
 import DataModel.Customer;
 import DataModel.ReservationList;
 import Employee_Client.Client;
+import Employee_Client.CustomerClient;
 
 public interface CustomerModel {
 
-    void setClient(Client client);
+    void setClient(CustomerClient client);
 
     void createAccount(Customer customer);
 

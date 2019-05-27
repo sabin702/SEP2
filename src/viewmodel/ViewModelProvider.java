@@ -2,6 +2,7 @@ package viewmodel;
 
 
 
+import Model.CustomerModel;
 import view.ViewHandler;
 import viewmodel.AccountAndLogIn.CreateAccountAndLogInViewModel;
 import viewmodel.AccountAndLogIn.CreateAccountViewModel;
@@ -28,6 +29,11 @@ public class ViewModelProvider {
     private UsersViewModel usersViewModel;
     private ViewReservationsViewModel viewReservationsViewModel;
 
+    private CustomerModel cm;
+
+    public ViewModelProvider(CustomerModel cm) {
+        this.cm = cm;
+    }
 
     public void instantiateLogInViewModel(ViewHandler viewHandler) {
         if (logInViewModel == null) {
@@ -43,7 +49,7 @@ public class ViewModelProvider {
 
     public void instantiateCreateAccountViewModel(ViewHandler viewHandler) {
         if (createAccountViewModel == null) {
-            createAccountViewModel = new CreateAccountViewModel(viewHandler);
+            createAccountViewModel = new CreateAccountViewModel(viewHandler, cm);
         }
     }
 

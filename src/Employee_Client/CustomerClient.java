@@ -1,18 +1,13 @@
-package server;
+package Employee_Client;
 
 import DataModel.*;
 
-import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.Date;
 
-public interface IServerModel extends Remote {
+public interface CustomerClient {
 
-    void addCar(String registration, String make, int mileage, String color, int productionYear, int availability) throws RemoteException;
-
-    void deleteCar(String carRegistrationNumber) throws RemoteException;
-
-    Car getCar(String regisytrationNumber);
+    Car getCar(String registrationNumber);
 
     CarList getCars() throws RemoteException;
 
@@ -24,11 +19,12 @@ public interface IServerModel extends Remote {
 
     ReservationList getReservations() throws RemoteException;
 
-    void addCustomer(String username, String password, String firstName, String lastName, Date dateOfBirth) throws RemoteException;
+    void addCustomer(Customer customer) throws RemoteException;
 
     void deleteCustomer(String username);
 
     Customer getCustomer(String username);
 
     CustomerList getCustomers();
+
 }

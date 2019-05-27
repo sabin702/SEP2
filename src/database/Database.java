@@ -1,9 +1,6 @@
 package database;
 
-import DataModel.Car;
-import DataModel.CarList;
-import DataModel.Reservation;
-import DataModel.ReservationList;
+import DataModel.*;
 
 import java.sql.*;
 import java.util.Calendar;
@@ -94,23 +91,11 @@ public class Database {
         }
     }
 
-    public void addReservation(String reservationId, String carRegNo, String username, Date dateFrom, Date dateTo, int navigation, int childseat, String firstName, String lastName, int age, int price, int insurance, int status){
+    public Car getCar(String regNo){
+        String sql = "SELECT * FROM \"SEP2\".car WHERE registrationNumber = " + regNo;
 
-        Reservation reservation = new Reservation(reservationId, carRegNo, username, dateFrom, dateTo, navigation, childseat, firstName, lastName, age, price, insurance, status);
+        Car car = new Car("", "", 0, "", 0, 0);
 
-        String sql = "INSERT INTO  \"SEP2\".reservation " + "VALUES('" + reservationId + "','"
-                + carRegNo + "','"
-                + username + "','"
-                + dateFrom + "','"
-                + dateTo +"','"
-                + navigation + "','"
-                + childseat + "','"
-                + firstName + "','"
-                + lastName + "','"
-                + age + "','"
-                + price + "','"
-                + insurance + "','"
-                + status + "')";
         try {
             Class.forName("org.postgresql.Driver");
             c = DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres",
@@ -118,35 +103,27 @@ public class Database {
             System.out.println("Database open ok");
 
             stmt = c.createStatement();
+            ResultSet rs = stmt.executeQuery(sql);
+            while(rs.next()){
+                //Retrieve by column name
+                String registrationNumber = rs.getString("registrationNumber");
+                String make = rs.getString("make");
+                int mileage = rs.getInt("mileage");
+                String color = rs.getString("color");
+                int productionYear = rs.getInt("model_year");
+                int availability = rs.getInt("availability");
 
-            stmt.executeUpdate(sql);
+                car = new Car(registrationNumber, make, mileage, color, productionYear, availability);
 
-            stmt.close();
+            }
+            rs.close();
+
+            //stmt.close();
             c.close();
         } catch (ClassNotFoundException | SQLException e) {
-            System.out.println("Unsuccessful sql insert (addReservation() method in Database.java)");
             e.printStackTrace();
         }
-    }
-
-    public void deleteReservation(String registrationId){
-
-        String sql = "DELETE FROM \"SEP2\".reservation" + "WHERE registrationId =" + registrationId;
-
-        try {
-            Class.forName("org.postgresql.Driver");
-            c = DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres",
-                    "postgres", "password");
-            System.out.println("Database open ok");
-
-            stmt = c.createStatement();
-        } catch (ClassNotFoundException | SQLException e) {
-            e.printStackTrace();
-        }
-
-    }
-
-    public void getCar(){
+        return car;
 
     }
 
@@ -183,6 +160,92 @@ public class Database {
             e.printStackTrace();
         }
         return cars;
+    }
+
+    public void addReservation(String reservationId, String carRegNo, String username, Date dateFrom, Date dateTo, int navigation, int childseat, String firstName, String lastName, int age, int price, int insurance, int status){
+
+        Reservation reservation = new Reservation(reservationId, carRegNo, username, dateFrom, dateTo, navigation, childseat, firstName, lastName, age, price, insurance, status);
+
+        String sql = "INSERT INTO  \"SEP2\".reservation " + "VALUES('" + reservationId + "','"
+                + carRegNo + "','"
+                + username + "','"
+                + dateFrom + "','"
+                + dateTo +"','"
+                + navigation + "','"
+                + childseat + "','"
+                + firstName + "','"
+                + lastName + "','"
+                + age + "','"
+                + price + "','"
+                + insurance + "','"
+                + status + "')";
+        try {
+            Class.forName("org.postgresql.Driver");
+            c = DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres",
+                    "postgres", "password");
+            System.out.println("Database open ok");
+
+            stmt = c.createStatement();
+
+            stmt.executeUpdate(sql);
+
+            stmt.close();
+            c.close();
+        } catch (ClassNotFoundException | SQLException e) {
+            System.out.println("Unsuccessful sql insert (addReservation() method in Database.java)");
+            e.printStackTrace();
+        }
+    }
+
+    public void deleteReservation(String reservationId){
+
+        String sql = "DELETE FROM \"SEP2\".reservation" + "WHERE reservationId =" + reservationId;
+
+        try {
+            Class.forName("org.postgresql.Driver");
+            c = DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres",
+                    "postgres", "password");
+            System.out.println("Database open ok");
+
+            stmt = c.createStatement();
+        } catch (ClassNotFoundException | SQLException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public Reservation getReservation(String reservationId){
+        String sql = "SELECT * FROM \"SEP2\".reservation WHERE reservationId = " +  reservationId;
+
+        Reservation reservation = new Reservation("", "", "", new Date(), new Date(), 0, 0, "", "", 0, 0, 0, 0);
+
+        try {
+            ResultSet rs = stmt.executeQuery(sql);
+            while(rs.next()){
+                //Retrieve by column name
+                String reservationID = rs.getString("reservationId");
+                String carRegNo = rs.getString("car_reg_no");
+                String username = rs.getString("username");
+                Date dateFrom = rs.getDate("dateFrom");
+                Date dateTo = rs.getDate("dateTo");
+                int navigation = rs.getInt("navigation");
+                int childseat = rs.getInt("childseat");
+                String firstName = rs.getString("firstName");
+                String lastName = rs.getString("lastName");
+                int age = rs.getInt("age");
+                int price = rs.getInt("price");
+                int insurance = rs.getInt("insurance");
+                int status = rs.getInt("status");
+
+                reservation = new Reservation(reservationID, carRegNo, username, dateFrom, dateTo, navigation, childseat, firstName, lastName, age, price, insurance, status);
+
+            }
+            rs.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return reservation;
     }
 
     public ReservationList getReservations(){
@@ -268,6 +331,72 @@ public class Database {
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    public Customer getCustomer(String username){
+        String sql = "SELECT * FROM \"SEP2\".customer" + "WHERE username =" + username;
+
+        Customer customer = new Customer("", "", "", "", new Date());
+
+        try {
+            Class.forName("org.postgresql.Driver");
+            c = DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres",
+                    "postgres", "password");
+            System.out.println("Database open ok");
+
+            stmt = c.createStatement();
+            ResultSet rs = stmt.executeQuery(sql);
+            while(rs.next()){
+                //Retrieve by column name
+                String userName = rs.getString("username");
+                String password = rs.getString("password");
+                String firstName = rs.getString("firstName");
+                String lastName = rs.getString("lastName");
+                Date birthDate = rs.getDate("dateOfBirth");
+
+                customer = new Customer(userName, password, firstName, lastName, birthDate);
+            }
+            rs.close();
+
+            //stmt.close();
+            c.close();
+        } catch (ClassNotFoundException | SQLException e) {
+            e.printStackTrace();
+        }
+        return customer;
+    }
+
+    public CustomerList getCustomers(){
+        String sql = "SELECT * FROM \"SEP2\".customer";
+
+        CustomerList customers = new CustomerList();
+
+        try {
+            Class.forName("org.postgresql.Driver");
+            c = DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres",
+                    "postgres", "password");
+            System.out.println("Database open ok");
+
+            stmt = c.createStatement();
+            ResultSet rs = stmt.executeQuery(sql);
+            while(rs.next()){
+                //Retrieve by column name
+                String username = rs.getString("username");
+                String password = rs.getString("password");
+                String firstName = rs.getString("firstName");
+                String lastName = rs.getString("lastName");
+                Date birthDate = rs.getDate("dateOfBirth");
+
+                customers.addCustomer(new Customer(username, password, firstName, lastName, birthDate));
+            }
+            rs.close();
+
+            //stmt.close();
+            c.close();
+        } catch (ClassNotFoundException | SQLException e) {
+            e.printStackTrace();
+        }
+        return customers;
     }
 
 }

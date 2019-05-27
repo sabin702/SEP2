@@ -13,13 +13,9 @@ public class CreateAccountViewModel {
     private CustomerModel model;
     private Customer customer;
 
-    public CreateAccountViewModel(ViewHandler viewHandler){
+    public CreateAccountViewModel(ViewHandler viewHandler, CustomerModel model){
         this.viewHandler = viewHandler;
-        try {
-            model = new CustomerModelImpl();
-        } catch (RemoteException e) {
-            e.printStackTrace();
-        }
+        this.model = model;
     }
     public void openCreateAccountAndLogIn() throws IOException {
         viewHandler.openCreateAccountAndLogIn();

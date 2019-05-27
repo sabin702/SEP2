@@ -1,7 +1,6 @@
 package Employee_Client;
 
-import DataModel.CarList;
-import DataModel.Customer;
+import DataModel.*;
 import Model.CustomerModel;
 import server.IServerModel;
 
@@ -11,36 +10,27 @@ import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.util.Date;
 
-public class ClientImpl implements Client {
+public class CustomerClientImpl implements CustomerClient{
 
     IServerModel serverModel;
     CarList cars;
     CustomerModel model;
 
-    public ClientImpl(CustomerModel model) throws RemoteException, NotBoundException {
+    public CustomerClientImpl(CustomerModel model) throws RemoteException, NotBoundException {
         this.model = model;
-        //model.setClient(this);
+        model.setClient(this);
         Registry registry = LocateRegistry.getRegistry("localhost", 1099);
         serverModel = (IServerModel) registry.lookup("servers");
         cars = new CarList();
     }
 
-
-    public void addCarToDatabase(String registration, String make, int mileage, String color, int productionYear, int availability){
-        try {
-            serverModel.addCar(registration, make, mileage, color, productionYear, availability);
-            System.out.println("Successfully added car!");
-        } catch (RemoteException e) {
-            System.out.println("here client");
-            e.printStackTrace();
-        }
+    @Override
+    public Car getCar(String registrationNumber) {
+        return null;
     }
 
-    public void deleteCar(String carRegNo) throws RemoteException {
-        serverModel.deleteCar(carRegNo);
-    }
-
-    public void getCars(){
+    @Override
+    public CarList getCars() throws RemoteException {
         try {
             cars  = serverModel.getCars();
 
@@ -53,9 +43,11 @@ public class ClientImpl implements Client {
         } catch (RemoteException e) {
             e.printStackTrace();
         }
+        return cars;
     }
 
-    public void addReservation(String reservationId, String carRegNo, String username, Date dateFrom, Date dateTo, int navigation, int childseat, String firstName, String lastName, int age, int price, int insurance, int status){
+    @Override
+    public void addReservation(String reservationId, String carRegNo, String username, Date dateFrom, Date dateTo, int navigation, int childseat, String firstName, String lastName, int age, int price, int insurance, int status) throws RemoteException {
         try {
             serverModel.addReservation(reservationId, carRegNo, username, dateFrom, dateTo, navigation, childseat, firstName, lastName, age, price, insurance, status);
             System.out.println("Successfully added reservation");
@@ -65,11 +57,23 @@ public class ClientImpl implements Client {
         }
     }
 
+    @Override
     public void deleteReservation(String reservationId) throws RemoteException {
         serverModel.deleteReservation(reservationId);
     }
 
-    public void addCustomer(Customer customer){
+    @Override
+    public Reservation getReservation(String registrationId) {
+        return null;
+    }
+
+    @Override
+    public ReservationList getReservations() throws RemoteException {
+        return null;
+    }
+
+    @Override
+    public void addCustomer(Customer customer) throws RemoteException {
         try {
             serverModel.addCustomer(customer.getUsername(), customer.getPassword(), customer.getFirstName(), customer.getLastName(), customer.getBirthDate());
             System.out.println("Successfully added customer");
@@ -78,7 +82,18 @@ public class ClientImpl implements Client {
         }
     }
 
-    public CustomerModel getModel(){
-        return model;
+    @Override
+    public void deleteCustomer(String username) {
+
+    }
+
+    @Override
+    public Customer getCustomer(String username) {
+        return null;
+    }
+
+    @Override
+    public CustomerList getCustomers() {
+        return null;
     }
 }

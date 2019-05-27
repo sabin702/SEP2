@@ -1,7 +1,6 @@
 package server;
 
-import DataModel.CarList;
-import DataModel.ReservationList;
+import DataModel.*;
 import database.Database;
 
 import java.rmi.RemoteException;
@@ -28,6 +27,11 @@ public class ServerModel implements IServerModel{
     }
 
     @Override
+    public Car getCar(String regisytrationNumber) {
+        return database.getCar(regisytrationNumber);
+    }
+
+    @Override
     public CarList getCars() throws RemoteException {
         return database.getCars();
     }
@@ -43,6 +47,11 @@ public class ServerModel implements IServerModel{
     }
 
     @Override
+    public Reservation getReservation(String reservationId) {
+        return database.getReservation(reservationId);
+    }
+
+    @Override
     public ReservationList getReservations() throws RemoteException {
         return database.getReservations();
     }
@@ -50,5 +59,20 @@ public class ServerModel implements IServerModel{
     @Override
     public void addCustomer(String username, String password, String firstName, String lastName, Date dateOfBirth) {
         database.addCustomer(username, password, firstName, lastName, dateOfBirth);
+    }
+
+    @Override
+    public void deleteCustomer(String username) {
+        database.deleteCustomer(username);
+    }
+
+    @Override
+    public Customer getCustomer(String username) {
+        return database.getCustomer(username);
+    }
+
+    @Override
+    public CustomerList getCustomers() {
+        return database.getCustomers();
     }
 }
