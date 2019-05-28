@@ -17,31 +17,15 @@ public class Database {
         stmt = null;
 
         //Here we make the connection to our database with the credentials
-        try {
-            Class.forName("org.postgresql.Driver");
-            c = DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres",
-                    "postgres", "password");
-            System.out.println("Database open ok");
 
-            stmt = c.createStatement();
-        } catch (ClassNotFoundException | SQLException e) {
-            e.printStackTrace();
-        }
+        connectToDatabase();
 
     }
 
     public void addCar(String registration, String make, int mileage, String color, int production, int availability){
         String sql = "INSERT INTO  \"SEP2\".car " + "VALUES('" + registration + "','" + make + "'," + mileage +",'" + color + "'," + production + "," + availability + ")";
 
-        try {
-            c = DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres",
-                    "postgres", "password");
-
-            stmt = c.createStatement();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
+        connectToDatabase();
 
         try {
             stmt.executeUpdate(sql);
@@ -73,18 +57,13 @@ public class Database {
         String sql = "DELETE FROM \"SEP2\".car " + "WHERE registrationNumber = " + registrationNumber;
         try {
 
-            Class.forName("org.postgresql.Driver");
-            c = DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres",
-                    "postgres", "password");
-            System.out.println("Database open ok");
-
-            stmt = c.createStatement();
+            connectToDatabase();
 
             stmt.executeUpdate(sql);
 
             stmt.close();
             c.close();
-        } catch (ClassNotFoundException | SQLException e) {
+        } catch (SQLException e) {
             System.out.println("Oops something went wrong with " +
                     "the sql syntax for deleting a car(Database.java)");
             e.printStackTrace();
@@ -97,12 +76,7 @@ public class Database {
         Car car = new Car("", "", 0, "", 0, 0);
 
         try {
-            Class.forName("org.postgresql.Driver");
-            c = DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres",
-                    "postgres", "password");
-            System.out.println("Database open ok");
-
-            stmt = c.createStatement();
+            connectToDatabase();
             ResultSet rs = stmt.executeQuery(sql);
             while(rs.next()){
                 //Retrieve by column name
@@ -120,7 +94,7 @@ public class Database {
 
             //stmt.close();
             c.close();
-        } catch (ClassNotFoundException | SQLException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         return car;
@@ -133,12 +107,8 @@ public class Database {
         CarList cars = new CarList();
 
         try {
-            Class.forName("org.postgresql.Driver");
-            c = DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres",
-                    "postgres", "password");
-            System.out.println("Database open ok");
+            connectToDatabase();
 
-            stmt = c.createStatement();
             ResultSet rs = stmt.executeQuery(sql);
             while(rs.next()){
                 //Retrieve by column name
@@ -156,7 +126,7 @@ public class Database {
 
             //stmt.close();
             c.close();
-        } catch (ClassNotFoundException | SQLException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         return cars;
@@ -180,18 +150,13 @@ public class Database {
                 + insurance + "','"
                 + status + "')";
         try {
-            Class.forName("org.postgresql.Driver");
-            c = DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres",
-                    "postgres", "password");
-            System.out.println("Database open ok");
-
-            stmt = c.createStatement();
+            connectToDatabase();
 
             stmt.executeUpdate(sql);
 
             stmt.close();
             c.close();
-        } catch (ClassNotFoundException | SQLException e) {
+        } catch (SQLException e) {
             System.out.println("Unsuccessful sql insert (addReservation() method in Database.java)");
             e.printStackTrace();
         }
@@ -202,13 +167,11 @@ public class Database {
         String sql = "DELETE FROM \"SEP2\".reservation" + "WHERE reservationId =" + reservationId;
 
         try {
-            Class.forName("org.postgresql.Driver");
-            c = DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres",
-                    "postgres", "password");
-            System.out.println("Database open ok");
+            connectToDatabase();
 
-            stmt = c.createStatement();
-        } catch (ClassNotFoundException | SQLException e) {
+            stmt.executeUpdate(sql);
+
+        } catch (SQLException e) {
             e.printStackTrace();
         }
 
@@ -220,6 +183,9 @@ public class Database {
         Reservation reservation = new Reservation("", "", "", new Date(), new Date(), 0, 0, "", "", 0, 0, 0, 0);
 
         try {
+
+            connectToDatabase();
+
             ResultSet rs = stmt.executeQuery(sql);
             while(rs.next()){
                 //Retrieve by column name
@@ -254,12 +220,8 @@ public class Database {
         ReservationList reservations = new ReservationList();
 
         try {
-            Class.forName("org.postgresql.Driver");
-            c = DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres",
-                    "postgres", "password");
-            System.out.println("Database open ok");
+            connectToDatabase();
 
-            stmt = c.createStatement();
             ResultSet rs = stmt.executeQuery(sql);
             while(rs.next()){
                 //Retrieve by column name
@@ -284,7 +246,7 @@ public class Database {
 
             //stmt.close();
             c.close();
-        } catch (ClassNotFoundException | SQLException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         return reservations;
@@ -297,15 +259,7 @@ public class Database {
                 + lastName + "','"
                 + dateOfBirth + "')";
 
-        try {
-            c = DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres",
-                    "postgres", "password");
-
-            stmt = c.createStatement();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
+        connectToDatabase();
 
         try {
             stmt.executeUpdate(sql);
@@ -321,14 +275,11 @@ public class Database {
     public void deleteCustomer(String username){
         String sql = "DELETE FROM \"SEP2\".customer" + "WHERE username =" + username;
 
-        try {
-            Class.forName("org.postgresql.Driver");
-            c = DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres",
-                    "postgres", "password");
-            System.out.println("Database open ok");
+        connectToDatabase();
 
-            stmt = c.createStatement();
-        } catch (ClassNotFoundException | SQLException e) {
+        try {
+            stmt.executeUpdate(sql);
+        } catch (SQLException e) {
             e.printStackTrace();
         }
     }
@@ -339,12 +290,7 @@ public class Database {
         Customer customer = new Customer("", "", "", "", new Date());
 
         try {
-            Class.forName("org.postgresql.Driver");
-            c = DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres",
-                    "postgres", "password");
-            System.out.println("Database open ok");
-
-            stmt = c.createStatement();
+            connectToDatabase();
             ResultSet rs = stmt.executeQuery(sql);
             while(rs.next()){
                 //Retrieve by column name
@@ -360,7 +306,7 @@ public class Database {
 
             //stmt.close();
             c.close();
-        } catch (ClassNotFoundException | SQLException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         return customer;
@@ -372,12 +318,7 @@ public class Database {
         CustomerList customers = new CustomerList();
 
         try {
-            Class.forName("org.postgresql.Driver");
-            c = DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres",
-                    "postgres", "password");
-            System.out.println("Database open ok");
-
-            stmt = c.createStatement();
+            connectToDatabase();
             ResultSet rs = stmt.executeQuery(sql);
             while(rs.next()){
                 //Retrieve by column name
@@ -393,10 +334,23 @@ public class Database {
 
             //stmt.close();
             c.close();
-        } catch (ClassNotFoundException | SQLException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         return customers;
+    }
+
+    public void connectToDatabase(){
+        try {
+            Class.forName("org.postgresql.Driver");
+            c = DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres",
+                    "postgres", "password");
+            System.out.println("Database open ok");
+
+            stmt = c.createStatement();
+        } catch (ClassNotFoundException | SQLException e) {
+            e.printStackTrace();
+        }
     }
 
 }
