@@ -5,7 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import view.Tabs.EmployeeTabPane.AddCar.AddCarView;
+import view.Tabs.EmployeeTabPane.AddCarTab.AddCarView;
 
 
 import java.io.IOException;
@@ -36,7 +36,7 @@ public class EmployeeTabApplication extends Application {
         FXMLLoader loader = new FXMLLoader();
 
 
-        loader.setLocation(getClass().getResource("/view/Tabs/EmployeeTabPane/AddCar/AddCar.fxml"));
+        loader.setLocation(getClass().getResource("/view/Tabs/EmployeeTabPane/AddCarTab/AddCar.fxml"));
         Parent root = loader.load();
         try {
             root = loader.load();

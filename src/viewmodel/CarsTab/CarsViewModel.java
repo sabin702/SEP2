@@ -10,8 +10,4 @@ public class CarsViewModel {
 
     }
 
-    public void openAddCar() throws IOException {
-        viewHandler.openAddCar();
-
-    }
 }

@@ -9,7 +9,7 @@ public class RootProvider {
     public Parent getAddCarRoot(){
         FXMLLoader loader = new FXMLLoader();
 
-        loader.setLocation(getClass().getResource("/view/Tabs/EmployeeTabPane/AddCar/AddCar.fxml"));
+        loader.setLocation(getClass().getResource("/view/Tabs/EmployeeTabPane/AddCarTab/AddCar.fxml"));
         Parent root = null;
         try {
             root = loader.load();

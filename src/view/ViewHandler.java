@@ -8,7 +8,7 @@ import view.CreateAccountAndLogIn.CreateAccountAndLogInView;
 import view.CreateAccountAndLogIn.CreateAccountView;
 import view.CreateAccountAndLogIn.LogInView;
 import view.Tabs.CustomerTabPane.CustomerTabPaneView;
-import view.Tabs.EmployeeTabPane.AddCar.AddCarView;
+import view.Tabs.EmployeeTabPane.AddCarTab.AddCarView;
 import view.Tabs.EmployeeTabPane.EmployeeTabPaneView;
 import viewmodel.ViewModelProvider;
 
@@ -41,7 +41,7 @@ public class ViewHandler {
         viewModelProvider.instantiateReservationsViewModel();
         viewModelProvider.instantiateCarsViewModel();
         viewModelProvider.instantiateUsersViewModel();
-        viewModelProvider.instantiateAddCarViewModel(this);
+        viewModelProvider.instantiateAddCarViewModel();
         FXMLLoader loader = new FXMLLoader();
 
         loader.setLocation(getClass().getResource("/view/Tabs/EmployeeTabPane/EmployeeTabPane.fxml"));
@@ -86,29 +86,6 @@ public class ViewHandler {
         stage.setScene(scene);
         stage.show();
 
-    }
-
-    public void openAddCar() throws IOException {
-        viewModelProvider.instantiateAddCarViewModel(this);
-        FXMLLoader loader = new FXMLLoader();
-
-        loader.setLocation(getClass().getResource("/view/Tabs/EmployeeTabPane/AddCar/AddCar.fxml"));
-        Parent root = null;
-        try {
-            root = loader.load();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        AddCarView view = loader.getController();
-        view.init(viewModelProvider.getAddCarViewModel());
-
-
-        Scene scene = new Scene(root);
-
-        stage.setTitle("Add Car");
-
-        stage.setScene(scene);
-        stage.show();
     }
 
     public void openCreateAccountAndLogIn() throws IOException {

@@ -2,7 +2,7 @@ package view.Tabs.EmployeeTabPane;
 
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
-import view.Tabs.EmployeeTabPane.AddCar.AddCarView;
+import view.Tabs.EmployeeTabPane.AddCarTab.AddCarView;
 import view.Tabs.EmployeeTabPane.CarsTab.CarsView;
 import view.Tabs.EmployeeTabPane.ReservationsTab.ReservationsView;
 import view.Tabs.EmployeeTabPane.UsersTab.UsersView;
@@ -15,6 +15,7 @@ public class EmployeeTabPaneView {
         reservationsViewController.init(vmp.getReservationsViewModel());
         carsViewController.init(vmp.getCarsViewModel());
         usersViewController.init(vmp.getUsersViewModel());
+        addCarViewController.init(vmp.getAddCarViewModel());
     }
 
     @FXML
@@ -24,6 +25,8 @@ public class EmployeeTabPaneView {
     @FXML
     private Tab carsTab;
     @FXML
+    private Tab addCarTab;
+    @FXML
     private Tab usersTab;
     @FXML
     private ReservationsView reservationsViewController;
@@ -31,5 +34,7 @@ public class EmployeeTabPaneView {
     private CarsView carsViewController;
     @FXML
     private UsersView usersViewController;
+    @FXML
+    private AddCarView addCarViewController;
 
 }

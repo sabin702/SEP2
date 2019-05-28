@@ -53,9 +53,9 @@ public class ViewModelProvider {
         }
     }
 
-    public void instantiateAddCarViewModel(ViewHandler viewHandler) {
+    public void instantiateAddCarViewModel() {
         if (addCarViewModel == null) {
-            addCarViewModel = new AddCarViewModel(viewHandler);
+            addCarViewModel = new AddCarViewModel();
         }
     }
 

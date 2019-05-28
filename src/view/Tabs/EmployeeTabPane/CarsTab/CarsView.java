@@ -36,13 +36,6 @@ public class CarsView {
     private TableColumn<?, ?> availabilityColumn;
 
     @FXML
-    void addCarWindow(ActionEvent event) throws IOException {
-        viewModel.openAddCar();
-
-
-    }
-
-    @FXML
     void deleteCar(ActionEvent event) {
 
     }

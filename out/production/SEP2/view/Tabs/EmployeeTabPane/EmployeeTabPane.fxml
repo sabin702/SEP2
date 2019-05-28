@@ -11,8 +11,13 @@
          </content>
       </Tab>
       <Tab fx:id="carsTab" text="Cars">
+      <content>
+         <fx:include fx:id="carsView" source="CarsTab/Cars.fxml" />
+      </content>
+   </Tab>
+      <Tab fx:id="addCarTab" text="Cars">
          <content>
-            <fx:include fx:id="carsView" source="CarsTab/Cars.fxml" />
+            <fx:include fx:id="addCarView" source="AddCarTab/AddCar.fxml" />
          </content>
       </Tab>
       <Tab fx:id="usersTab" text="Users">
