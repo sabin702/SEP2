@@ -57,9 +57,7 @@ public class CreateAccountView {
         System.out.println(loginField.getText());
         System.out.println(passwordField.getText());
 
-        Customer customer = new Customer(loginField.getText(), passwordField.getText(), nameField.getText(), surnameField.getText(), birthdate);
-
-        viewModel.createAccount(customer);
+        viewModel.createAccount(loginField.getText(), passwordField.getText(), nameField.getText(), surnameField.getText(), birthdate);
         viewModel.openCreateAccountAndLogIn();
     }
 

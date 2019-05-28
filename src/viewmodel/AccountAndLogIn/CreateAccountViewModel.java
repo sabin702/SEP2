@@ -7,6 +7,7 @@ import view.ViewHandler;
 
 import java.io.IOException;
 import java.rmi.RemoteException;
+import java.util.Date;
 
 public class CreateAccountViewModel {
     private ViewHandler viewHandler;
@@ -21,7 +22,7 @@ public class CreateAccountViewModel {
         viewHandler.openCreateAccountAndLogIn();
     }
 
-    public void createAccount(Customer customer){
-        model.createAccount(customer);
+    public void createAccount(String username, String password, String firstName, String lastName, Date dateOfBirth){
+        model.createAccount(username, password, firstName, lastName, dateOfBirth);
     }
 }
