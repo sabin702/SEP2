@@ -27,8 +27,8 @@ public class ServerModel implements IServerModel{
     }
 
     @Override
-    public Car getCar(String regisytrationNumber) {
-        return database.getCar(regisytrationNumber);
+    public Car getCar(String registrationNumber) throws RemoteException{
+        return database.getCar(registrationNumber);
     }
 
     @Override
@@ -47,7 +47,7 @@ public class ServerModel implements IServerModel{
     }
 
     @Override
-    public Reservation getReservation(String reservationId) {
+    public Reservation getReservation(String reservationId) throws RemoteException{
         return database.getReservation(reservationId);
     }
 
@@ -57,22 +57,22 @@ public class ServerModel implements IServerModel{
     }
 
     @Override
-    public void addCustomer(String username, String password, String firstName, String lastName, Date dateOfBirth) {
+    public void addCustomer(String username, String password, String firstName, String lastName, Date dateOfBirth) throws RemoteException{
         database.addCustomer(username, password, firstName, lastName, dateOfBirth);
     }
 
     @Override
-    public void deleteCustomer(String username) {
+    public void deleteCustomer(String username) throws RemoteException{
         database.deleteCustomer(username);
     }
 
     @Override
-    public Customer getCustomer(String username) {
+    public Customer getCustomer(String username) throws RemoteException {
         return database.getCustomer(username);
     }
 
     @Override
-    public CustomerList getCustomers() {
+    public CustomerList getCustomers() throws RemoteException{
         return database.getCustomers();
     }
 }

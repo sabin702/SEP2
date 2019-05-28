@@ -12,7 +12,7 @@ public interface IServerModel extends Remote {
 
     void deleteCar(String carRegistrationNumber) throws RemoteException;
 
-    Car getCar(String regisytrationNumber);
+    Car getCar(String registrationNumber) throws RemoteException;
 
     CarList getCars() throws RemoteException;
 
@@ -20,15 +20,15 @@ public interface IServerModel extends Remote {
 
     void deleteReservation(String reservationId) throws RemoteException;
 
-    Reservation getReservation(String registrationId);
+    Reservation getReservation(String registrationId) throws RemoteException;
 
     ReservationList getReservations() throws RemoteException;
 
     void addCustomer(String username, String password, String firstName, String lastName, Date dateOfBirth) throws RemoteException;
 
-    void deleteCustomer(String username);
+    void deleteCustomer(String username) throws RemoteException;
 
-    Customer getCustomer(String username);
+    Customer getCustomer(String username) throws RemoteException;
 
-    CustomerList getCustomers();
+    CustomerList getCustomers() throws RemoteException;
 }
