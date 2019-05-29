@@ -2,8 +2,7 @@ package Model;
 
 import DataModel.Customer;
 import DataModel.ReservationList;
-import Employee_Client.Client;
-import Employee_Client.CustomerClient;
+import CustomerClient.CustomerClient;
 
 import java.rmi.RemoteException;
 import java.util.Date;
@@ -28,6 +27,11 @@ public class CustomerModelImpl implements CustomerModel {
         } catch (RemoteException e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public Customer getCustomer(String username) throws RemoteException {
+        return client.getCustomer(username);
     }
 
     @Override

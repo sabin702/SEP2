@@ -2,8 +2,7 @@ package Model;
 
 import DataModel.Customer;
 import DataModel.ReservationList;
-import Employee_Client.Client;
-import Employee_Client.CustomerClient;
+import CustomerClient.CustomerClient;
 
 import java.rmi.RemoteException;
 import java.util.Date;
@@ -13,6 +12,8 @@ public interface CustomerModel {
     void setClient(CustomerClient client);
 
     void createAccount(String username, String password, String firstName, String lastName, Date dateOfBirth);
+
+    Customer getCustomer(String username) throws RemoteException;
 
     void logIn(String username, String password);
 

@@ -8,6 +8,7 @@ import javafx.scene.control.TextField;
 import viewmodel.CarsTab.AddCarViewModel;
 
 import java.net.URL;
+import java.rmi.RemoteException;
 import java.util.ResourceBundle;
 
 public class AddCarView implements Initializable {
@@ -40,9 +41,13 @@ public class AddCarView implements Initializable {
         int productionYear = Integer.parseInt(carProduction.getText());
         int price = Integer.parseInt(carPrice.getText());
         int availability = 0;
-        viewModel.addCar(registrationNumber.getText(),carMake.getText(),mileage,carColor.getText(),productionYear,carCategory.getAccessibleText(),price, availability);
-
+        try {
+            viewModel.addCar(registrationNumber.getText(),carMake.getText(),mileage,carColor.getText(),productionYear,carCategory.getAccessibleText(),price, availability);
+        } catch (RemoteException e) {
+            e.printStackTrace();
         }
+
+    }
 
 
     public void init(AddCarViewModel addCarViewModel){

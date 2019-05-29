@@ -42,7 +42,7 @@ public class ViewModelProvider {
 
     public void instantiateLogInViewModel(ViewHandler viewHandler) {
         if (logInViewModel == null) {
-            logInViewModel = new LogInViewModel(viewHandler);
+            logInViewModel = new LogInViewModel(viewHandler, cm);
         }
     }
 

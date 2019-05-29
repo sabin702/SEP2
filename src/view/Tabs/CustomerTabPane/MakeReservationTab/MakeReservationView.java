@@ -50,7 +50,7 @@ public class MakeReservationView {
 
     public void setData(){
         car = new ComboBox<String>();
-        Car car1 = new Car("abcdef", "bjh", 91, "blre", 2018, 1);
+        Car car1 = new Car("abcdef", "bjh", 91, "blre", 2018, "nema", 1234, 0);
         car.getItems().add(car1.toString());
     }
 
