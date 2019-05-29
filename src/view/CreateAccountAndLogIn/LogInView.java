@@ -2,6 +2,7 @@ package view.CreateAccountAndLogIn;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import view.Tabs.CustomerTabPane.CustomerTabPaneView;
 import viewmodel.AccountAndLogIn.LogInViewModel;
@@ -20,7 +21,7 @@ public class LogInView {
     private TextField usernameField;
 
     @FXML
-    private TextField passwordField;
+    private PasswordField passwordField;
 
     @FXML
     void logIn(ActionEvent event) throws IOException {
