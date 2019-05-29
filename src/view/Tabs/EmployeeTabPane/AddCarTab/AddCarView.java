@@ -42,23 +42,21 @@ public class AddCarView implements Initializable {
         int price = Integer.parseInt(carPrice.getText());
         int availability = 0;
         try {
-            viewModel.addCar(registrationNumber.getText(),carMake.getText(),mileage,carColor.getText(),productionYear,carCategory.getAccessibleText(),price, availability);
+            viewModel.addCar(registrationNumber.getText(),carMake.getText(),mileage,carColor.getText(),productionYear,carCategory.getValue(),price, availability);
         } catch (RemoteException e) {
             e.printStackTrace();
         }
 
     }
 
-
     public void init(AddCarViewModel addCarViewModel){
         this.viewModel = addCarViewModel;
-
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        carCategory = new ComboBox<String>();
         carCategory.getItems().removeAll();
         carCategory.getItems().addAll("SUV", "Small car","Sedan","Truck","Cabrio","Hatchback");
+        carCategory.getSelectionModel().select("Sedan");
     }
 }

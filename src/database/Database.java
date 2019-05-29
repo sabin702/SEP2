@@ -23,7 +23,7 @@ public class Database {
     }
 
     public void addCar(Car car){
-        String sql = "INSERT INTO  \"SEP2\".car " + "VALUES('" + car.getRegistrationNumber() + "','" + car.getMake() + "'," + car.getMileage() +",'" + car.getColor() + "'," + car.getProductionYear() + "," + car.getAvailability() + ")";
+        String sql = "INSERT INTO  \"SEP2\".car " + "VALUES('" + car.getRegistrationNumber() + "','" + car.getMake() + "'," + car.getMileage() +",'" + car.getColor() + "'," + car.getProductionYear() + ",'" + car.getCategory() + "'," + car.getPrice() + "," +  car.getAvailability() + ")";
 
         connectToDatabase();
 
@@ -73,7 +73,7 @@ public class Database {
     public Car getCar(String regNo){
         String sql = "SELECT * FROM \"SEP2\".car WHERE registrationNumber = " + regNo;
 
-        Car car = new Car("", "", 0, "", 0, 0);
+        Car car = new Car("", "", 0, "", 0, "", 0, 0);
 
         try {
             connectToDatabase();
@@ -85,9 +85,11 @@ public class Database {
                 int mileage = rs.getInt("mileage");
                 String color = rs.getString("color");
                 int productionYear = rs.getInt("model_year");
+                String category = rs.getString("category");
+                int price = rs.getInt("price");
                 int availability = rs.getInt("availability");
 
-                car = new Car(registrationNumber, make, mileage, color, productionYear, availability);
+                car = new Car(registrationNumber, make, mileage, color, productionYear, category, price, availability);
 
             }
             rs.close();
@@ -117,9 +119,11 @@ public class Database {
                 int mileage = rs.getInt("mileage");
                 String color = rs.getString("color");
                 int productionYear = rs.getInt("model_year");
+                String category = rs.getString("category");
+                int price = rs.getInt("price");
                 int availability = rs.getInt("availability");
 
-                cars.addCar(new Car(registrationNumber, make, mileage, color, productionYear, availability));
+                cars.addCar(new Car(registrationNumber, make, mileage, color, productionYear, category, price, availability));
 
             }
             rs.close();
@@ -285,7 +289,8 @@ public class Database {
     }
 
     public Customer getCustomer(String username){
-        String sql = "SELECT * FROM \"SEP2\".customer" + "WHERE username =" + username;
+        String sql = "SELECT * FROM \"SEP2\".customer" + " WHERE username ="
+                + "'" + username + "'";
 
         Customer customer = new Customer("", "", "", "", new Date());
 
@@ -344,7 +349,7 @@ public class Database {
         try {
             Class.forName("org.postgresql.Driver");
             c = DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres",
-                    "postgres", "1357");
+                    "postgres", "password");
             System.out.println("Database open ok");
 
             stmt = c.createStatement();

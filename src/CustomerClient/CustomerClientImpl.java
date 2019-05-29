@@ -1,4 +1,4 @@
-package Employee_Client;
+package CustomerClient;
 
 import DataModel.*;
 import Model.CustomerModel;
@@ -88,12 +88,12 @@ public class CustomerClientImpl implements CustomerClient{
     }
 
     @Override
-    public Customer getCustomer(String username) {
-        return null;
+    public Customer getCustomer(String username) throws RemoteException {
+        return serverModel.getCustomer(username);
     }
 
     @Override
-    public CustomerList getCustomers() {
-        return null;
+    public CustomerList getCustomers() throws RemoteException {
+        return serverModel.getCustomers();
     }
 }

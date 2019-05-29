@@ -1,18 +1,6 @@
-package Employee_Client;
+package CustomerClient;
 
-import Model.CustomerModel;
-import Model.CustomerModelImpl;
 import javafx.application.Application;
-import server.IServerModel;
-import server.ServerModel;
-import view.ViewHandler;
-import viewmodel.ViewModelProvider;
-
-import java.rmi.NotBoundException;
-import java.rmi.RemoteException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 public class CustomerClientMain {
 

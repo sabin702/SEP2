@@ -60,7 +60,7 @@ public class ViewModelProvider {
 
     public void instantiateAddCarViewModel() {
         if (addCarViewModel == null) {
-            addCarViewModel = new AddCarViewModel();
+            addCarViewModel = new AddCarViewModel(em);
         }
     }
 

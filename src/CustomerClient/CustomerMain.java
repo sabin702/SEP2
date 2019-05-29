@@ -1,4 +1,4 @@
-package Employee_Client;
+package CustomerClient;
 
 import Model.CustomerModel;
 import Model.CustomerModelImpl;

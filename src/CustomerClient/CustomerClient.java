@@ -1,4 +1,4 @@
-package Employee_Client;
+package CustomerClient;
 
 import DataModel.*;
 
@@ -25,8 +25,8 @@ public interface CustomerClient {
 
     void deleteCustomer(String username);
 
-    Customer getCustomer(String username);
+    Customer getCustomer(String username) throws RemoteException;
 
-    CustomerList getCustomers();
+    CustomerList getCustomers() throws RemoteException;
 
 }

@@ -86,6 +86,18 @@ public class Car implements Serializable {
         this.availability = availability;
     }
 
+    public String getStatus() {
+        return status;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
     public String toString(){
 
         return "Reg. no.: " + registrationNumber + "|  "
