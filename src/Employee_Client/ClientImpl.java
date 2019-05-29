@@ -78,6 +78,12 @@ public class ClientImpl implements Client {
         }
     }
 
+    public void getCustomers() throws RemoteException {
+        for (int i = 0; i < serverModel.getCustomers().size(); i++) {
+            System.out.println(serverModel.getCustomers().getCustomer(i));
+        }
+    }
+
     public CustomerModel getModel(){
         return model;
     }

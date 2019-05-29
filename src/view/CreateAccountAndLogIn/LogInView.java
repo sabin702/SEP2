@@ -24,8 +24,10 @@ public class LogInView {
 
     @FXML
     void logIn(ActionEvent event) throws IOException {
-        viewModel.openCustomerTabPane();
-
+        if(viewModel.logIn(usernameField.getText(), passwordField.getText()))
+            viewModel.openCustomerTabPane();
+        else
+            System.out.println("No match");
     }
 
 

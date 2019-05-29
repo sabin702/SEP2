@@ -1,10 +1,11 @@
 package DataModel;
 
+import java.io.Serializable;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
-public class Customer {
+public class Customer implements Serializable {
 
     private String username;
     private String password;
@@ -51,6 +52,11 @@ public class Customer {
 
     public Date getBirthDate(){
         return dateOfBirth;
+    }
+
+    public String toString(){
+        return "Username: " + username
+                + " Password: " + password;
     }
 
 }

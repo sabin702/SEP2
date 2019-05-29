@@ -21,8 +21,6 @@ public class ViewHandler {
     public ViewHandler(Stage stage, ViewModelProvider vmp) {
         this.stage = stage;
         viewModelProvider = vmp;
-
-
     }
 
     public void startEmployee() throws Exception {

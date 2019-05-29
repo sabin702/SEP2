@@ -1,8 +1,9 @@
 package DataModel;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class CustomerList {
+public class CustomerList implements Serializable {
 
     private ArrayList<Customer> customers;
 
@@ -28,5 +29,9 @@ public class CustomerList {
 
     public int size(){
         return customers.size();
+    }
+
+    public Customer getCustomer(int index){
+        return customers.get(index);
     }
 }
