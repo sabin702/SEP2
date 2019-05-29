@@ -3,6 +3,7 @@ package viewmodel;
 
 
 import Model.CustomerModel;
+import Model.EmployeeModel;
 import view.ViewHandler;
 import viewmodel.AccountAndLogIn.CreateAccountAndLogInViewModel;
 import viewmodel.AccountAndLogIn.CreateAccountViewModel;
@@ -30,9 +31,13 @@ public class ViewModelProvider {
     private ViewReservationsViewModel viewReservationsViewModel;
 
     private CustomerModel cm;
+    private EmployeeModel em;
 
     public ViewModelProvider(CustomerModel cm) {
         this.cm = cm;
+    }
+    public ViewModelProvider(EmployeeModel em){
+        this.em = em;
     }
 
     public void instantiateLogInViewModel(ViewHandler viewHandler) {

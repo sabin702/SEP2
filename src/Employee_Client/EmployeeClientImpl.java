@@ -25,7 +25,8 @@ public class EmployeeClientImpl implements EmployeeClient{
     }
 
     @Override
-    public void addCar(String registration, String make, int mileage, String color, int productionYear, int availability) throws RemoteException {
+    public void addCar(Car car) throws RemoteException {
+        serverModel.addCar(car);
 
     }
 
@@ -50,13 +51,13 @@ public class EmployeeClientImpl implements EmployeeClient{
     }
 
     @Override
-    public Reservation getReservation(String registrationId) {
-        return null;
+    public Reservation getReservation(String reservationId) throws RemoteException {
+        return serverModel.getReservation(reservationId);
     }
 
     @Override
     public ReservationList getReservations() throws RemoteException {
-        return null;
+        return serverModel.getReservations();
     }
 
     @Override

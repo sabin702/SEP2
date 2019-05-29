@@ -15,7 +15,7 @@ public interface CustomerClient {
 
     void deleteReservation(String reservationId) throws RemoteException;
 
-    Reservation getReservation(String registrationId);
+    Reservation getReservation(String registrationId) throws RemoteException;
 
     ReservationList getReservations() throws RemoteException;
 

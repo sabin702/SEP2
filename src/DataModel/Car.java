@@ -11,14 +11,17 @@ public class Car implements Serializable {
     private int productionYear;
     private int availability;
     private String status;
+    private String category;
+    private int price;
 
-    public Car(String registrationNumber, String make, int mileage, String color, int productionYear, int availability) {
+    public Car(String registrationNumber, String make, int mileage, String color, int productionYear, String category, int price, int availability) {
         this.registrationNumber = registrationNumber;
         this.make = make;
         this.mileage = mileage;
         this.color = color;
         this.productionYear = productionYear;
-        this.availability = availability;
+        this.category = category;
+        this.price = price;
 
         status = "";
 

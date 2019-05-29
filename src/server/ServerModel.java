@@ -17,8 +17,8 @@ public class ServerModel implements IServerModel{
     }
 
     @Override
-    public void addCar(String registration, String make, int mileage, String color, int productionYear, int availability) throws RemoteException {
-        database.addCar(registration, make, mileage, color, productionYear, availability);
+    public void addCar(Car car) throws RemoteException {
+        database.addCar(car);
     }
 
     @Override

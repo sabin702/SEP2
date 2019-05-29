@@ -22,8 +22,8 @@ public class Database {
 
     }
 
-    public void addCar(String registration, String make, int mileage, String color, int production, int availability){
-        String sql = "INSERT INTO  \"SEP2\".car " + "VALUES('" + registration + "','" + make + "'," + mileage +",'" + color + "'," + production + "," + availability + ")";
+    public void addCar(Car car){
+        String sql = "INSERT INTO  \"SEP2\".car " + "VALUES('" + car.getRegistrationNumber() + "','" + car.getMake() + "'," + car.getMileage() +",'" + car.getColor() + "'," + car.getProductionYear() + "," + car.getAvailability() + ")";
 
         connectToDatabase();
 
@@ -344,7 +344,7 @@ public class Database {
         try {
             Class.forName("org.postgresql.Driver");
             c = DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres",
-                    "postgres", "password");
+                    "postgres", "1357");
             System.out.println("Database open ok");
 
             stmt = c.createStatement();

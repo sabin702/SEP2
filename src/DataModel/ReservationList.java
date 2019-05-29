@@ -30,4 +30,8 @@ public class ReservationList {
         return reservations.size();
     }
 
+    public Reservation getReservation(int index){
+        return reservations.get(index);
+    }
+
 }

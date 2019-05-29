@@ -51,7 +51,7 @@ public class CustomerModelImpl implements CustomerModel {
     }
 
     @Override
-    public ReservationList viewReservations() {
-        return null;
+    public ReservationList viewReservations() throws RemoteException {
+        return client.getReservations();
     }
 }

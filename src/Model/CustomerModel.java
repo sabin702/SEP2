@@ -5,6 +5,7 @@ import DataModel.ReservationList;
 import Employee_Client.Client;
 import Employee_Client.CustomerClient;
 
+import java.rmi.RemoteException;
 import java.util.Date;
 
 public interface CustomerModel {
@@ -21,6 +22,6 @@ public interface CustomerModel {
 
     void changeUserData();
 
-    ReservationList viewReservations();
+    ReservationList viewReservations() throws RemoteException;
 
 }

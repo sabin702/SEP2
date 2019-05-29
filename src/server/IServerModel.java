@@ -8,7 +8,7 @@ import java.util.Date;
 
 public interface IServerModel extends Remote {
 
-    void addCar(String registration, String make, int mileage, String color, int productionYear, int availability) throws RemoteException;
+    void addCar(Car car) throws RemoteException;
 
     void deleteCar(String carRegistrationNumber) throws RemoteException;
 

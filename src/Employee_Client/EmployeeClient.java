@@ -7,17 +7,17 @@ import java.util.Date;
 
 public interface EmployeeClient {
 
-    void addCar(String registration, String make, int mileage, String color, int productionYear, int availability) throws RemoteException;
+    void addCar(Car car) throws RemoteException;
 
     void deleteCar(String carRegistrationNumber) throws RemoteException;
 
-    Car getCar(String regisytrationNumber);
+    Car getCar(String registrationNumber);
 
     CarList getCars() throws RemoteException;
 
     void deleteReservation(String reservationId) throws RemoteException;
 
-    Reservation getReservation(String registrationId);
+    Reservation getReservation(String registrationId) throws RemoteException;
 
     ReservationList getReservations() throws RemoteException;
 

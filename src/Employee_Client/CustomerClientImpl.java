@@ -63,13 +63,13 @@ public class CustomerClientImpl implements CustomerClient{
     }
 
     @Override
-    public Reservation getReservation(String registrationId) {
-        return null;
+    public Reservation getReservation(String registrationId) throws RemoteException {
+        return serverModel.getReservation(registrationId);
     }
 
     @Override
     public ReservationList getReservations() throws RemoteException {
-        return null;
+        return serverModel.getReservations();
     }
 
     @Override
