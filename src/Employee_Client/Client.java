@@ -8,7 +8,7 @@ import java.util.Date;
 
 public interface Client {
 
-    void addCarToDatabase(String registration, String make, int mileage, String color, int productionYear, int availability);
+    void addCarToDatabase(String registration, String make, int mileage, String color, int productionYear, String category, int price, int availability);
 
     void deleteCar(String carRegNo) throws RemoteException;
 

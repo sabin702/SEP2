@@ -1,5 +1,6 @@
 package Employee_Client;
 
+import DataModel.Car;
 import DataModel.CarList;
 import DataModel.Customer;
 import Model.CustomerModel;
@@ -26,9 +27,9 @@ public class ClientImpl implements Client {
     }
 
 
-    public void addCarToDatabase(String registration, String make, int mileage, String color, int productionYear, int availability){
+    public void addCarToDatabase(String registration, String make, int mileage, String color, int productionYear, String category, int price, int availability){
         try {
-            serverModel.addCar(registration, make, mileage, color, productionYear, availability);
+            serverModel.addCar(new Car(registration, make, mileage, color, productionYear, category, price, availability));
             System.out.println("Successfully added car!");
         } catch (RemoteException e) {
             System.out.println("here client");
