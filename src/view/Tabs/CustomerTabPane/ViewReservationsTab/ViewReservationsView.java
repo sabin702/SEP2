@@ -54,9 +54,9 @@ public class ViewReservationsView {
     public void init(ViewReservationsViewModel viewReservationsViewModel) {
         this.viewModel = viewReservationsViewModel;
 
-        System.out.println(viewModel.getReservationsList().size());
 
-        tableView.setItems(viewModel.getReservationsList());
+
+        tableView.setItems(viewModel.getReservationList());
         dateFromColumn.setCellValueFactory(new PropertyValueFactory<>("dateFrom"));
         dateToColumn.setCellValueFactory(new PropertyValueFactory<>("dateTo"));
         carColumn.setCellValueFactory(new PropertyValueFactory<>("carRegNo"));

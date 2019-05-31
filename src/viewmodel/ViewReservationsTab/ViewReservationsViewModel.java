@@ -1,8 +1,12 @@
 package viewmodel.ViewReservationsTab;
 
 
+import Client.IServerListener;
 import DataModel.Reservation;
+import DataModel.ReservationList;
 import Model.CustomerModel;
+import javafx.application.Platform;
+import javafx.beans.property.ObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -23,6 +27,14 @@ public class ViewReservationsViewModel {
 
         model.addListener("ReservationAdded", this::reservationAdded);
         model.addListener("ReservationDeleted", this::reservationRemoved);
+
+        model.addListener(new IServerListener() {
+            @Override
+            public void updateReservations(ReservationList reservationList) {
+                reservations = (ObservableList<Reservation>) reservationList;
+            }
+        });
+
     }
 
     private void getReservations() {
@@ -54,9 +66,12 @@ public class ViewReservationsViewModel {
         System.out.println("New size: " + reservations.size());
     }
 
-    public ObservableList<Reservation> getReservationsList(){
-        return FXCollections.unmodifiableObservableList(reservations);
+    public ObservableList<Reservation> getReservationList()
+    {
+        return reservations;
     }
+
+
 
     public int getReservationIndex(String reservationId) throws RemoteException {
         for (int i = 0; i < model.viewReservations().size(); i++) {

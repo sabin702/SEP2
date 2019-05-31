@@ -8,13 +8,14 @@ import server.IServerModel;
 import javax.swing.*;
 import java.beans.PropertyChangeSupport;
 import java.rmi.NotBoundException;
+import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RMIClient implements Client{
+public class RMIClient extends AServerSubject implements Client, Remote {
 
     IServerModel serverModel;
     CarList cars;
@@ -30,8 +31,13 @@ public class RMIClient implements Client{
     }
 
     @Override
-    public boolean logIn(String username, String password) {
-        return serverModel.logIn(username, password, this);
+    public boolean logIn(String username, String password) throws RemoteException{
+        try {
+            return serverModel.logIn(username, password, this);
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 
     @Override
@@ -114,7 +120,7 @@ public class RMIClient implements Client{
 
     @Override
     public void updateReservationList(ReservationList reservations) throws RemoteException {
-
+        fireUpdateReservationList(reservations);
     }
 
 }

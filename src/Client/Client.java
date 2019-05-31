@@ -6,9 +6,9 @@ import Model.CustomerModel;
 import java.rmi.RemoteException;
 import java.util.Date;
 
-public interface Client {
+public interface Client extends IServerSubject {
 
-    boolean logIn(String username, String password);
+    boolean logIn(String username, String password) throws RemoteException;
 
     void addCar(Car car) throws RemoteException;
 

@@ -10,9 +10,9 @@ import java.util.Date;
 
 public interface IServerModel extends Remote {
 
-    boolean logIn(String userName, String password, Client client);
+    boolean logIn(String userName, String password, Client client) throws RemoteException;
 
-    void addClient(Client client);
+    void addClient(Client client) throws RemoteException;
 
     void addCar(Car car) throws RemoteException;
 
@@ -39,6 +39,4 @@ public interface IServerModel extends Remote {
     Customer getCustomer(String username) throws RemoteException;
 
     CustomerList getCustomers() throws RemoteException;
-
-    void addListener(String eventName, PropertyChangeListener listener);
 }

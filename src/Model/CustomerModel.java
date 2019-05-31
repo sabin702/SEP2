@@ -1,5 +1,6 @@
 package Model;
 
+import Client.IServerListener;
 import DataModel.CarList;
 import DataModel.Customer;
 import DataModel.Reservation;
@@ -33,5 +34,7 @@ public interface CustomerModel {
     CarList getCars() throws RemoteException;
 
     void addListener(String eventName, PropertyChangeListener listener);
+
+    void addListener(IServerListener listener);
 
 }

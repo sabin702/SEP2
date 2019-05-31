@@ -6,6 +6,7 @@ import DataModel.Reservation;
 import DataModel.ReservationList;
 import Client.Client;
 import Client.RMIClient;
+import Client.IServerListener;
 
 import java.beans.PropertyChangeListener;
 import java.rmi.RemoteException;
@@ -47,7 +48,12 @@ public class CustomerModelImpl implements CustomerModel {
 
     @Override
     public boolean logIn(String username, String password) {
-        return client.logIn(username, password);
+        try {
+            return client.logIn(username, password);
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 
     @Override
@@ -85,6 +91,10 @@ public class CustomerModelImpl implements CustomerModel {
 
     @Override
     public void addListener(String eventName, PropertyChangeListener listener) {
-        //changeSupport.addPropertyChangeListener(eventName, listener);
+
+    }
+
+    public void addListener(IServerListener listener) {
+        client.addServerListener(listener);
     }
 }

@@ -17,7 +17,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class ServerModel implements IServerModel{
+public class ServerModel implements IServerModel, Remote{
 
     Database database;
     List<Client> clients;
@@ -38,7 +38,7 @@ public class ServerModel implements IServerModel{
     }
 
     @Override
-    public boolean logIn(String username, String password, Client client) {
+    public boolean logIn(String username, String password, Client client) throws RemoteException{
         if(database.getCustomer(username) == null) {
             System.out.println("No user found");
             return false;
@@ -52,7 +52,7 @@ public class ServerModel implements IServerModel{
     }
 
     @Override
-    public void addClient(Client client) {
+    public void addClient(Client client) throws RemoteException {
         clients.add(client);
     }
 
@@ -84,6 +84,10 @@ public class ServerModel implements IServerModel{
     @Override
     public void addReservation(String reservationId, String carRegNo, String username, Date dateFrom, Date dateTo, int navigation, int childseat, String firstName, String lastName, int age, int price, int insurance, int status) throws RemoteException {
         database.addReservation(reservationId, carRegNo, username, dateFrom, dateTo, navigation, childseat, firstName, lastName, age, price, insurance, status);
+        for(Client client : clients)
+        {
+            client.updateReservationList(database.getReservations());
+        }
     }
 
     @Override
@@ -123,8 +127,4 @@ public class ServerModel implements IServerModel{
         return database.getCustomers();
     }
 
-    @Override
-    public void addListener(String eventName, PropertyChangeListener listener) {
-
-    }
 }
