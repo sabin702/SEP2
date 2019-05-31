@@ -15,13 +15,15 @@ public class EmployeeClientImpl implements EmployeeClient{
     IServerModel serverModel;
     CarList cars;
     EmployeeModel model;
+    CustomerModel cm;
 
-    public EmployeeClientImpl(EmployeeModel model) throws RemoteException, NotBoundException {
-        this.model = model;
-        model.setClient(this);
+    public EmployeeClientImpl(EmployeeModel model, CustomerModel cm) throws RemoteException, NotBoundException {
         Registry registry = LocateRegistry.getRegistry("localhost", 1099);
         serverModel = (IServerModel) registry.lookup("servers");
         cars = new CarList();
+        this.model = model;
+        this.cm = cm;
+        //model.setClient(this);
     }
 
     @Override
@@ -32,22 +34,27 @@ public class EmployeeClientImpl implements EmployeeClient{
 
     @Override
     public void deleteCar(String carRegistrationNumber) throws RemoteException {
-
+        serverModel.deleteCar(carRegistrationNumber);
     }
 
     @Override
-    public Car getCar(String regisytrationNumber) {
-        return null;
+    public void editCar(String registrationNumber, int mileage, int price, int availability) throws RemoteException {
+        serverModel.editCar(registrationNumber, mileage, price, availability);
+    }
+
+    @Override
+    public Car getCar(String registrationNumber) throws RemoteException {
+        return serverModel.getCar(registrationNumber);
     }
 
     @Override
     public CarList getCars() throws RemoteException {
-        return null;
+        return serverModel.getCars();
     }
 
     @Override
     public void deleteReservation(String reservationId) throws RemoteException {
-
+        serverModel.deleteReservation(reservationId);
     }
 
     @Override
@@ -57,6 +64,10 @@ public class EmployeeClientImpl implements EmployeeClient{
 
     @Override
     public ReservationList getReservations() throws RemoteException {
+        if(serverModel.getReservations().getReservation(0) == null)
+            System.out.println("Null");
+        else
+            System.out.println("Not null");
         return serverModel.getReservations();
     }
 
@@ -66,12 +77,12 @@ public class EmployeeClientImpl implements EmployeeClient{
     }
 
     @Override
-    public Customer getCustomer(String username) {
-        return null;
+    public Customer getCustomer(String username) throws RemoteException {
+        return serverModel.getCustomer(username);
     }
 
     @Override
     public CustomerList getCustomers() {
-        return null;
+        return getCustomers();
     }
 }

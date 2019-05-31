@@ -1,29 +1,35 @@
 package Model;
 
-import DataModel.Car;
-import DataModel.CustomerList;
-import DataModel.Reservation;
-import DataModel.ReservationList;
-import Employee_Client.EmployeeClient;
+import DataModel.*;
+import Client.Client;
 
+import java.beans.PropertyChangeListener;
 import java.rmi.RemoteException;
 
 public interface EmployeeModel {
 
-    void setClient(EmployeeClient client);
+    void setClient(Client client);
 
     void approveReservatiokn(String reservationID);
 
-    void deleteReservation(String reservationID);
+    void deleteReservation(String reservationID) throws RemoteException;
 
     void addCar(String registrationNumber,String make,int mileage,String color,int productionYear,String category,int price, int availability) throws RemoteException;
 
-    void deletCar(String carID);
+    void deleteCar(String carRegNo) throws RemoteException;
 
-    void editCar();
+    void editCar(String registrationNumber, int mileage, int price, int availability) throws RemoteException;
+
+    Car getCar(String registrationNumber) throws RemoteException;
+
+    CarList getCars() throws RemoteException;
+
     Reservation getReservation(String username) throws RemoteException;
+
     ReservationList getReservations() throws RemoteException;
 
-    CustomerList viewUsers();
+    CustomerList viewUsers() throws RemoteException;
+
+    void addListener(String eventName, PropertyChangeListener listener);
 
 }

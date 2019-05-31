@@ -8,6 +8,8 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import viewmodel.ReservationsTab.ReservationsViewModel;
 
+import java.rmi.RemoteException;
+
 public class ReservationsView {
     private ReservationsViewModel viewModel;
 
@@ -49,26 +51,29 @@ public class ReservationsView {
     }
 
     @FXML
-    void deleteReservation(ActionEvent event) {
-
+    void deleteReservation(ActionEvent event) throws RemoteException {
+        int selectedIndex = tableView.getSelectionModel().getSelectedIndex();
+        if (selectedIndex >= 0) {
+            viewModel.deleteReservation(tableView.getItems().get(selectedIndex).getReservationId());
+        }
     }
 
     public void init(ReservationsViewModel reservationsViewModel) {
         this.viewModel = reservationsViewModel;
 
+        System.out.println(viewModel.getReservationsList().size());
+
         tableView.setItems(viewModel.getReservationsList());
-        idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
+        idColumn.setCellValueFactory(new PropertyValueFactory<>("reservationId"));
+        customerColumn.setCellValueFactory(new PropertyValueFactory<>("username"));
         dateFromColumn.setCellValueFactory(new PropertyValueFactory<>("dateFrom"));
         dateToColumn.setCellValueFactory(new PropertyValueFactory<>("dateTo"));
-        carColumn.setCellValueFactory(new PropertyValueFactory<>("car"));
-        childSeatColumn.setCellValueFactory(new PropertyValueFactory<>("childSeat"));
-        naviColumn.setCellValueFactory(new PropertyValueFactory<>("navi"));
+        carColumn.setCellValueFactory(new PropertyValueFactory<>("carRegNo"));
+        childSeatColumn.setCellValueFactory(new PropertyValueFactory<>("childseat"));
+        naviColumn.setCellValueFactory(new PropertyValueFactory<>("navigation"));
         statusColumn.setCellValueFactory(new PropertyValueFactory<>("status"));
         insuranceColumn.setCellValueFactory(new PropertyValueFactory<>("insurance"));
         priceColumn.setCellValueFactory(new PropertyValueFactory<>("price"));
-
-
-
     }
 
 }

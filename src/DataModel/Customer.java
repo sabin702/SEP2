@@ -1,6 +1,10 @@
 package DataModel;
 
 import java.io.Serializable;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.ZoneId;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -57,6 +61,18 @@ public class Customer implements Serializable {
     public String toString(){
         return "Username: " + username
                 + " Password: " + password;
+    }
+
+    public int getNumberOfDays(Date date1, Date date2){
+        long difference = Math.abs(date2.getTime() - date1.getTime());
+        int days = (int) (difference / (1000 * 60 * 60 * 24));
+        return days;
+    }
+
+    public int getAge(){
+        LocalDate localDate = LocalDate.now();
+        Date today = Date.from(localDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
+        return (getNumberOfDays(today, dateOfBirth)/365);
     }
 
 }

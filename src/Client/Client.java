@@ -1,11 +1,14 @@
-package Employee_Client;
+package Client;
 
 import DataModel.*;
+import Model.CustomerModel;
 
 import java.rmi.RemoteException;
 import java.util.Date;
 
-public interface EmployeeClient {
+public interface Client {
+
+    boolean logIn(String username, String password);
 
     void addCar(Car car) throws RemoteException;
 
@@ -17,16 +20,22 @@ public interface EmployeeClient {
 
     CarList getCars() throws RemoteException;
 
+    void addReservation(Reservation reservation) throws RemoteException;
+
     void deleteReservation(String reservationId) throws RemoteException;
 
-    Reservation getReservation(String registrationId) throws RemoteException;
+    Reservation getReservation(String reservationId) throws RemoteException;
 
     ReservationList getReservations() throws RemoteException;
 
-    void deleteCustomer(String username);
+    void addCustomer(Customer customer) throws RemoteException;
+
+    void deleteCustomer(String username) throws RemoteException;
 
     Customer getCustomer(String username) throws RemoteException;
 
-    CustomerList getCustomers();
+    CustomerList getCustomers() throws RemoteException;
+
+    void updateReservationList(ReservationList reservations) throws RemoteException;
 
 }

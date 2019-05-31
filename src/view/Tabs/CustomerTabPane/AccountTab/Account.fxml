@@ -6,13 +6,14 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
+<?import javafx.scene.control.PasswordField?>
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.Tabs.CustomerTabPane.AccountTab.AccountView">
    <children>
       <TextField fx:id="nameTextField" layoutX="293.0" layoutY="93.0" />
       <Label layoutX="256.0" layoutY="97.0" text="Name:" />
       <TextField fx:id="surnameTextField" layoutX="293.0" layoutY="143.0" />
       <Label layoutX="241.0" layoutY="147.0" text="Surname:" />
-      <TextField fx:id="passwordTextField" layoutX="293.0" layoutY="200.0" />
+      <PasswordField fx:id="passwordTextField" layoutX="293.0" layoutY="200.0" />
       <Label layoutX="239.0" layoutY="204.0" text="Password:" />
       <Button fx:id="editButton" layoutX="349.0" layoutY="255.0" mnemonicParsing="false" onAction="#editUserData" text="Edit" />
       <CheckBox fx:id="passwordVisibilityCheckBox" layoutX="459.0" layoutY="204.0" mnemonicParsing="false" onAction="#setPasswordVisible" prefHeight="17.0" prefWidth="65.0" text="Visible" />

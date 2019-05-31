@@ -1,25 +1,34 @@
 package Model;
 
-import Employee_Client.Client;
+import Client.Client;
+
+import java.rmi.NotBoundException;
+import java.rmi.RemoteException;
+import Client.ClientProvider;
 
 public class ModelProvider {
 
-    private CustomerModel customerModel;
-    private Client client;
+    private CustomerModel cm;
+    private EmployeeModel  em;
+    private ClientProvider clientProvider;
 
-    public ModelProvider() {
-//        try {
-//            client = new ClientImpl();
-//        } catch (RemoteException | NotBoundException e) {
-//            e.printStackTrace();
-//        }
+    public ModelProvider(ClientProvider clientProvider) {
+        cm = new CustomerModelImpl();
+        em = new EmployeeModelImpl();
+        this.clientProvider = clientProvider;
     }
 
-//    public CustomerModel getCustomerModel() {
-//        if(customerModel == null) {
-//            customerModel = new CustomerModelImpl();
-//            client.setModel(customerModel);
-//        }
-//        return customerModel;
-//    }
+    public CustomerModel getCustomerModel() {
+        if(cm == null) {
+           cm = new CustomerModelImpl();
+        }
+        return cm;
+    }
+
+    public EmployeeModel getEmployeeModel() {
+        if(em == null) {
+            em = new EmployeeModelImpl();
+        }
+        return em;
+    }
 }

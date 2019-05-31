@@ -1,8 +1,9 @@
 package DataModel;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class ReservationList {
+public class ReservationList implements Serializable {
 
     private ArrayList<Reservation> reservations;
 

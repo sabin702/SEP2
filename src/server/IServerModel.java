@@ -1,16 +1,24 @@
 package server;
 
+import Client.Client;
 import DataModel.*;
 
+import java.beans.PropertyChangeListener;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.Date;
 
 public interface IServerModel extends Remote {
 
+    boolean logIn(String userName, String password, Client client);
+
+    void addClient(Client client);
+
     void addCar(Car car) throws RemoteException;
 
     void deleteCar(String carRegistrationNumber) throws RemoteException;
+
+    void editCar(String registrationNumber, int mileage, int price, int availability) throws RemoteException;
 
     Car getCar(String registrationNumber) throws RemoteException;
 
@@ -31,4 +39,6 @@ public interface IServerModel extends Remote {
     Customer getCustomer(String username) throws RemoteException;
 
     CustomerList getCustomers() throws RemoteException;
+
+    void addListener(String eventName, PropertyChangeListener listener);
 }

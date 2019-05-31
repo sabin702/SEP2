@@ -1,55 +1,71 @@
-package CustomerClient;
+package Client;
 
 import DataModel.*;
 import Model.CustomerModel;
+import Model.EmployeeModel;
 import server.IServerModel;
 
+import javax.swing.*;
+import java.beans.PropertyChangeSupport;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
+import java.util.ArrayList;
+import java.util.List;
 
-public class CustomerClientImpl implements CustomerClient{
+public class RMIClient implements Client{
 
     IServerModel serverModel;
     CarList cars;
-    CustomerModel model;
+    List<Reservation> reservations;
+    private PropertyChangeSupport changeSupport;
 
-    public CustomerClientImpl(CustomerModel model) throws RemoteException, NotBoundException {
+    public RMIClient() throws RemoteException, NotBoundException {
         Registry registry = LocateRegistry.getRegistry("localhost", 1099);
         serverModel = (IServerModel) registry.lookup("servers");
         cars = new CarList();
-        this.model = model;
-        //model.setClient(this);
+        reservations = new ArrayList<>();
+        changeSupport = new PropertyChangeSupport(this);
     }
 
     @Override
-    public Car getCar(String registrationNumber) {
-        return null;
+    public boolean logIn(String username, String password) {
+        return serverModel.logIn(username, password, this);
+    }
+
+    @Override
+    public void addCar(Car car) throws RemoteException {
+        serverModel.addCar(car);
+    }
+
+    @Override
+    public void deleteCar(String carRegistrationNumber) throws RemoteException {
+        serverModel.deleteCar(carRegistrationNumber);
+    }
+
+    @Override
+    public void editCar(String registrationNumber, int mileage, int price, int availability) throws RemoteException {
+        serverModel.editCar(registrationNumber, mileage, price, availability);
+    }
+
+    @Override
+    public Car getCar(String registrationNumber) throws RemoteException {
+        return serverModel.getCar(registrationNumber);
     }
 
     @Override
     public CarList getCars() throws RemoteException {
-        try {
-            cars  = serverModel.getCars();
-
-            //Display values
-            for (int i = 0; i < cars.size(); i++) {
-                System.out.println(cars.getCar(i));
-            }
-
-            System.out.println("Successfully returned cars");
-        } catch (RemoteException e) {
-            e.printStackTrace();
-        }
-        return cars;
+        return serverModel.getCars();
     }
 
     @Override
     public void addReservation(Reservation reservation) throws RemoteException {
         try {
             serverModel.addReservation(reservation.getReservationId(), reservation.getCarRegNo(), reservation.getUsername(), reservation.getDateFromObject(), reservation.getDateToObject(), reservation.getNavigation(), reservation.getChildseat(), reservation.getFirstName(), reservation.getLastName(), reservation.getAge(), reservation.getPrice(), reservation.getInsurance(), reservation.getStatus());
+            reservations.add(reservation);
             System.out.println("Successfully added reservation");
+            changeSupport.firePropertyChange("ReservationAdded", null, reservation);
         } catch (RemoteException e) {
             System.out.println("Add reservation issue");
             e.printStackTrace();
@@ -62,8 +78,8 @@ public class CustomerClientImpl implements CustomerClient{
     }
 
     @Override
-    public Reservation getReservation(String registrationId) throws RemoteException {
-        return serverModel.getReservation(registrationId);
+    public Reservation getReservation(String reservationId) throws RemoteException {
+        return serverModel.getReservation(reservationId);
     }
 
     @Override
@@ -82,8 +98,8 @@ public class CustomerClientImpl implements CustomerClient{
     }
 
     @Override
-    public void deleteCustomer(String username) {
-
+    public void deleteCustomer(String username) throws RemoteException {
+        serverModel.deleteCustomer(username);
     }
 
     @Override
@@ -95,4 +111,10 @@ public class CustomerClientImpl implements CustomerClient{
     public CustomerList getCustomers() throws RemoteException {
         return serverModel.getCustomers();
     }
+
+    @Override
+    public void updateReservationList(ReservationList reservations) throws RemoteException {
+
+    }
+
 }

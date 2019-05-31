@@ -11,7 +11,7 @@ public interface CustomerClient {
 
     CarList getCars() throws RemoteException;
 
-    void addReservation(String reservationId, String carRegNo, String username, Date dateFrom, Date dateTo, int navigation, int childseat, String firstName, String lastName, int age, int price, int insurance, int status) throws RemoteException;
+    void addReservation(Reservation reservation) throws RemoteException;
 
     void deleteReservation(String reservationId) throws RemoteException;
 

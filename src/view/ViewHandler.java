@@ -62,7 +62,7 @@ public class ViewHandler {
 
 
     public void openCustomerTabPane() throws IOException {
-        viewModelProvider.instantiateMakeReservationViewModel();
+        viewModelProvider.instantiateMakeReservationViewModel(this);
         viewModelProvider.instantiateViewReservationsViewModel();
         viewModelProvider.instantiateAccountViewModel(this);
         FXMLLoader loader = new FXMLLoader();

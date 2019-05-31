@@ -23,7 +23,14 @@ public class Database {
     }
 
     public void addCar(Car car){
-        String sql = "INSERT INTO  \"SEP2\".car " + "VALUES('" + car.getRegistrationNumber() + "','" + car.getMake() + "'," + car.getMileage() +",'" + car.getColor() + "'," + car.getProductionYear() + ",'" + car.getCategory() + "'," + car.getPrice() + "," +  car.getAvailability() + ")";
+        String sql = "INSERT INTO  \"SEP2\".car " + "VALUES('" + car.getRegistrationNumber() + "','" +
+                car.getMake() + "'," +
+                car.getMileage() +",'" +
+                car.getColor() + "'," +
+                car.getProductionYear() + ",'" +
+                car.getCategory() + "'," +
+                car.getPrice() + "," +
+                car.getAvailability() + ")";
 
         connectToDatabase();
 
@@ -45,16 +52,31 @@ public class Database {
         //If the user is dumb enough and gives us a
         // registration number for the car longer than 6 characters we're going
         // to drop the connection to the database
-        if(registrationNumber.length() > 6){
-            try {
-                stmt.close();
-                c.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
 
-        String sql = "DELETE FROM \"SEP2\".car " + "WHERE registrationNumber = " + registrationNumber;
+        String sql = "DELETE FROM \"SEP2\".car " + "WHERE registrationNumber=" + "'" + registrationNumber + "'";
+        try {
+
+            connectToDatabase();
+
+            stmt.executeUpdate(sql);
+
+            stmt.close();
+            c.close();
+        } catch (SQLException e) {
+            System.out.println("Oops something went wrong with " +
+                    "the sql syntax for deleting a car(Database.java)");
+            e.printStackTrace();
+        }
+    }
+
+    public void editCar(String registrationNumber, int mileage, int price, int availability){
+        String sql = "UPDATE \"SEP2\".car SET "
+                + "mileage=" + mileage + ", "
+                + "price=" + price + ", "
+                + "availability=" + availability
+                + " WHERE registrationNumber="
+                + "'" + registrationNumber + "'";
+
         try {
 
             connectToDatabase();
@@ -71,7 +93,7 @@ public class Database {
     }
 
     public Car getCar(String regNo){
-        String sql = "SELECT * FROM \"SEP2\".car WHERE registrationNumber = " + regNo;
+        String sql = "SELECT * FROM \"SEP2\".car WHERE registrationNumber= " + "'" +  regNo + "'";
 
         Car car = new Car("", "", 0, "", 0, "", 0, 0);
 
@@ -168,12 +190,15 @@ public class Database {
 
     public void deleteReservation(String reservationId){
 
-        String sql = "DELETE FROM \"SEP2\".reservation" + "WHERE reservationId =" + reservationId;
+        String sql = "DELETE FROM \"SEP2\".reservation " + "WHERE reservationId=" + "'" + reservationId + "'";
 
         try {
             connectToDatabase();
 
             stmt.executeUpdate(sql);
+
+            stmt.close();
+            c.close();
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -182,7 +207,7 @@ public class Database {
     }
 
     public Reservation getReservation(String reservationId){
-        String sql = "SELECT * FROM \"SEP2\".reservation WHERE reservationId = " +  reservationId;
+        String sql = "SELECT * FROM \"SEP2\".reservation WHERE reservationId = '" +  reservationId + "'";
 
         Reservation reservation = new Reservation("", "", "", new Date(), new Date(), 0, 0, "", "", 0, 0, 0, 0);
 
@@ -283,6 +308,9 @@ public class Database {
 
         try {
             stmt.executeUpdate(sql);
+
+            stmt.close();
+            c.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }

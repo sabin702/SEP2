@@ -98,13 +98,19 @@ public class Car implements Serializable {
         return price;
     }
 
+    public void setPrice(int price){
+        this.price = price;
+    }
+
     public String toString(){
 
-        return "Reg. no.: " + registrationNumber + "|  "
-                + "Make: " + make + "|  "
-                + "Mileage: " + mileage + "|  "
-                + "Color: " + color + "|  "
-                + "Prod. year: " + productionYear + "|  "
-                + "Status: " + status + "\n";
+        return make + ", " + category;
+    }
+
+    public boolean equals(Object obj){
+        if(!(obj instanceof Car))
+            return false;
+        Car other = (Car) obj;
+        return registrationNumber == (other.getRegistrationNumber());
     }
 }

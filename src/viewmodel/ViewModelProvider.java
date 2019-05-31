@@ -2,8 +2,7 @@ package viewmodel;
 
 
 
-import Model.CustomerModel;
-import Model.EmployeeModel;
+import Model.*;
 import view.ViewHandler;
 import viewmodel.AccountAndLogIn.CreateAccountAndLogInViewModel;
 import viewmodel.AccountAndLogIn.CreateAccountViewModel;
@@ -32,12 +31,12 @@ public class ViewModelProvider {
 
     private CustomerModel cm;
     private EmployeeModel em;
+    private ModelProvider modelProvider;
 
-    public ViewModelProvider(CustomerModel cm) {
-        this.cm = cm;
-    }
-    public ViewModelProvider(EmployeeModel em){
-        this.em = em;
+    public ViewModelProvider(ModelProvider modelProvider) {
+        this.modelProvider = modelProvider;
+        cm = new CustomerModelImpl();
+        em = new EmployeeModelImpl();
     }
 
     public void instantiateLogInViewModel(ViewHandler viewHandler) {
@@ -66,38 +65,40 @@ public class ViewModelProvider {
 
     public void instantiateCarsViewModel() {
         if (carsViewModel == null) {
-            carsViewModel = new CarsViewModel();
+            carsViewModel = new CarsViewModel(em);
         }
     }
 
     public void instantiateAccountViewModel(ViewHandler viewHandler) {
         if (accountViewModel == null) {
-            accountViewModel = new AccountViewModel(viewHandler);
+            accountViewModel = new AccountViewModel(viewHandler, cm);
         }
+        accountViewModel.setUserName(logInViewModel.getUsername());
     }
 
 
-    public void instantiateMakeReservationViewModel() {
+    public void instantiateMakeReservationViewModel(ViewHandler viewHandler) {
         if (makeReservationViewModel == null) {
-            makeReservationViewModel = new MakeReservationViewModel();
+            makeReservationViewModel = new MakeReservationViewModel(viewHandler, cm);
         }
+        makeReservationViewModel.setUserName(logInViewModel.getUsername());
     }
 
     public void instantiateReservationsViewModel() {
         if (reservationsViewModel == null) {
-            reservationsViewModel = new ReservationsViewModel();
+            reservationsViewModel = new ReservationsViewModel(cm, em);
         }
     }
 
     public void instantiateUsersViewModel() {
         if (usersViewModel == null) {
-            usersViewModel = new UsersViewModel();
+            usersViewModel = new UsersViewModel(em);
         }
     }
 
     public void instantiateViewReservationsViewModel() {
         if (viewReservationsViewModel == null) {
-            viewReservationsViewModel = new ViewReservationsViewModel();
+            viewReservationsViewModel = new ViewReservationsViewModel(cm);
         }
     }
 

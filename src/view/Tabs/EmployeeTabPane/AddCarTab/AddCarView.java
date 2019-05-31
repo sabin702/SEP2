@@ -46,6 +46,7 @@ public class AddCarView implements Initializable {
         } catch (RemoteException e) {
             e.printStackTrace();
         }
+        clearFields();
 
     }
 
@@ -58,5 +59,15 @@ public class AddCarView implements Initializable {
         carCategory.getItems().removeAll();
         carCategory.getItems().addAll("SUV", "Small car","Sedan","Truck","Cabrio","Hatchback");
         carCategory.getSelectionModel().select("Sedan");
+    }
+
+    public void clearFields(){
+        registrationNumber.clear();
+        carMake.clear();
+        carMileage.clear();
+        carColor.clear();
+        carProduction.clear();
+        carCategory.getSelectionModel().select(1);
+        carPrice.clear();
     }
 }

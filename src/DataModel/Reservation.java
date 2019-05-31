@@ -1,10 +1,11 @@
 package DataModel;
 
+import java.io.Serializable;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
-public class Reservation {
+public class Reservation implements Serializable {
 
     private String reservationId;
     private String carRegNo;
@@ -91,6 +92,14 @@ public class Reservation {
         return str;
     }
 
+    public Date getDateFromObject(){
+        return dateFrom;
+    }
+
+    public Date getDateToObject(){
+        return dateTo;
+    }
+
     public int getNavigation() {
         return navigation;
     }
@@ -155,5 +164,14 @@ public class Reservation {
                 + "Price: " + price + "|  "
                 + "Insurance: " + insuranceOption + "|  "
                 + "Status: " + reservationStatus + "\n";
+    }
+
+    public boolean equals(Object obj){
+        if(!(obj instanceof Reservation))
+            return false;
+
+        Reservation other = (Reservation) obj;
+
+        return reservationId.equals(other.getReservationId());
     }
 }
