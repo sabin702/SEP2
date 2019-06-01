@@ -1,11 +1,12 @@
 package Model;
 
+import Client.Client;
+import Client.IRMIClient;
 import Client.IServerListener;
 import DataModel.CarList;
 import DataModel.Customer;
 import DataModel.Reservation;
 import DataModel.ReservationList;
-import Client.RMIClient;
 
 import java.beans.PropertyChangeListener;
 import java.rmi.RemoteException;
@@ -13,7 +14,7 @@ import java.util.Date;
 
 public interface CustomerModel {
 
-    void setClient(RMIClient client);
+    void setClient(Client client);
 
     void createAccount(String username, String password, String firstName, String lastName, Date dateOfBirth);
 

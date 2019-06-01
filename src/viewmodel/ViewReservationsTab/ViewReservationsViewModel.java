@@ -12,6 +12,8 @@ import javafx.collections.ObservableList;
 
 import java.beans.PropertyChangeEvent;
 import java.rmi.RemoteException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ViewReservationsViewModel {
 
@@ -28,12 +30,6 @@ public class ViewReservationsViewModel {
         model.addListener("ReservationAdded", this::reservationAdded);
         model.addListener("ReservationDeleted", this::reservationRemoved);
 
-        model.addListener(new IServerListener() {
-            @Override
-            public void updateReservations(ReservationList reservationList) {
-                reservations = (ObservableList<Reservation>) reservationList;
-            }
-        });
 
     }
 

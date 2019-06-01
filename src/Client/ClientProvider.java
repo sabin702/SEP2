@@ -5,19 +5,27 @@ import java.rmi.RemoteException;
 
 public class ClientProvider {
 
-    ClientImpl clientImpl;
-    RMIClient rmiClient;
+    Client client;
+    IRMIClient rmiClient;
 
     public ClientProvider() {
         try {
             rmiClient = new RMIClient();
-            clientImpl = new ClientImpl(rmiClient);
+            client = new ClientImpl(rmiClient);
         } catch (RemoteException | NotBoundException e) {
             e.printStackTrace();
         }
     }
 
-    public ClientImpl getClientImpl(){
-        return clientImpl;
+    public Client getClient() throws RemoteException, NotBoundException {
+        if(client == null)
+            client = new ClientImpl(getRMIClient());
+        return client;
+    }
+
+    public IRMIClient getRMIClient() throws RemoteException, NotBoundException {
+        if(rmiClient == null)
+            rmiClient = new RMIClient();
+        return rmiClient;
     }
 }

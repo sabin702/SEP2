@@ -35,8 +35,8 @@ public class ViewModelProvider {
 
     public ViewModelProvider(ModelProvider modelProvider) {
         this.modelProvider = modelProvider;
-        cm = new CustomerModelImpl();
-        em = new EmployeeModelImpl();
+        cm = modelProvider.getCustomerModel();
+        em = modelProvider.getEmployeeModel();
     }
 
     public void instantiateLogInViewModel(ViewHandler viewHandler) {

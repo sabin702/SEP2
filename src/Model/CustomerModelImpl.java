@@ -1,11 +1,11 @@
 package Model;
 
+import Client.Client;
+import Client.ClientProvider;
 import DataModel.CarList;
 import DataModel.Customer;
 import DataModel.Reservation;
 import DataModel.ReservationList;
-import Client.Client;
-import Client.RMIClient;
 import Client.IServerListener;
 
 import java.beans.PropertyChangeListener;
@@ -15,20 +15,15 @@ import java.util.Date;
 public class CustomerModelImpl implements CustomerModel {
 
     private Client client;
-    private ReservationList res;
+    private ClientProvider provider;
 
     public CustomerModelImpl()  {
 
     }
 
     @Override
-    public void setClient(RMIClient client) {
+    public void setClient(Client client) {
         this.client = client;
-        try {
-            res = client.getReservations();
-        } catch (RemoteException e) {
-            e.printStackTrace();
-        }
     }
 
     @Override
@@ -91,10 +86,15 @@ public class CustomerModelImpl implements CustomerModel {
 
     @Override
     public void addListener(String eventName, PropertyChangeListener listener) {
-
+        client.addListener(eventName, listener);
     }
 
     public void addListener(IServerListener listener) {
-        client.addServerListener(listener);
+        try {
+            client.addServerListener(listener);
+            System.out.println("Dodany listener");
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
     }
 }

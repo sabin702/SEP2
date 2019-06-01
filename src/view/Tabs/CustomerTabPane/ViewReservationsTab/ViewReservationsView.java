@@ -1,6 +1,8 @@
 package view.Tabs.CustomerTabPane.ViewReservationsTab;
 
 import DataModel.Reservation;
+import javafx.beans.property.ObjectProperty;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
@@ -50,13 +52,15 @@ public class ViewReservationsView {
         }
     }
 
+    private ObjectProperty< ObservableList<Reservation> > propertyReservations;
+
 
     public void init(ViewReservationsViewModel viewReservationsViewModel) {
         this.viewModel = viewReservationsViewModel;
 
 
-
         tableView.setItems(viewModel.getReservationList());
+
         dateFromColumn.setCellValueFactory(new PropertyValueFactory<>("dateFrom"));
         dateToColumn.setCellValueFactory(new PropertyValueFactory<>("dateTo"));
         carColumn.setCellValueFactory(new PropertyValueFactory<>("carRegNo"));

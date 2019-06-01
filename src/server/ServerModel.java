@@ -1,13 +1,10 @@
 package server;
 
-import Client.Client;
-import Client.RMIClient;
+import Client.IRMIClient;
 import DataModel.*;
 import database.Database;
 
-import java.beans.PropertyChangeListener;
 import java.rmi.AlreadyBoundException;
-import java.rmi.NotBoundException;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
@@ -20,7 +17,7 @@ import java.util.List;
 public class ServerModel implements IServerModel, Remote{
 
     Database database;
-    List<Client> clients;
+    List<IRMIClient> IRMIClients;
 
     public ServerModel() {
 
@@ -34,17 +31,18 @@ public class ServerModel implements IServerModel, Remote{
             e.printStackTrace();
         }
         database = new Database();
-        clients = new ArrayList<Client>();
+        IRMIClients = new ArrayList<IRMIClient>();
     }
 
     @Override
-    public boolean logIn(String username, String password, Client client) throws RemoteException{
+    public boolean logIn(String username, String password, IRMIClient IRMIClient) throws RemoteException{
         if(database.getCustomer(username) == null) {
             System.out.println("No user found");
             return false;
         }
         else if(database.getCustomer(username).getPassword().equals(password)) {
-            clients.add(client);
+            IRMIClients.add(IRMIClient);
+            System.out.println(IRMIClients.size());
             return true;
         }
         else
@@ -52,8 +50,8 @@ public class ServerModel implements IServerModel, Remote{
     }
 
     @Override
-    public void addClient(Client client) throws RemoteException {
-        clients.add(client);
+    public void addClient(IRMIClient IRMIClient) throws RemoteException {
+        IRMIClients.add(IRMIClient);
     }
 
     @Override
@@ -84,9 +82,9 @@ public class ServerModel implements IServerModel, Remote{
     @Override
     public void addReservation(String reservationId, String carRegNo, String username, Date dateFrom, Date dateTo, int navigation, int childseat, String firstName, String lastName, int age, int price, int insurance, int status) throws RemoteException {
         database.addReservation(reservationId, carRegNo, username, dateFrom, dateTo, navigation, childseat, firstName, lastName, age, price, insurance, status);
-        for(Client client : clients)
+        for(IRMIClient client : IRMIClients)
         {
-            client.updateReservationList(database.getReservations());
+            client.addReservation(database.getReservations().getReservation(database.getReservations().size()-1));
         }
     }
 

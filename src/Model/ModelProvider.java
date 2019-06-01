@@ -1,10 +1,9 @@
 package Model;
 
-import Client.Client;
+import Client.ClientProvider;
 
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
-import Client.ClientProvider;
 
 public class ModelProvider {
 
@@ -12,10 +11,12 @@ public class ModelProvider {
     private EmployeeModel  em;
     private ClientProvider clientProvider;
 
-    public ModelProvider(ClientProvider clientProvider) {
+    public ModelProvider(ClientProvider clientProvider) throws RemoteException, NotBoundException {
         cm = new CustomerModelImpl();
         em = new EmployeeModelImpl();
         this.clientProvider = clientProvider;
+        cm.setClient(clientProvider.getClient());
+        em.setClient(clientProvider.getClient());
     }
 
     public CustomerModel getCustomerModel() {

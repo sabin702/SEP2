@@ -1,12 +1,11 @@
 package Client;
 
 import DataModel.*;
-import Model.CustomerModel;
 
+import java.beans.PropertyChangeListener;
 import java.rmi.RemoteException;
-import java.util.Date;
 
-public interface Client extends IServerSubject {
+public interface Client {
 
     boolean logIn(String username, String password) throws RemoteException;
 
@@ -37,5 +36,9 @@ public interface Client extends IServerSubject {
     CustomerList getCustomers() throws RemoteException;
 
     void updateReservationList(ReservationList reservations) throws RemoteException;
+
+    void addListener(String eventName, PropertyChangeListener listener);
+
+    void addServerListener(IServerListener listener) throws RemoteException;
 
 }

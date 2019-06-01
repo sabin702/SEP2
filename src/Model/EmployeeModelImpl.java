@@ -1,7 +1,7 @@
 package Model;
 
-import DataModel.*;
 import Client.Client;
+import DataModel.*;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;

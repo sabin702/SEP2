@@ -2,27 +2,31 @@ package Client;
 
 import DataModel.*;
 import Model.CustomerModel;
-import Model.EmployeeModel;
 import server.IServerModel;
 
-import javax.swing.*;
+import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
+import java.io.Serializable;
 import java.rmi.NotBoundException;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
+import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RMIClient extends AServerSubject implements Client, Remote {
+public class RMIClient extends AServerSubject implements IRMIClient, Remote, Serializable {
 
     IServerModel serverModel;
     CarList cars;
     List<Reservation> reservations;
     private PropertyChangeSupport changeSupport;
+    private List<PropertyChangeListener> listeners;
+
 
     public RMIClient() throws RemoteException, NotBoundException {
+        UnicastRemoteObject.exportObject(this, 0);
         Registry registry = LocateRegistry.getRegistry("localhost", 1099);
         serverModel = (IServerModel) registry.lookup("servers");
         cars = new CarList();
@@ -69,9 +73,11 @@ public class RMIClient extends AServerSubject implements Client, Remote {
     public void addReservation(Reservation reservation) throws RemoteException {
         try {
             serverModel.addReservation(reservation.getReservationId(), reservation.getCarRegNo(), reservation.getUsername(), reservation.getDateFromObject(), reservation.getDateToObject(), reservation.getNavigation(), reservation.getChildseat(), reservation.getFirstName(), reservation.getLastName(), reservation.getAge(), reservation.getPrice(), reservation.getInsurance(), reservation.getStatus());
-            reservations.add(reservation);
+            //reservations.add(reservation);
             System.out.println("Successfully added reservation");
             changeSupport.firePropertyChange("ReservationAdded", null, reservation);
+
+
         } catch (RemoteException e) {
             System.out.println("Add reservation issue");
             e.printStackTrace();
@@ -119,8 +125,14 @@ public class RMIClient extends AServerSubject implements Client, Remote {
     }
 
     @Override
-    public void updateReservationList(ReservationList reservations) throws RemoteException {
-        fireUpdateReservationList(reservations);
+    public void addListener(String eventName, PropertyChangeListener listener)
+    {
+        changeSupport.addPropertyChangeListener(eventName, listener);
+    }
+
+    @Override
+    public void addNewReservation(Reservation reservation) throws RemoteException {
+        changeSupport.firePropertyChange("ReservationAdded", null, reservation);
     }
 
 }

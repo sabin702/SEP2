@@ -13,7 +13,7 @@ public class EmployeeMain extends Application {
     public void start(Stage stage) throws Exception {
         /*EmployeeModel em = new EmployeeModelImpl();
         CustomerModel cm = new CustomerModelImpl();
-        Client client = new ClientImpl(cm, em);
+        IRMIClient IRMIClient = new ClientImpl(cm, em);
         ViewModelProvider vmp = new ViewModelProvider(cm, em);
         ViewHandler vh = new ViewHandler(stage,vmp);
         vh.startEmployee();*/

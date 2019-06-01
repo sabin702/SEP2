@@ -1,5 +1,6 @@
 package Client;
 
+import DataModel.Reservation;
 import DataModel.ReservationList;
 
 import java.util.LinkedList;
@@ -13,11 +14,13 @@ public class AServerSubject implements IServerSubject{
 
     public void addServerListener(IServerListener listener) {
         listeners.add(listener);
+        System.out.println("AServerSubject listener added");
     }
 
-    protected void fireUpdateReservationList(ReservationList reservationList) {
+    public void fireAddReservation(Reservation reservation) {
 
-        listeners.forEach(l -> l.updateReservations(reservationList));
+        listeners.forEach(l -> l.addReservation(reservation));
+        System.out.println("Jestesmy tutaj");
     }
 
 }
