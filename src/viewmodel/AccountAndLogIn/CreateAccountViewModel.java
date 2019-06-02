@@ -22,7 +22,7 @@ public class CreateAccountViewModel {
         viewHandler.openCreateAccountAndLogIn();
     }
 
-    public void createAccount(String username, String password, String firstName, String lastName, Date dateOfBirth){
+    public void createAccount(String username, String password, String firstName, String lastName, Date dateOfBirth) throws RemoteException {
         model.createAccount(username, password, firstName, lastName, dateOfBirth);
     }
 }

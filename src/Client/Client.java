@@ -37,7 +37,7 @@ public interface Client {
 
     void updateReservationList(ReservationList reservations) throws RemoteException;
 
-    void addListener(String eventName, PropertyChangeListener listener);
+    void addListener(String eventName, PropertyChangeListener listener) throws RemoteException;
 
     void addServerListener(IServerListener listener) throws RemoteException;
 

@@ -11,16 +11,17 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import java.beans.PropertyChangeEvent;
+import java.io.Serializable;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ViewReservationsViewModel {
+public class ViewReservationsViewModel implements Serializable {
 
     private CustomerModel model;
     private ObservableList<Reservation> reservations;
 
-    public ViewReservationsViewModel(CustomerModel model) {
+    public ViewReservationsViewModel(CustomerModel model) throws RemoteException {
         reservations = FXCollections.observableArrayList();
 
         this.model = model;

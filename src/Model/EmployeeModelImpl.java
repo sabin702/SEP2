@@ -10,23 +10,16 @@ import java.rmi.RemoteException;
 public class EmployeeModelImpl implements EmployeeModel{
 
     private Client client;
-    private PropertyChangeSupport changeSupport;
     private CarList cars;
     private ReservationList reservations;
 
     public EmployeeModelImpl() {
-        changeSupport = new PropertyChangeSupport(this);
+
     }
 
     @Override
     public void setClient(Client client) {
         this.client = client;
-        try {
-            cars = client.getCars();
-            reservations = client.getReservations();
-        } catch (RemoteException e) {
-            e.printStackTrace();
-        }
     }
 
     @Override
@@ -38,7 +31,7 @@ public class EmployeeModelImpl implements EmployeeModel{
     public void deleteReservation(String reservationID) throws RemoteException {
         Reservation reservation = client.getReservation(reservationID);
         client.deleteReservation(reservationID);
-        changeSupport.firePropertyChange("ReservationDeleted", null, reservation);
+        //changeSupport.firePropertyChange("ReservationDeleted", null, reservation);
     }
 
     @Override
@@ -46,14 +39,14 @@ public class EmployeeModelImpl implements EmployeeModel{
         Car car = new Car(registrationNumber,make,mileage,color,productionYear,category,price,availability);
         client.addCar(car);
         cars.addCar(car);
-        changeSupport.firePropertyChange("CarAdded", null, car);
+        //changeSupport.firePropertyChange("CarAdded", null, car);
     }
 
     @Override
     public void deleteCar(String carRegNo) throws RemoteException {
         Car car = client.getCar(carRegNo);
         client.deleteCar(carRegNo);
-        changeSupport.firePropertyChange("CarDeleted", null, car);
+        //changeSupport.firePropertyChange("CarDeleted", null, car);
     }
 
     @Override
@@ -61,7 +54,7 @@ public class EmployeeModelImpl implements EmployeeModel{
         Car car1 = client.getCar(registrationNumber);
         client.editCar(registrationNumber, mileage, price, availability);
         Car car2 = client.getCar(registrationNumber);
-        changeSupport.firePropertyChange("CarEdited", car1, car2);
+        //changeSupport.firePropertyChange("CarEdited", car1, car2);
     }
 
     @Override
@@ -90,7 +83,9 @@ public class EmployeeModelImpl implements EmployeeModel{
     }
 
     @Override
-    public void addListener(String eventName, PropertyChangeListener listener) {
-        changeSupport.addPropertyChangeListener(eventName, listener);
+    public void addListener(String eventName, PropertyChangeListener listener) throws RemoteException {
+        //changeSupport.addPropertyChangeListener(eventName, listener);
+        client.addListener(eventName, listener);
+        System.out.println("addListener method");
     }
 }

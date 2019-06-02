@@ -16,7 +16,10 @@ import viewmodel.ReservationsTab.ReservationsViewModel;
 import viewmodel.UsersTab.UsersViewModel;
 import viewmodel.ViewReservationsTab.ViewReservationsViewModel;
 
-public class ViewModelProvider {
+import java.io.Serializable;
+import java.rmi.RemoteException;
+
+public class ViewModelProvider implements Serializable {
 
     private LogInViewModel logInViewModel;
     private CreateAccountAndLogInViewModel createAccountAndLogInViewModel;
@@ -63,7 +66,7 @@ public class ViewModelProvider {
         }
     }
 
-    public void instantiateCarsViewModel() {
+    public void instantiateCarsViewModel() throws RemoteException {
         if (carsViewModel == null) {
             carsViewModel = new CarsViewModel(em);
         }
@@ -84,9 +87,9 @@ public class ViewModelProvider {
         makeReservationViewModel.setUserName(logInViewModel.getUsername());
     }
 
-    public void instantiateReservationsViewModel() {
+    public void instantiateReservationsViewModel() throws RemoteException {
         if (reservationsViewModel == null) {
-            reservationsViewModel = new ReservationsViewModel(cm, em);
+            reservationsViewModel = new ReservationsViewModel(em);
         }
     }
 
@@ -96,7 +99,7 @@ public class ViewModelProvider {
         }
     }
 
-    public void instantiateViewReservationsViewModel() {
+    public void instantiateViewReservationsViewModel() throws RemoteException {
         if (viewReservationsViewModel == null) {
             viewReservationsViewModel = new ViewReservationsViewModel(cm);
         }

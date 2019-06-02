@@ -1,7 +1,7 @@
 package Client;
 
 import DataModel.*;
-import Model.CustomerModel;
+import Client.AServerSubject;
 import server.IServerModel;
 
 import java.beans.PropertyChangeListener;
@@ -16,28 +16,27 @@ import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RMIClient extends AServerSubject implements IRMIClient, Remote, Serializable {
+public class RMIClient extends AServerSubject implements IRMIClient, Serializable{
 
     IServerModel serverModel;
     CarList cars;
     List<Reservation> reservations;
-    private PropertyChangeSupport changeSupport;
+    //private PropertyChangeSupport changeSupport;
     private List<PropertyChangeListener> listeners;
 
 
     public RMIClient() throws RemoteException, NotBoundException {
-        UnicastRemoteObject.exportObject(this, 0);
         Registry registry = LocateRegistry.getRegistry("localhost", 1099);
-        serverModel = (IServerModel) registry.lookup("servers");
+        serverModel = (IServerModel) registry.lookup("server");
         cars = new CarList();
         reservations = new ArrayList<>();
-        changeSupport = new PropertyChangeSupport(this);
+        //changeSupport = new PropertyChangeSupport(this);
     }
 
     @Override
     public boolean logIn(String username, String password) throws RemoteException{
         try {
-            return serverModel.logIn(username, password, this);
+            return serverModel.logIn(username, password);
         } catch (RemoteException e) {
             e.printStackTrace();
         }
@@ -75,8 +74,7 @@ public class RMIClient extends AServerSubject implements IRMIClient, Remote, Ser
             serverModel.addReservation(reservation.getReservationId(), reservation.getCarRegNo(), reservation.getUsername(), reservation.getDateFromObject(), reservation.getDateToObject(), reservation.getNavigation(), reservation.getChildseat(), reservation.getFirstName(), reservation.getLastName(), reservation.getAge(), reservation.getPrice(), reservation.getInsurance(), reservation.getStatus());
             //reservations.add(reservation);
             System.out.println("Successfully added reservation");
-            changeSupport.firePropertyChange("ReservationAdded", null, reservation);
-
+            //changeSupport.firePropertyChange("ReservationAdded", null, reservation);
 
         } catch (RemoteException e) {
             System.out.println("Add reservation issue");
@@ -125,14 +123,14 @@ public class RMIClient extends AServerSubject implements IRMIClient, Remote, Ser
     }
 
     @Override
-    public void addListener(String eventName, PropertyChangeListener listener)
-    {
-        changeSupport.addPropertyChangeListener(eventName, listener);
+    public void addListener(String eventName, PropertyChangeListener listener) throws RemoteException {
+        //changeSupport.addPropertyChangeListener(eventName, listener);
+        serverModel.addListener(eventName, listener);
     }
 
     @Override
     public void addNewReservation(Reservation reservation) throws RemoteException {
-        changeSupport.firePropertyChange("ReservationAdded", null, reservation);
+        //changeSupport.firePropertyChange("ReservationAdded", null, reservation);
     }
 
 }

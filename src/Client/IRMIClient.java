@@ -37,7 +37,7 @@ public interface IRMIClient extends IServerSubject {
 
     CustomerList getCustomers() throws RemoteException;
 
-    void addListener(String eventName, PropertyChangeListener listener);
+    void addListener(String eventName, PropertyChangeListener listener) throws RemoteException;
 
     void addNewReservation(Reservation reservation) throws RemoteException;
 

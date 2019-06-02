@@ -8,31 +8,32 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import java.beans.PropertyChangeEvent;
+import java.io.Serializable;
 import java.rmi.RemoteException;
 
-public class ReservationsViewModel {
-    private EmployeeModel em;
-    private CustomerModel cm;
+public class ReservationsViewModel{
+    private EmployeeModel model;
+
     private ObservableList<Reservation> reservations;
 
 
-    public ReservationsViewModel(CustomerModel cm, EmployeeModel em) {
+    public ReservationsViewModel(EmployeeModel em) throws RemoteException {
         reservations = FXCollections.observableArrayList();
 
-        this.cm = cm;
-        this.em = em;
+
+        this.model = em;
 
         getReservations();
 
-        cm.addListener("ReservationAdded", this::reservationAdded);
-        cm.addListener("ReservationDeleted", this::reservationRemoved);
-        em.addListener("ReservationDeleted", this::reservationRemoved);
+        model.addListener("ReservationAdded", this::reservationAdded);
+        model.addListener("ReservationDeleted", this::reservationRemoved);
+
     }
 
     private void getReservations() {
         try {
-            for (int i = 0; i < cm.viewReservations().size(); i++) {
-                Reservation temp = cm.viewReservations().getReservation(i);
+            for (int i = 0; i < model.getReservations().size(); i++) {
+                Reservation temp = model.getReservations().getReservation(i);
                 reservations.add(temp);
             }
         } catch (RemoteException e) {
@@ -44,7 +45,7 @@ public class ReservationsViewModel {
         System.out.println("Current size: " + reservations.size());
         reservations.remove(getReservationIndex(reservationId));
         System.out.println("ddhe: " + reservations.size());
-        cm.deleteReservation(reservationId);
+        model.deleteReservation(reservationId);
         System.out.println("Item deleted");
     }
 
@@ -59,12 +60,12 @@ public class ReservationsViewModel {
     }
 
     public ObservableList<Reservation> getReservationsList(){
-        return FXCollections.unmodifiableObservableList(reservations);
+        return reservations;
     }
 
     public int getReservationIndex(String reservationId) throws RemoteException {
-        for (int i = 0; i < cm.viewReservations().size(); i++) {
-            if(cm.getReservation(reservationId).equals(cm.viewReservations().getReservation(i)))
+        for (int i = 0; i < model.getReservations().size(); i++) {
+            if(model.getReservation(reservationId).equals(model.getReservations().getReservation(i)))
                 return i;
         }
 

@@ -5,9 +5,10 @@ import Model.CustomerModel;
 import Model.EmployeeModel;
 
 import java.beans.PropertyChangeListener;
+import java.io.Serializable;
 import java.rmi.RemoteException;
 
-public class ClientImpl implements Client{
+public class ClientImpl implements Client, Serializable {
 
     CarList cars;
     IRMIClient client;
@@ -93,8 +94,7 @@ public class ClientImpl implements Client{
     }
 
     @Override
-    public void addListener(String eventName, PropertyChangeListener listener)
-    {
+    public void addListener(String eventName, PropertyChangeListener listener) throws RemoteException {
         client.addListener(eventName, listener);
     }
 

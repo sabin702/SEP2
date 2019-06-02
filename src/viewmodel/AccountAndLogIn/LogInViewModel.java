@@ -4,8 +4,10 @@ import Model.CustomerModel;
 import view.ViewHandler;
 
 import java.io.IOException;
+import java.io.Serializable;
+import java.rmi.RemoteException; 
 
-public class LogInViewModel {
+public class LogInViewModel implements Serializable {
     private ViewHandler viewHandler;
     private CustomerModel model;
     private String userName;
@@ -18,7 +20,7 @@ public class LogInViewModel {
         viewHandler.openCustomerTabPane();
     }
 
-    public boolean logIn(String username, String password){
+    public boolean logIn(String username, String password) throws RemoteException {
         if(model.logIn(username, password)){
             userName = username;
             return true;

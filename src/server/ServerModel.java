@@ -4,6 +4,9 @@ import Client.IRMIClient;
 import DataModel.*;
 import database.Database;
 
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
+import java.io.Serializable;
 import java.rmi.AlreadyBoundException;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
@@ -14,45 +17,44 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class ServerModel implements IServerModel, Remote{
+public class ServerModel implements IServerModel, Remote, Serializable {
 
     Database database;
-    List<IRMIClient> IRMIClients;
+    //List<IRMIClient> IRMIClients;
+    IRMIClient client;
+    PropertyChangeSupport changeSupport;
 
     public ServerModel() {
 
         try {
             UnicastRemoteObject.exportObject(this, 0);
-            Registry registry = LocateRegistry.createRegistry(1099);
-            registry.bind("servers", this);
-
-            System.out.println("Server has been started!");
-        } catch (RemoteException | AlreadyBoundException e) {
+        } catch (RemoteException e) {
             e.printStackTrace();
         }
         database = new Database();
-        IRMIClients = new ArrayList<IRMIClient>();
+        changeSupport = new PropertyChangeSupport(this);
+        //IRMIClients = new ArrayList<IRMIClient>();
     }
 
     @Override
-    public boolean logIn(String username, String password, IRMIClient IRMIClient) throws RemoteException{
+    public boolean logIn(String username, String password) throws RemoteException{
         if(database.getCustomer(username) == null) {
             System.out.println("No user found");
             return false;
         }
         else if(database.getCustomer(username).getPassword().equals(password)) {
-            IRMIClients.add(IRMIClient);
-            System.out.println(IRMIClients.size());
+            //IRMIClients.add(IRMIClient);
+            //System.out.println(IRMIClients.size());
             return true;
         }
         else
             return false;
     }
 
-    @Override
+   /* @Override
     public void addClient(IRMIClient IRMIClient) throws RemoteException {
         IRMIClients.add(IRMIClient);
-    }
+    }*/
 
     @Override
     public void addCar(Car car) throws RemoteException {
@@ -82,10 +84,12 @@ public class ServerModel implements IServerModel, Remote{
     @Override
     public void addReservation(String reservationId, String carRegNo, String username, Date dateFrom, Date dateTo, int navigation, int childseat, String firstName, String lastName, int age, int price, int insurance, int status) throws RemoteException {
         database.addReservation(reservationId, carRegNo, username, dateFrom, dateTo, navigation, childseat, firstName, lastName, age, price, insurance, status);
-        for(IRMIClient client : IRMIClients)
+        /*for(IRMIClient client : IRMIClients)
         {
-            client.addReservation(database.getReservations().getReservation(database.getReservations().size()-1));
-        }
+            //client.addReservation(database.getReservations().getReservation(database.getReservations().size()-1));
+        }*/
+        Reservation reservation = new Reservation(reservationId, carRegNo, username, dateFrom, dateTo, navigation, childseat, firstName, lastName, age, price, insurance, status);
+        changeSupport.firePropertyChange("ReservationAdded", null, reservation);
     }
 
     @Override
@@ -123,6 +127,11 @@ public class ServerModel implements IServerModel, Remote{
     @Override
     public CustomerList getCustomers() throws RemoteException{
         return database.getCustomers();
+    }
+
+    @Override
+    public void addListener(String eventName, PropertyChangeListener listener) {
+        changeSupport.addPropertyChangeListener(eventName, listener);
     }
 
 }

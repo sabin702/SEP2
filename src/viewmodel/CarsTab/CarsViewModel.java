@@ -14,7 +14,7 @@ public class CarsViewModel {
     private EmployeeModel model;
     private ObservableList<Car> cars;
 
-    public CarsViewModel (EmployeeModel model){
+    public CarsViewModel (EmployeeModel model) throws RemoteException {
         cars = FXCollections.observableArrayList();
 
         this.model = model;

@@ -30,6 +30,6 @@ public interface EmployeeModel {
 
     CustomerList viewUsers() throws RemoteException;
 
-    void addListener(String eventName, PropertyChangeListener listener);
+    void addListener(String eventName, PropertyChangeListener listener) throws RemoteException;
 
 }

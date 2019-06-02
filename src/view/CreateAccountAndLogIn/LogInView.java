@@ -8,8 +8,9 @@ import view.Tabs.CustomerTabPane.CustomerTabPaneView;
 import viewmodel.AccountAndLogIn.LogInViewModel;
 
 import java.io.IOException;
+import java.io.Serializable;
 
-public class LogInView {
+public class LogInView implements Serializable {
 
     private LogInViewModel viewModel;
     public void init(LogInViewModel logInViewModel){

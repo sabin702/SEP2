@@ -67,7 +67,7 @@ public class MakeReservationView {
         else if(insuranceType.getValue().equals("type3"))
             insurance = 3;
         Random random = new Random();
-        String reservationId = "R" + (random.nextInt(99999)+10000);
+        String reservationId = "R" + (random.nextInt(88888)+10000);
         int price = getCar().getPrice() * getNumberOfDays(dateFrom1, dateTo1);
         int navigationOption = 0;
         int childSeatOption = 0;

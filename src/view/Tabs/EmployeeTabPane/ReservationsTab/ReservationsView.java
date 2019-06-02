@@ -61,7 +61,7 @@ public class ReservationsView {
     public void init(ReservationsViewModel reservationsViewModel) {
         this.viewModel = reservationsViewModel;
 
-        System.out.println(viewModel.getReservationsList().size());
+        //System.out.println(viewModel.getReservationsList().size());
 
         tableView.setItems(viewModel.getReservationsList());
         idColumn.setCellValueFactory(new PropertyValueFactory<>("reservationId"));

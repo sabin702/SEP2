@@ -13,8 +13,9 @@ import view.Tabs.EmployeeTabPane.EmployeeTabPaneView;
 import viewmodel.ViewModelProvider;
 
 import java.io.IOException;
+import java.io.Serializable;
 
-public class ViewHandler {
+public class ViewHandler implements Serializable {
     private Stage stage;
     private ViewModelProvider viewModelProvider;
 
