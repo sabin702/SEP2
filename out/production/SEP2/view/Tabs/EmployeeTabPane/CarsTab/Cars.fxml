@@ -20,6 +20,7 @@
                   <TableColumn fx:id="colorColumn" prefWidth="76.0" text="Color" />
                   <TableColumn fx:id="yearColumn" prefWidth="87.0" text="Year" />
                   <TableColumn fx:id="availabilityColumn" prefWidth="100.0" text="Availability" />
+                  <TableColumn fx:id="priceColumn" prefWidth="100.0" text="Price" />
                </columns>
             </TableView>
          </content>

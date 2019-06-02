@@ -8,18 +8,18 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.CreateAccountAndLogIn.CreateAccountView">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.CreateAccountAndLogIn.CreateAccountView">
    <children>
       <Label layoutX="211.0" layoutY="14.0" prefHeight="37.0" prefWidth="174.0" text="Create Account">
          <font>
             <Font size="25.0" />
          </font>
       </Label>
-      <TextField fx:id="nameField" layoutX="223.0" layoutY="92.0" />
-      <TextField fx:id="surnameField" layoutX="223.0" layoutY="139.0" />
-      <DatePicker fx:id="dateOfBirthField" layoutX="223.0" layoutY="204.0" />
-      <TextField fx:id="loginField" layoutX="224.0" layoutY="256.0" />
-      <PasswordField fx:id="passwordField" layoutX="226.0" layoutY="310.0" />
+      <TextField fx:id="nameField" layoutX="223.0" layoutY="92.0" promptText="Name" />
+      <TextField fx:id="surnameField" layoutX="223.0" layoutY="139.0" promptText="Surname" />
+      <DatePicker fx:id="dateOfBirthField" layoutX="223.0" layoutY="204.0" promptText="Date of birth" />
+      <TextField fx:id="loginField" layoutX="224.0" layoutY="256.0" promptText="Username" />
+      <PasswordField fx:id="passwordField" layoutX="226.0" layoutY="310.0" promptText="Password" />
       <Button layoutX="250.0" layoutY="362.0" mnemonicParsing="false" onAction="#createAccount" text="Create account" />
       <Label layoutX="177.0" layoutY="96.0" text="Name:" />
       <Label layoutX="162.0" layoutY="143.0" text="Surname:" />

@@ -8,10 +8,10 @@ import java.beans.PropertyChangeListener;
 import java.io.Serializable;
 import java.rmi.RemoteException;
 
-public class ClientImpl implements Client, Serializable {
+public class ClientImpl implements Client {
 
-    CarList cars;
-    IRMIClient client;
+    private CarList cars;
+    private IRMIClient client;
 
     public ClientImpl(IRMIClient client){
         cars = new CarList();
@@ -98,8 +98,8 @@ public class ClientImpl implements Client, Serializable {
         client.addListener(eventName, listener);
     }
 
-    public void addServerListener(IServerListener listener)
+    /*public void addServerListener(IServerListener listener)
     {
         client.addServerListener(listener);
-    }
+    }*/
 }

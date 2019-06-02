@@ -17,12 +17,12 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class ServerModel implements IServerModel, Remote, Serializable {
+public class ServerModel implements IServerModel, Serializable {
 
-    Database database;
+   private Database database;
     //List<IRMIClient> IRMIClients;
-    IRMIClient client;
-    PropertyChangeSupport changeSupport;
+    private IRMIClient client;
+    private PropertyChangeSupport changeSupport;
 
     public ServerModel() {
 
@@ -90,6 +90,7 @@ public class ServerModel implements IServerModel, Remote, Serializable {
         }*/
         Reservation reservation = new Reservation(reservationId, carRegNo, username, dateFrom, dateTo, navigation, childseat, firstName, lastName, age, price, insurance, status);
         changeSupport.firePropertyChange("ReservationAdded", null, reservation);
+        System.out.println("Propery fired");
     }
 
     @Override
@@ -130,8 +131,10 @@ public class ServerModel implements IServerModel, Remote, Serializable {
     }
 
     @Override
-    public void addListener(String eventName, PropertyChangeListener listener) {
-        changeSupport.addPropertyChangeListener(eventName, listener);
+    public void addListener(String eventName, PropertyChangeListener listener){
+        System.out.println("listener added");
+            changeSupport.addPropertyChangeListener(eventName,listener);
+
     }
 
 }

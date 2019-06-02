@@ -4,10 +4,12 @@ import DataModel.*;
 import Model.CustomerModel;
 
 import java.beans.PropertyChangeListener;
+import java.io.Serializable;
+import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.Date;
 
-public interface IRMIClient extends IServerSubject {
+public interface IRMIClient extends Remote {
 
     boolean logIn(String username, String password) throws RemoteException;
 

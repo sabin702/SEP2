@@ -20,7 +20,7 @@
       <DatePicker fx:id="dateOfBirthField" layoutX="223.0" layoutY="204.0" promptText="Date of birth" />
       <TextField fx:id="loginField" layoutX="224.0" layoutY="256.0" promptText="Username" />
       <PasswordField fx:id="passwordField" layoutX="226.0" layoutY="310.0" promptText="Password" />
-      <Button layoutX="250.0" layoutY="362.0" mnemonicParsing="false" onAction="#createAccount" text="Create account" />
+      <Button layoutX="250.0" layoutY="361.0" mnemonicParsing="false" onAction="#createAccount" text="Create account" />
       <Label layoutX="177.0" layoutY="96.0" text="Name:" />
       <Label layoutX="162.0" layoutY="143.0" text="Surname:" />
       <Label layoutX="142.0" layoutY="208.0" text="Date of birth:" />

@@ -37,18 +37,10 @@ public class CreateAccountView {
 
     @FXML
     void createAccount(ActionEvent event) throws IOException {
-        /*
-        LocalDate localDate = dateOfBirthField.getValue();
-        SimpleDateFormat format = new SimpleDateFormat("YYYY-mm-dd");
-        Date birthDate = new Date();
-        try {
-            birthDate = format.parse(localDate.toString());
-            System.out.println(birthDate.toString());
-        } catch (ParseException e) {
-            e.printStackTrace();
+        if(dateOfBirthField.getValue().equals(null) || nameField.getText().equals("")|| surnameField.getText().equals("")||
+        loginField.getText().equals("") || passwordField.getText().equals("")){
+            viewModel.openEmptTextFields();
         }
-
-         */
         LocalDate localDate = dateOfBirthField.getValue();
         Date birthdate = Date.from(localDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
         System.out.println(birthdate);

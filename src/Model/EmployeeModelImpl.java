@@ -5,6 +5,7 @@ import DataModel.*;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
+import java.io.Serializable;
 import java.rmi.RemoteException;
 
 public class EmployeeModelImpl implements EmployeeModel{

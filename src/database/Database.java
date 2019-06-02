@@ -377,7 +377,7 @@ public class Database {
         try {
             Class.forName("org.postgresql.Driver");
             c = DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres",
-                    "postgres", "password");
+                    "postgres", "1357");
             System.out.println("Database open ok");
 
             stmt = c.createStatement();

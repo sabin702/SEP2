@@ -1,28 +1,24 @@
 package Client;
 
 import DataModel.*;
-import Client.AServerSubject;
 import server.IServerModel;
 
 import java.beans.PropertyChangeListener;
-import java.beans.PropertyChangeSupport;
 import java.io.Serializable;
 import java.rmi.NotBoundException;
-import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
-import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RMIClient extends AServerSubject implements IRMIClient, Serializable{
+public class RMIClient  implements IRMIClient, Serializable{
 
-    IServerModel serverModel;
-    CarList cars;
-    List<Reservation> reservations;
+   private IServerModel serverModel;
+   private  CarList cars;
+   private  List<Reservation> reservations;
     //private PropertyChangeSupport changeSupport;
-    private List<PropertyChangeListener> listeners;
+    private  List<PropertyChangeListener> listeners;
 
 
     public RMIClient() throws RemoteException, NotBoundException {
@@ -123,9 +119,13 @@ public class RMIClient extends AServerSubject implements IRMIClient, Serializabl
     }
 
     @Override
-    public void addListener(String eventName, PropertyChangeListener listener) throws RemoteException {
-        //changeSupport.addPropertyChangeListener(eventName, listener);
-        serverModel.addListener(eventName, listener);
+    public void addListener(String eventName, PropertyChangeListener listener)  {
+        try {
+            serverModel.addListener(eventName, listener);
+        } catch (RemoteException e) {
+            e.printStackTrace();
+            System.out.println(e.getMessage());
+        }
     }
 
     @Override

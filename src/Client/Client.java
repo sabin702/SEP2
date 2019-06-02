@@ -3,6 +3,7 @@ package Client;
 import DataModel.*;
 
 import java.beans.PropertyChangeListener;
+import java.io.Serializable;
 import java.rmi.RemoteException;
 
 public interface Client {
@@ -39,6 +40,6 @@ public interface Client {
 
     void addListener(String eventName, PropertyChangeListener listener) throws RemoteException;
 
-    void addServerListener(IServerListener listener) throws RemoteException;
+    /*void addServerListener(IServerListener listener) throws RemoteException;*/
 
 }

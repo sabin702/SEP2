@@ -6,17 +6,16 @@ import DataModel.CarList;
 import DataModel.Customer;
 import DataModel.Reservation;
 import DataModel.ReservationList;
-import Client.IServerListener;
 
 import java.beans.PropertyChangeListener;
-import java.io.Serializable;
 import java.rmi.RemoteException;
 import java.util.Date;
 
-public class CustomerModelImpl implements CustomerModel, Serializable {
+public class CustomerModelImpl implements CustomerModel {
 
     private Client client;
     private ClientProvider provider;
+
 
     public CustomerModelImpl()  {
 
@@ -87,16 +86,18 @@ public class CustomerModelImpl implements CustomerModel, Serializable {
 
     @Override
     public void addListener(String eventName, PropertyChangeListener listener) throws RemoteException {
-        client.addListener(eventName, listener);
-        System.out.println("addListener method");
+
+            client.addListener(eventName,listener);
+
     }
 
-    public void addListener(IServerListener listener) {
+
+    /*public void addListener(IServerListener listener) {
         try {
             client.addServerListener(listener);
             System.out.println("Dodany listener");
         } catch (RemoteException e) {
             e.printStackTrace();
         }
-    }
+    }*/
 }

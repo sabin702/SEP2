@@ -25,4 +25,8 @@ public class CreateAccountViewModel {
     public void createAccount(String username, String password, String firstName, String lastName, Date dateOfBirth) throws RemoteException {
         model.createAccount(username, password, firstName, lastName, dateOfBirth);
     }
+
+    public void openEmptTextFields() {
+        viewHandler.openEmptyTextFields();
+    }
 }

@@ -4,6 +4,7 @@ import Client.IRMIClient;
 import DataModel.*;
 
 import java.beans.PropertyChangeListener;
+import java.io.Serializable;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.Date;

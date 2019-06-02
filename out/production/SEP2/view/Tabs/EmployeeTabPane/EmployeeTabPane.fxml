@@ -15,7 +15,7 @@
          <fx:include fx:id="carsView" source="CarsTab/Cars.fxml" />
       </content>
    </Tab>
-      <Tab fx:id="addCarTab" text="Cars">
+      <Tab fx:id="addCarTab" text="Add Car">
          <content>
             <fx:include fx:id="addCarView" source="AddCarTab/AddCar.fxml" />
          </content>

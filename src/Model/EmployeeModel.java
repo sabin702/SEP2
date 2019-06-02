@@ -4,9 +4,10 @@ import Client.Client;
 import DataModel.*;
 
 import java.beans.PropertyChangeListener;
+import java.io.Serializable;
 import java.rmi.RemoteException;
 
-public interface EmployeeModel {
+public interface EmployeeModel{
 
     void setClient(Client client);
 
