@@ -6,13 +6,13 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="450.0" prefWidth="669.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.Tabs.EmployeeTabPane.CarsTab.CarsView">
+<AnchorPane prefHeight="510.0" prefWidth="745.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.Tabs.EmployeeTabPane.CarsTab.CarsView">
    <children>
-      <Button layoutX="27.0" layoutY="97.0" mnemonicParsing="false" onAction="#deleteCar" prefHeight="57.0" prefWidth="90.0" text="Delete" />
-      <Button fx:id="editButton" layoutX="27.0" layoutY="249.0" mnemonicParsing="false" onAction="#editCar" prefHeight="57.0" prefWidth="90.0" text="Edit" />
-      <ScrollPane layoutX="148.0" prefHeight="453.0" prefWidth="574.0">
+      <Button layoutX="23.0" layoutY="107.0" mnemonicParsing="false" onAction="#deleteCar" prefHeight="57.0" prefWidth="90.0" text="Delete" />
+      <Button fx:id="editButton" layoutX="23.0" layoutY="358.0" mnemonicParsing="false" onAction="#editCar" prefHeight="57.0" prefWidth="90.0" text="Edit" />
+      <ScrollPane layoutX="126.0" prefHeight="510.0" prefWidth="619.0">
          <content>
-            <TableView fx:id="tableView" prefHeight="449.0" prefWidth="573.0">
+            <TableView fx:id="tableView" prefHeight="511.0" prefWidth="620.0">
                <columns>
                   <TableColumn fx:id="registrationColumn" prefWidth="99.0" text="Registration" />
                   <TableColumn fx:id="makeColumn" prefWidth="109.0" text="Make" />

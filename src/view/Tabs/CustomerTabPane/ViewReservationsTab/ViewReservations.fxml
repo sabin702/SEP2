@@ -1,29 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.Tabs.CustomerTabPane.ViewReservationsTab.ViewReservationsView">
+<AnchorPane prefHeight="413.0" prefWidth="681.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.Tabs.CustomerTabPane.ViewReservationsTab.ViewReservationsView">
    <children>
-      <ScrollPane layoutX="152.0" prefHeight="400.0" prefWidth="494.0">
-         <content>
-            <TableView fx:id="tableView" prefHeight="408.0" prefWidth="544.0">
-              <columns>
-                <TableColumn fx:id="dateFromColumn" prefWidth="75.0" text="From" />
-                <TableColumn fx:id="dateToColumn" prefWidth="75.0" text="To" />
-                  <TableColumn fx:id="carColumn" prefWidth="75.0" text="Car" />
-                  <TableColumn fx:id="childSeatColumn" prefWidth="75.0" text="Child Seat" />
-                  <TableColumn fx:id="naviColumn" prefWidth="75.0" text="Navi" />
-                  <TableColumn fx:id="insuranceColumn" prefWidth="75.0" text="Insurance" />
-                  <TableColumn fx:id="statusColumn" prefWidth="75.0" text="Status" />
-                  <TableColumn fx:id="priceColumn" prefWidth="75.0" text="Price" />
-              </columns>
-            </TableView>
-         </content>
-      </ScrollPane>
       <Button layoutX="23.0" layoutY="70.0" mnemonicParsing="false" onAction="#deleteReservation" prefHeight="54.0" prefWidth="103.0" text="Delete" />
+      <TableView fx:id="tableView" layoutX="137.0" layoutY="3.0" prefHeight="408.0" prefWidth="544.0">
+         <columns>
+            <TableColumn fx:id="dateFromColumn" prefWidth="75.0" text="From" />
+            <TableColumn fx:id="dateToColumn" prefWidth="75.0" text="To" />
+            <TableColumn fx:id="carColumn" prefWidth="75.0" text="Car" />
+            <TableColumn fx:id="childSeatColumn" prefWidth="75.0" text="Child Seat" />
+            <TableColumn fx:id="naviColumn" prefWidth="75.0" text="Navi" />
+            <TableColumn fx:id="insuranceColumn" prefWidth="75.0" text="Insurance" />
+            <TableColumn fx:id="statusColumn" prefWidth="75.0" text="Status" />
+            <TableColumn fx:id="priceColumn" prefWidth="75.0" text="Price" />
+         </columns>
+      </TableView>
    </children>
 </AnchorPane>

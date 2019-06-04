@@ -2,6 +2,8 @@ package Client;
 
 import DataModel.*;
 import Model.CustomerModel;
+import server.IServerModel;
+import server.ServerModel;
 
 import java.beans.PropertyChangeListener;
 import java.io.Serializable;
@@ -39,8 +41,14 @@ public interface IRMIClient extends Remote {
 
     CustomerList getCustomers() throws RemoteException;
 
-    void addListener(String eventName, PropertyChangeListener listener) throws RemoteException;
-
     void addNewReservation(Reservation reservation) throws RemoteException;
+
+    ReservationList updateReservations() throws RemoteException;
+    void addListener(String event, PropertyChangeListener listener)throws RemoteException;
+    void fireUpdateReservations() throws RemoteException;
+    void fireUpdateUsers() throws RemoteException;
+    void fireUpdateCars() throws RemoteException;
+
+
 
 }

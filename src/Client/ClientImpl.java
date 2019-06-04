@@ -1,11 +1,8 @@
 package Client;
 
 import DataModel.*;
-import Model.CustomerModel;
-import Model.EmployeeModel;
 
 import java.beans.PropertyChangeListener;
-import java.io.Serializable;
 import java.rmi.RemoteException;
 
 public class ClientImpl implements Client {
@@ -98,8 +95,37 @@ public class ClientImpl implements Client {
         client.addListener(eventName, listener);
     }
 
+    /*@Override
+    public void addListener(String eventName, PropertyChangeListener listener) throws RemoteException {
+        client.addListener(eventName, listener);
+    }*/
+
+    @Override
+    public ReservationList updateReservations() throws RemoteException {
+        return client.updateReservations();
+    }
+
+    @Override
+    public void fireUpdateReservations() throws RemoteException {
+        client.fireUpdateReservations();
+    }
+
+    @Override
+    public void fireUpdateUsers() throws RemoteException {
+        client.fireUpdateUsers();
+    }
+
+    @Override
+    public void fireUpdateCars() throws RemoteException {
+        client.fireUpdateCars();
+    }
+
+
+
+
     /*public void addServerListener(IServerListener listener)
     {
         client.addServerListener(listener);
     }*/
+
 }

@@ -11,7 +11,7 @@ import java.util.Date;
 
 public interface IServerModel extends Remote {
 
-    boolean logIn(String userName, String password) throws RemoteException;
+    boolean logIn(String userName, String password, IRMIClient client) throws RemoteException;
 
     //void addClient(IRMIClient IRMIClient) throws RemoteException;
 
@@ -41,5 +41,15 @@ public interface IServerModel extends Remote {
 
     CustomerList getCustomers() throws RemoteException;
 
-    void addListener(String eventName, PropertyChangeListener listener) throws RemoteException;
+    /*void updateClient(IRMIClient client);*/
+    ReservationList getUpdatedReservationList() throws RemoteException;
+
+    void callClientUpdateReservation()throws RemoteException;
+    void addClient(IRMIClient c) throws RemoteException;
+    void callClientUpdateUsers() throws RemoteException;
+    void callClientUpdateCars() throws RemoteException;
+
+
+
+
 }

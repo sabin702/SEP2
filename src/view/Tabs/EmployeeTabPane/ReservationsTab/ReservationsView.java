@@ -46,7 +46,7 @@ public class ReservationsView {
     private TableColumn<String, Reservation> priceColumn;
 
     @FXML
-    void approveReservation(ActionEvent event) {
+    void approveReservation(ActionEvent event) throws RemoteException {
 
     }
 

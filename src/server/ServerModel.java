@@ -4,27 +4,22 @@ import Client.IRMIClient;
 import DataModel.*;
 import database.Database;
 
-import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
-import java.io.Serializable;
-import java.rmi.AlreadyBoundException;
-import java.rmi.Remote;
 import java.rmi.RemoteException;
-import java.rmi.registry.LocateRegistry;
-import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class ServerModel implements IServerModel, Serializable {
+public class ServerModel implements IServerModel {
 
-   private Database database;
-    //List<IRMIClient> IRMIClients;
-    private IRMIClient client;
+    private Database database;
+    IRMIClient client;
+    List<IRMIClient> clients;
     private PropertyChangeSupport changeSupport;
+    private ReservationList reservationList;
 
-    public ServerModel() {
+    public ServerModel() throws RemoteException {
 
         try {
             UnicastRemoteObject.exportObject(this, 0);
@@ -33,46 +28,43 @@ public class ServerModel implements IServerModel, Serializable {
         }
         database = new Database();
         changeSupport = new PropertyChangeSupport(this);
-        //IRMIClients = new ArrayList<IRMIClient>();
+        clients = new ArrayList<IRMIClient>();
+        reservationList = getReservations();
+
+
     }
 
     @Override
-    public boolean logIn(String username, String password) throws RemoteException{
-        if(database.getCustomer(username) == null) {
+    public boolean logIn(String username, String password, IRMIClient client) throws RemoteException {
+        if (database.getCustomer(username) == null) {
             System.out.println("No user found");
             return false;
-        }
-        else if(database.getCustomer(username).getPassword().equals(password)) {
-            //IRMIClients.add(IRMIClient);
-            //System.out.println(IRMIClients.size());
+        } else if (database.getCustomer(username).getPassword().equals(password)) {
             return true;
-        }
-        else
+        } else
             return false;
     }
 
-   /* @Override
-    public void addClient(IRMIClient IRMIClient) throws RemoteException {
-        IRMIClients.add(IRMIClient);
-    }*/
 
     @Override
     public void addCar(Car car) throws RemoteException {
         database.addCar(car);
+        callClientUpdateCars();
     }
 
     @Override
-    public void deleteCar(String carRegistrationNumber) throws RemoteException{
+    public void deleteCar(String carRegistrationNumber) throws RemoteException {
         database.deleteCar(carRegistrationNumber);
+        callClientUpdateCars();
     }
 
     @Override
-    public void editCar(String registrationNumber, int mileage, int price, int availability) throws RemoteException{
+    public void editCar(String registrationNumber, int mileage, int price, int availability) throws RemoteException {
         database.editCar(registrationNumber, mileage, price, availability);
     }
 
     @Override
-    public Car getCar(String registrationNumber) throws RemoteException{
+    public Car getCar(String registrationNumber) throws RemoteException {
         return database.getCar(registrationNumber);
     }
 
@@ -84,23 +76,24 @@ public class ServerModel implements IServerModel, Serializable {
     @Override
     public void addReservation(String reservationId, String carRegNo, String username, Date dateFrom, Date dateTo, int navigation, int childseat, String firstName, String lastName, int age, int price, int insurance, int status) throws RemoteException {
         database.addReservation(reservationId, carRegNo, username, dateFrom, dateTo, navigation, childseat, firstName, lastName, age, price, insurance, status);
-        /*for(IRMIClient client : IRMIClients)
-        {
-            //client.addReservation(database.getReservations().getReservation(database.getReservations().size()-1));
-        }*/
         Reservation reservation = new Reservation(reservationId, carRegNo, username, dateFrom, dateTo, navigation, childseat, firstName, lastName, age, price, insurance, status);
-        changeSupport.firePropertyChange("ReservationAdded", null, reservation);
-        System.out.println("Propery fired");
+        reservationList.addReservation(reservation);
+        callClientUpdateReservation();
+
     }
 
     @Override
     public void deleteReservation(String reservationId) throws RemoteException {
         reservationId = reservationId.toUpperCase();
+        Reservation reservation = getReservation(reservationId);
         database.deleteReservation(reservationId);
+        /*reservationList.removeReservation();*/
+        callClientUpdateReservation();
+
     }
 
     @Override
-    public Reservation getReservation(String reservationId) throws RemoteException{
+    public Reservation getReservation(String reservationId) throws RemoteException {
         reservationId = reservationId.toUpperCase();
         return database.getReservation(reservationId);
     }
@@ -111,12 +104,13 @@ public class ServerModel implements IServerModel, Serializable {
     }
 
     @Override
-    public void addCustomer(String username, String password, String firstName, String lastName, Date dateOfBirth) throws RemoteException{
+    public void addCustomer(String username, String password, String firstName, String lastName, Date dateOfBirth) throws RemoteException {
         database.addCustomer(username, password, firstName, lastName, dateOfBirth);
+        callClientUpdateUsers();
     }
 
     @Override
-    public void deleteCustomer(String username) throws RemoteException{
+    public void deleteCustomer(String username) throws RemoteException {
         database.deleteCustomer(username);
     }
 
@@ -126,15 +120,44 @@ public class ServerModel implements IServerModel, Serializable {
     }
 
     @Override
-    public CustomerList getCustomers() throws RemoteException{
+    public CustomerList getCustomers() throws RemoteException {
         return database.getCustomers();
     }
 
     @Override
-    public void addListener(String eventName, PropertyChangeListener listener){
-        System.out.println("listener added");
-            changeSupport.addPropertyChangeListener(eventName,listener);
-
+    public ReservationList getUpdatedReservationList() {
+        return reservationList;
     }
+
+
+
+
+    @Override
+    public void callClientUpdateReservation() throws RemoteException {
+        System.out.println("call client method");
+        for (int i = 0; i < clients.size(); i++) {
+            clients.get(i).fireUpdateReservations();
+        }
+    }
+
+    @Override
+    public void addClient(IRMIClient c) throws RemoteException {
+        clients.add(c);
+    }
+
+    @Override
+    public void callClientUpdateUsers() throws RemoteException {
+        for (int i = 0; i < clients.size(); i++) {
+            clients.get(i).fireUpdateUsers();
+        }
+    }
+
+    @Override
+    public void callClientUpdateCars() throws RemoteException {
+        for (int i = 0; i < clients.size(); i++) {
+            clients.get(i).fireUpdateCars();
+        }
+    }
+
 
 }

@@ -11,7 +11,7 @@ public interface EmployeeModel{
 
     void setClient(Client client);
 
-    void approveReservatiokn(String reservationID);
+    void approveReservation(String reservationID);
 
     void deleteReservation(String reservationID) throws RemoteException;
 
@@ -29,8 +29,13 @@ public interface EmployeeModel{
 
     ReservationList getReservations() throws RemoteException;
 
-    CustomerList viewUsers() throws RemoteException;
-
     void addListener(String eventName, PropertyChangeListener listener) throws RemoteException;
 
+    ReservationList updateReservations()throws RemoteException;
+    void fireUpdateReservations() throws RemoteException;
+    void fireUpdateUsers() throws RemoteException;
+    void fireUpdateCars() throws RemoteException;
+
+
+    CustomerList getCustomers() throws RemoteException;
 }

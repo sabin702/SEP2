@@ -8,10 +8,11 @@ import DataModel.Reservation;
 import DataModel.ReservationList;
 
 import java.beans.PropertyChangeListener;
+import java.io.Serializable;
 import java.rmi.RemoteException;
 import java.util.Date;
 
-public class CustomerModelImpl implements CustomerModel {
+public class CustomerModelImpl implements CustomerModel, Serializable {
 
     private Client client;
     private ClientProvider provider;
@@ -86,10 +87,21 @@ public class CustomerModelImpl implements CustomerModel {
 
     @Override
     public void addListener(String eventName, PropertyChangeListener listener) throws RemoteException {
+        client.addListener(eventName, listener);
+    }
+
+    @Override
+    public void fireUpdateReservations() throws RemoteException {
+        client.fireUpdateReservations();
+
+    }
+
+    /*@Override
+    public void addListener(String eventName, PropertyChangeListener listener) throws RemoteException {
 
             client.addListener(eventName,listener);
 
-    }
+    }*/
 
 
     /*public void addListener(IServerListener listener) {

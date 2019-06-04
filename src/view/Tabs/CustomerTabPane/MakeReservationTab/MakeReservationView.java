@@ -42,6 +42,7 @@ public class MakeReservationView {
     private TextField totalPrice;
 
     private MakeReservationViewModel makeReservationViewModel;
+    private ObservableList<Car> cars;
 
     @FXML
     void confirmReservation(ActionEvent event) {
@@ -110,8 +111,11 @@ public class MakeReservationView {
     }
 
     public void setCarList(){
-        car.getItems().removeAll(car.getItems());
-        CarList cars = new CarList();
+
+        car.setItems(viewModel.getCarsList());
+        /*car.getItems().removeAll(car.getItems());
+        *//*cars = new ObservableList<Car>() {
+        };
         try {
             cars = viewModel.getCars();
         } catch (RemoteException e) {
@@ -123,19 +127,19 @@ public class MakeReservationView {
             car.getItems().add(cars.getCar(i));
         }
 
-        car.getSelectionModel().select(1);
+        car.getSelectionModel().select(1);*/
     }
 
     public void setInsuranceList(){
         insuranceType.getItems().removeAll();
-        insuranceType.getItems().addAll("type1", "type2", "type3");
-        insuranceType.getSelectionModel().select("type2");
+        insuranceType.getItems().addAll("Basic", "Medium", "Full Coverage");
+        insuranceType.getSelectionModel().select(" ");
     }
 
     public Car getCar(){
-        CarList cars = new CarList();
+       /* cars = new ObservableList<Car>();
         try {
-            cars = viewModel.getCars();
+            cars = viewModel.getCarsList();
         } catch (RemoteException e) {
             e.printStackTrace();
         }
@@ -145,7 +149,7 @@ public class MakeReservationView {
                 return cars.getCar(i);
             else
                 System.out.println("Is null");
-        }
+        }*/
 
         return null;
 

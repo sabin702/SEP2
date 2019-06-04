@@ -2,6 +2,7 @@ package viewmodel.ViewReservationsTab;
 
 
 import DataModel.Reservation;
+import DataModel.ReservationList;
 import Model.CustomerModel;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -22,11 +23,23 @@ public class ViewReservationsViewModel implements Serializable {
 
         getReservations();
 
-        model.addListener("ReservationAdded", this::reservationAdded);
-        System.out.println("ViewReservationsView");
-        //model.addListener("ReservationDeleted", this::reservationRemoved);
+        model.addListener("ReservationsUpdated", this::updateReservationList);
 
 
+
+    }
+
+    private void updateReservationList(PropertyChangeEvent propertyChangeEvent) {
+        reservations.clear();
+        System.out.println(reservations.size());
+        System.out.println("updated");
+
+        ReservationList reservationList = (ReservationList) propertyChangeEvent.getNewValue();
+
+        for (int i = 0; i <reservationList.size(); i++) {
+            Reservation temp = reservationList.getReservation(i);
+            reservations.add(temp);
+        }
     }
 
     private void getReservations() {

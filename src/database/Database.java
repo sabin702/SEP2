@@ -2,12 +2,13 @@ package database;
 
 import DataModel.*;
 
+import java.io.Serializable;
 import java.sql.*;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
-public class Database {
+public class Database implements Serializable {
 
     Connection c;
     Statement stmt;

@@ -18,7 +18,6 @@ import java.io.Serializable;
 public class ViewHandler implements Serializable {
     private Stage stage;
     private ViewModelProvider viewModelProvider;
-    private Stage popUpStage;
 
     public ViewHandler(Stage stage, ViewModelProvider vmp) {
         this.stage = stage;
@@ -116,7 +115,7 @@ public class ViewHandler implements Serializable {
         viewModelProvider.instantiateCreateAccountViewModel(this);
         FXMLLoader loader = new FXMLLoader();
 
-        loader.setLocation(getClass().getResource("/view/Popups/EmptyTextFields.fxml"));
+        loader.setLocation(getClass().getResource("/view/CreateAccountAndLogIn/CreateAccount.fxml"));
         Parent root = null;
         try {
             root = loader.load();
@@ -129,10 +128,10 @@ public class ViewHandler implements Serializable {
 
         Scene scene = new Scene(root);
 
-        popUpStage.setTitle("Error");
+        stage.setTitle("Create account");
 
-        popUpStage.setScene(scene);
-        popUpStage.show();
+        stage.setScene(scene);
+        stage.show();
 
     }
 
@@ -163,27 +162,5 @@ public class ViewHandler implements Serializable {
     }
 
     public void openEmptyTextFields() {
-        FXMLLoader loader = new FXMLLoader();
-
-        loader.setLocation(getClass().getResource("/view/CreateAccountAndLogIn/LogIn.fxml"));
-
-        Parent root = null;
-        try {
-            root = loader.load();
-        } catch (IOException e) {
-
-            e.printStackTrace();
-        }
-        LogInView view = loader.getController();
-        view.init(viewModelProvider.getLogInViewModel());
-
-
-        Scene scene = new Scene(root);
-
-
-        stage.setTitle("Log In");
-
-        stage.setScene(scene);
-        stage.show();
     }
 }

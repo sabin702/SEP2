@@ -4,35 +4,39 @@ import DataModel.*;
 import server.IServerModel;
 
 import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
 import java.io.Serializable;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
+import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RMIClient  implements IRMIClient, Serializable{
+public class RMIClient  implements IRMIClient{
 
    private IServerModel serverModel;
    private  CarList cars;
    private  List<Reservation> reservations;
-    //private PropertyChangeSupport changeSupport;
+   private PropertyChangeSupport changeSupport;
     private  List<PropertyChangeListener> listeners;
 
 
     public RMIClient() throws RemoteException, NotBoundException {
+        UnicastRemoteObject.exportObject(this, 0);
         Registry registry = LocateRegistry.getRegistry("localhost", 1099);
         serverModel = (IServerModel) registry.lookup("server");
         cars = new CarList();
         reservations = new ArrayList<>();
-        //changeSupport = new PropertyChangeSupport(this);
+        changeSupport = new PropertyChangeSupport(this);
+        serverModel.addClient(this);
     }
 
     @Override
     public boolean logIn(String username, String password) throws RemoteException{
         try {
-            return serverModel.logIn(username, password);
+            return serverModel.logIn(username, password, this);
         } catch (RemoteException e) {
             e.printStackTrace();
         }
@@ -70,7 +74,7 @@ public class RMIClient  implements IRMIClient, Serializable{
             serverModel.addReservation(reservation.getReservationId(), reservation.getCarRegNo(), reservation.getUsername(), reservation.getDateFromObject(), reservation.getDateToObject(), reservation.getNavigation(), reservation.getChildseat(), reservation.getFirstName(), reservation.getLastName(), reservation.getAge(), reservation.getPrice(), reservation.getInsurance(), reservation.getStatus());
             //reservations.add(reservation);
             System.out.println("Successfully added reservation");
-            //changeSupport.firePropertyChange("ReservationAdded", null, reservation);
+
 
         } catch (RemoteException e) {
             System.out.println("Add reservation issue");
@@ -90,7 +94,9 @@ public class RMIClient  implements IRMIClient, Serializable{
 
     @Override
     public ReservationList getReservations() throws RemoteException {
+
         return serverModel.getReservations();
+
     }
 
     @Override
@@ -118,19 +124,49 @@ public class RMIClient  implements IRMIClient, Serializable{
         return serverModel.getCustomers();
     }
 
-    @Override
-    public void addListener(String eventName, PropertyChangeListener listener)  {
+  /*  @Override
+    public void addListener(String eventName, PropertyChangeListener client)  {
         try {
-            serverModel.addListener(eventName, listener);
+            serverModel.addListener(eventName, this);
         } catch (RemoteException e) {
             e.printStackTrace();
             System.out.println(e.getMessage());
         }
-    }
+    }*/
 
     @Override
     public void addNewReservation(Reservation reservation) throws RemoteException {
         //changeSupport.firePropertyChange("ReservationAdded", null, reservation);
     }
+
+    @Override
+    public ReservationList updateReservations() throws RemoteException {
+        return serverModel.getUpdatedReservationList();
+    }
+
+    @Override
+    public void addListener(String event, PropertyChangeListener listener) throws RemoteException {
+        changeSupport.addPropertyChangeListener(event,listener);
+    }
+
+    @Override
+    public void fireUpdateReservations() throws RemoteException {
+        System.out.println("add property fired");
+        ReservationList reservations = getReservations();
+        changeSupport.firePropertyChange("ReservationsUpdated",null, reservations);
+    }
+
+    @Override
+    public void fireUpdateUsers() throws RemoteException {
+        CustomerList customers = getCustomers();
+        changeSupport.firePropertyChange("CustomersUpdated",null,customers);
+    }
+
+    @Override
+    public void fireUpdateCars() throws RemoteException {
+        CarList cars = getCars();
+        changeSupport.firePropertyChange("CarsUpdated",null,cars);
+    }
+
 
 }

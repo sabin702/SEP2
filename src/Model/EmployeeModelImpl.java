@@ -4,11 +4,10 @@ import Client.Client;
 import DataModel.*;
 
 import java.beans.PropertyChangeListener;
-import java.beans.PropertyChangeSupport;
 import java.io.Serializable;
 import java.rmi.RemoteException;
 
-public class EmployeeModelImpl implements EmployeeModel{
+public class EmployeeModelImpl implements EmployeeModel, Serializable{
 
     private Client client;
     private CarList cars;
@@ -24,7 +23,7 @@ public class EmployeeModelImpl implements EmployeeModel{
     }
 
     @Override
-    public void approveReservatiokn(String reservationID) {
+    public void approveReservation(String reservationID) {
 
     }
 
@@ -39,15 +38,15 @@ public class EmployeeModelImpl implements EmployeeModel{
     public void addCar(String registrationNumber,String make,int mileage,String color,int productionYear,String category,int price, int availability) throws RemoteException {
         Car car = new Car(registrationNumber,make,mileage,color,productionYear,category,price,availability);
         client.addCar(car);
-        cars.addCar(car);
-        //changeSupport.firePropertyChange("CarAdded", null, car);
+
+
     }
 
     @Override
     public void deleteCar(String carRegNo) throws RemoteException {
         Car car = client.getCar(carRegNo);
         client.deleteCar(carRegNo);
-        //changeSupport.firePropertyChange("CarDeleted", null, car);
+
     }
 
     @Override
@@ -79,14 +78,36 @@ public class EmployeeModelImpl implements EmployeeModel{
     }
 
     @Override
-    public CustomerList viewUsers() throws RemoteException {
+    public CustomerList getCustomers() throws RemoteException {
         return client.getCustomers();
     }
 
     @Override
+    public ReservationList updateReservations() throws RemoteException {
+        return client.updateReservations();
+    }
+
+    @Override
+    public void fireUpdateReservations() throws RemoteException {
+        /*client.fireUpdateReservations();*/
+    }
+
+    @Override
+    public void fireUpdateUsers() throws RemoteException {
+        client.fireUpdateUsers();
+    }
+
+    @Override
+    public void fireUpdateCars() throws RemoteException {
+        client.fireUpdateCars();
+    }
+
+
+    @Override
     public void addListener(String eventName, PropertyChangeListener listener) throws RemoteException {
-        //changeSupport.addPropertyChangeListener(eventName, listener);
+
         client.addListener(eventName, listener);
-        System.out.println("addListener method");
+
+
     }
 }

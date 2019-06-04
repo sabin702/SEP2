@@ -80,7 +80,7 @@ public class ViewModelProvider implements Serializable {
     }
 
 
-    public void instantiateMakeReservationViewModel(ViewHandler viewHandler) {
+    public void instantiateMakeReservationViewModel(ViewHandler viewHandler) throws RemoteException {
         if (makeReservationViewModel == null) {
             makeReservationViewModel = new MakeReservationViewModel(viewHandler, cm);
         }
@@ -93,7 +93,7 @@ public class ViewModelProvider implements Serializable {
         }
     }
 
-    public void instantiateUsersViewModel() {
+    public void instantiateUsersViewModel() throws RemoteException {
         if (usersViewModel == null) {
             usersViewModel = new UsersViewModel(em);
         }

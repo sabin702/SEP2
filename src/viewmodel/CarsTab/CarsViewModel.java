@@ -1,6 +1,7 @@
 package viewmodel.CarsTab;
 
 import DataModel.Car;
+import DataModel.CarList;
 import Model.EmployeeModel;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -21,9 +22,20 @@ public class CarsViewModel {
 
         getCars();
 
-        model.addListener("CarAdded", this::carAdded);
-        model.addListener("CarDeleted", this::carDeleted);
-        model.addListener("CarEdited", this::carEdited);
+        model.addListener("CarsUpdated", this::updateCarsList);
+    }
+
+    private void updateCarsList(PropertyChangeEvent propertyChangeEvent) {
+        cars.clear();
+
+        System.out.println("updated");
+
+        CarList reservationList = (CarList) propertyChangeEvent.getNewValue();
+
+        for (int i = 0; i <reservationList.size(); i++) {
+            Car temp = reservationList.getCar(i);
+            cars.add(temp);
+        }
     }
 
     private void getCars() {

@@ -31,8 +31,11 @@ public interface CustomerModel {
     ReservationList viewReservations() throws RemoteException;
 
     CarList getCars() throws RemoteException;
-
     void addListener(String eventName, PropertyChangeListener listener) throws RemoteException;
+
+    void fireUpdateReservations() throws RemoteException;
+
+    /*void addListener(String eventName, PropertyChangeListener listener) throws RemoteException;*/
 
     /*void addListener(IServerListener listener) throws RemoteException;*/
 

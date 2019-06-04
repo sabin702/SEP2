@@ -1,28 +1,36 @@
 package view.Tabs.EmployeeTabPane.UsersTab;
 
+import DataModel.Customer;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import viewmodel.UsersTab.UsersViewModel;
 
 public class UsersView {
     private UsersViewModel viewModel;
     @FXML
-    private TableView<?> tableView;
+    private TableView<Customer> tableView;
     @FXML
-    private TableColumn<?, ?> nameColumn;
+    private TableColumn<String, Customer> nameColumn;
 
     @FXML
-    private TableColumn<?, ?> surnameColumn;
+    private TableColumn<String, Customer> surnameColumn;
 
     @FXML
-    private TableColumn<?, ?> birthColumn;
+    private TableColumn<String, Customer> birthColumn;
 
     @FXML
-    private TableColumn<?, ?> usernameColumn;
+    private TableColumn<String, Customer> usernameColumn;
 
     public void init(UsersViewModel usersViewModel){
         this.viewModel = usersViewModel;
+        tableView.setItems(viewModel.getCustomerList());
+
+        nameColumn.setCellValueFactory(new PropertyValueFactory<>("firstName"));
+        surnameColumn.setCellValueFactory(new PropertyValueFactory<>("lastName"));
+        birthColumn.setCellValueFactory(new PropertyValueFactory<>("dateOfBirth"));
+        usernameColumn.setCellValueFactory(new PropertyValueFactory<>("username"));
 
     }
 
