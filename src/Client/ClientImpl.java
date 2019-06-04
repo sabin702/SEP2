@@ -96,23 +96,8 @@ public class ClientImpl implements Client {
     }
 
     @Override
-    public void updateReservationList(ReservationList reservations) throws RemoteException {
-        //client.updateReservationList(reservations);
-    }
-
-    @Override
     public void addListener(String eventName, PropertyChangeListener listener) throws RemoteException {
         client.addListener(eventName, listener);
-    }
-
-    /*@Override
-    public void addListener(String eventName, PropertyChangeListener listener) throws RemoteException {
-        client.addListener(eventName, listener);
-    }*/
-
-    @Override
-    public ReservationList updateReservations() throws RemoteException {
-        return client.updateReservations();
     }
 
     @Override
@@ -129,13 +114,5 @@ public class ClientImpl implements Client {
     public void fireUpdateCars() throws RemoteException {
         client.fireUpdateCars();
     }
-
-
-
-
-    /*public void addServerListener(IServerListener listener)
-    {
-        client.addServerListener(listener);
-    }*/
 
 }

@@ -45,9 +45,6 @@ public interface IServerModel extends Remote {
 
     CustomerList getCustomers() throws RemoteException;
 
-    /*void updateClient(IRMIClient client);*/
-    ReservationList getUpdatedReservationList() throws RemoteException;
-
     void callClientUpdateReservation()throws RemoteException;
     void addClient(IRMIClient c) throws RemoteException;
     void callClientUpdateUsers() throws RemoteException;

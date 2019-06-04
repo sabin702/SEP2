@@ -31,7 +31,6 @@ public interface EmployeeModel{
 
     void addListener(String eventName, PropertyChangeListener listener) throws RemoteException;
 
-    ReservationList updateReservations()throws RemoteException;
     void fireUpdateReservations() throws RemoteException;
     void fireUpdateUsers() throws RemoteException;
     void fireUpdateCars() throws RemoteException;

@@ -81,12 +81,7 @@ public class EmployeeModelImpl implements EmployeeModel, Serializable{
     public CustomerList getCustomers() throws RemoteException {
         return client.getCustomers();
     }
-
-    @Override
-    public ReservationList updateReservations() throws RemoteException {
-        return client.updateReservations();
-    }
-
+    
     @Override
     public void fireUpdateReservations() throws RemoteException {
         /*client.fireUpdateReservations();*/

@@ -45,9 +45,6 @@ public interface IRMIClient extends Remote {
 
     CustomerList getCustomers() throws RemoteException;
 
-    void addNewReservation(Reservation reservation) throws RemoteException;
-
-    ReservationList updateReservations() throws RemoteException;
     void addListener(String event, PropertyChangeListener listener)throws RemoteException;
     void fireUpdateReservations() throws RemoteException;
     void fireUpdateUsers() throws RemoteException;

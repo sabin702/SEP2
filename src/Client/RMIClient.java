@@ -18,9 +18,7 @@ public class RMIClient  implements IRMIClient{
 
    private IServerModel serverModel;
    private  CarList cars;
-   private  List<Reservation> reservations;
    private PropertyChangeSupport changeSupport;
-    private  List<PropertyChangeListener> listeners;
 
 
     public RMIClient() throws RemoteException, NotBoundException {
@@ -28,7 +26,6 @@ public class RMIClient  implements IRMIClient{
         Registry registry = LocateRegistry.getRegistry("localhost", 1099);
         serverModel = (IServerModel) registry.lookup("server");
         cars = new CarList();
-        reservations = new ArrayList<>();
         changeSupport = new PropertyChangeSupport(this);
         serverModel.addClient(this);
     }
@@ -72,7 +69,6 @@ public class RMIClient  implements IRMIClient{
     public void addReservation(Reservation reservation) throws RemoteException {
         try {
             serverModel.addReservation(reservation.getReservationId(), reservation.getCarRegNo(), reservation.getUsername(), reservation.getDateFromObject(), reservation.getDateToObject(), reservation.getNavigation(), reservation.getChildseat(), reservation.getFirstName(), reservation.getLastName(), reservation.getAge(), reservation.getPrice(), reservation.getInsurance(), reservation.getStatus());
-            //reservations.add(reservation);
             System.out.println("Successfully added reservation");
 
 
@@ -132,26 +128,6 @@ public class RMIClient  implements IRMIClient{
     @Override
     public CustomerList getCustomers() throws RemoteException {
         return serverModel.getCustomers();
-    }
-
-  /*  @Override
-    public void addListener(String eventName, PropertyChangeListener client)  {
-        try {
-            serverModel.addListener(eventName, this);
-        } catch (RemoteException e) {
-            e.printStackTrace();
-            System.out.println(e.getMessage());
-        }
-    }*/
-
-    @Override
-    public void addNewReservation(Reservation reservation) throws RemoteException {
-        //changeSupport.firePropertyChange("ReservationAdded", null, reservation);
-    }
-
-    @Override
-    public ReservationList updateReservations() throws RemoteException {
-        return serverModel.getUpdatedReservationList();
     }
 
     @Override

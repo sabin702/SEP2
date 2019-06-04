@@ -78,7 +78,7 @@ public class MakeReservationView {
 
         try {
             Customer customer = viewModel.getCustomer(viewModel.getUsername());
-            viewModel.makeReservation(reservationId, getCar().getRegistrationNumber(), customer.getUsername(), dateFrom1, dateTo1, navigationOption, childSeatOption, customer.getFirstName(), customer.getLastName(), customer.getAge(), price, insurance, 0);
+            viewModel.makeReservation(reservationId, getCar().getRegistrationNumber(), customer.getUsername(), dateFrom1, dateTo1, navigationOption, childSeatOption, customer.getFirstName(), customer.getLastName(), customer.getAge(), price, 2, 0);
         } catch (RemoteException e) {
             System.out.println("not working");
             e.printStackTrace();

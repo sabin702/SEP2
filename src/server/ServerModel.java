@@ -2,7 +2,12 @@ package server;
 
 import Client.IRMIClient;
 import DataModel.*;
-import database.Database;
+import database.CarsDatabaseConnection.CarsDAO;
+import database.CarsDatabaseConnection.CarsDAOImpl;
+import database.CustomersDatabaseConnections.CustomersDAO;
+import database.CustomersDatabaseConnections.CustomersDAOImpl;
+import database.ReservationDatabaseConnection.ReservationsDAO;
+import database.ReservationDatabaseConnection.ReservationsDAOImpl;
 
 import java.beans.PropertyChangeSupport;
 import java.rmi.RemoteException;
@@ -13,11 +18,11 @@ import java.util.List;
 
 public class ServerModel implements IServerModel {
 
-    private Database database;
-    IRMIClient client;
+    private CarsDAO carsDAO;
+    private CustomersDAO customersDAO;
+    private ReservationsDAO reservationsDAO;
     List<IRMIClient> clients;
     private PropertyChangeSupport changeSupport;
-    private ReservationList reservationList;
 
     public ServerModel() throws RemoteException {
 
@@ -26,20 +31,21 @@ public class ServerModel implements IServerModel {
         } catch (RemoteException e) {
             e.printStackTrace();
         }
-        database = new Database();
+        carsDAO = new CarsDAOImpl();
+        customersDAO = new CustomersDAOImpl();
+        reservationsDAO = new ReservationsDAOImpl();
         changeSupport = new PropertyChangeSupport(this);
         clients = new ArrayList<IRMIClient>();
-        reservationList = getReservations();
 
 
     }
 
     @Override
     public boolean logIn(String username, String password, IRMIClient client) throws RemoteException {
-        if (database.getCustomer(username) == null) {
+        if (customersDAO.getCustomer(username) == null) {
             System.out.println("No user found");
             return false;
-        } else if (database.getCustomer(username).getPassword().equals(password)) {
+        } else if (customersDAO.getCustomer(username).getPassword().equals(password)) {
             return true;
         } else
             return false;
@@ -48,101 +54,88 @@ public class ServerModel implements IServerModel {
 
     @Override
     public void addCar(Car car) throws RemoteException {
-        database.addCar(car);
+        carsDAO.addCar(car);
         callClientUpdateCars();
     }
 
     @Override
     public void deleteCar(String carRegistrationNumber) throws RemoteException {
-        database.deleteCar(carRegistrationNumber);
+        carsDAO.deleteCar(carRegistrationNumber);
         callClientUpdateCars();
     }
 
     @Override
     public void editCar(String registrationNumber, int mileage, int price, int availability) throws RemoteException {
-        database.editCar(registrationNumber, mileage, price, availability);
+        carsDAO.editCar(registrationNumber, mileage, price, availability);
     }
 
     @Override
     public Car getCar(String registrationNumber) throws RemoteException {
-        return database.getCar(registrationNumber);
+        return carsDAO.getCar(registrationNumber);
     }
 
     @Override
     public CarList getCars() throws RemoteException {
-        return database.getCars();
+        return carsDAO.getCars();
     }
 
     @Override
     public void addReservation(String reservationId, String carRegNo, String username, Date dateFrom, Date dateTo, int navigation, int childseat, String firstName, String lastName, int age, int price, int insurance, int status) throws RemoteException {
-        database.addReservation(reservationId, carRegNo, username, dateFrom, dateTo, navigation, childseat, firstName, lastName, age, price, insurance, status);
-        Reservation reservation = new Reservation(reservationId, carRegNo, username, dateFrom, dateTo, navigation, childseat, firstName, lastName, age, price, insurance, status);
-        reservationList.addReservation(reservation);
+        reservationsDAO.addReservation(reservationId, carRegNo, username, dateFrom, dateTo, navigation, childseat, firstName, lastName, age, price, insurance, status);
         callClientUpdateReservation();
-
     }
 
     @Override
     public void deleteReservation(String reservationId) throws RemoteException {
         reservationId = reservationId.toUpperCase();
-        Reservation reservation = getReservation(reservationId);
-        database.deleteReservation(reservationId);
-        /*reservationList.removeReservation();*/
+        reservationsDAO.deleteReservation(reservationId);
         callClientUpdateReservation();
 
     }
 
     @Override
     public void approveReservation(String reservationId) throws RemoteException {
-        database.approveReservation(reservationId);
+        reservationsDAO.approveReservation(reservationId);
         callClientUpdateReservation();
     }
 
     @Override
     public Reservation getReservation(String reservationId) throws RemoteException {
         reservationId = reservationId.toUpperCase();
-        return database.getReservation(reservationId);
+        return reservationsDAO.getReservation(reservationId);
     }
 
     @Override
     public ReservationList getReservations() throws RemoteException {
-        return database.getReservations();
+        return reservationsDAO.getReservations();
     }
 
     @Override
     public void addCustomer(String username, String password, String firstName, String lastName, Date dateOfBirth) throws RemoteException {
-        database.addCustomer(username, password, firstName, lastName, dateOfBirth);
+        customersDAO.addCustomer(username, password, firstName, lastName, dateOfBirth);
         callClientUpdateUsers();
     }
 
     @Override
     public void deleteCustomer(String username) throws RemoteException {
-        database.deleteCustomer(username);
+        customersDAO.deleteCustomer(username);
     }
 
     @Override
     public void editCustomer(String username, String firstName, String lastName, String password) throws RemoteException {
-        database.editCustomer(username, firstName, lastName, password);
+        customersDAO.editCustomer(username, firstName, lastName, password);
         callClientUpdateUsers();
     }
 
     @Override
     public Customer getCustomer(String username) throws RemoteException {
-        return database.getCustomer(username);
+        return customersDAO.getCustomer(username);
     }
 
     @Override
     public CustomerList getCustomers() throws RemoteException {
-        return database.getCustomers();
+        return customersDAO.getCustomers();
     }
-
-    @Override
-    public ReservationList getUpdatedReservationList() {
-        return reservationList;
-    }
-
-
-
 
     @Override
     public void callClientUpdateReservation() throws RemoteException {

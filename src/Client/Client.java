@@ -40,13 +40,8 @@ public interface Client {
 
     CustomerList getCustomers() throws RemoteException;
 
-    void updateReservationList(ReservationList reservations) throws RemoteException;
-
     void addListener(String eventName, PropertyChangeListener listener) throws RemoteException;
 
-    /*void addServerListener(IServerListener listener) throws RemoteException;*/
-
-    ReservationList updateReservations() throws RemoteException;
     void fireUpdateReservations()throws RemoteException;
     void fireUpdateUsers()throws RemoteException;
     void fireUpdateCars() throws RemoteException;
