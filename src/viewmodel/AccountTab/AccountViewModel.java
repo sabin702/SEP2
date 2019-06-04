@@ -38,4 +38,11 @@ public class AccountViewModel {
     }
 
 
+    public void openEmptyTextFields() {
+        viewHandler.openEmptyTextFields();
+    }
+
+    public void openLogOutReminder() {
+        viewHandler.openLogOutReminder();
+    }
 }

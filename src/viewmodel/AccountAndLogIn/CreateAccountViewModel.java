@@ -26,7 +26,7 @@ public class CreateAccountViewModel {
         model.createAccount(username, password, firstName, lastName, dateOfBirth);
     }
 
-    public void openEmptTextFields() {
+    public void openEmptyTextFields() {
         viewHandler.openEmptyTextFields();
     }
 }

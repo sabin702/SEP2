@@ -51,6 +51,7 @@ public class ViewReservationsView {
         int selectedIndex = tableView.getSelectionModel().getSelectedIndex();
         if (selectedIndex >= 0) {
             viewModel.deleteReservation(tableView.getItems().get(selectedIndex).getReservationId());
+            viewModel.openDeleteReservation();
         }
     }
 

@@ -48,6 +48,7 @@ public class CarsView {
         if (selectedIndex >= 0) {
             System.out.println(tableView.getItems().get(selectedIndex).getRegistrationNumber());
             viewModel.deleteCar(tableView.getItems().get(selectedIndex).getRegistrationNumber());
+            viewModel.openCarDeleted();
         }
     }
 

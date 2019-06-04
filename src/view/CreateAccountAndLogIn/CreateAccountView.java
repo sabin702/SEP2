@@ -37,10 +37,12 @@ public class CreateAccountView {
 
     @FXML
     void createAccount(ActionEvent event) throws IOException {
-        if(dateOfBirthField.getValue().equals(null) || nameField.getText().equals("")|| surnameField.getText().equals("")||
+        if(dateOfBirthField.getValue() == null || nameField.getText().equals("")|| surnameField.getText().equals("")||
         loginField.getText().equals("") || passwordField.getText().equals("")){
-            viewModel.openEmptTextFields();
+            viewModel.openEmptyTextFields();
         }
+        else{
+
         LocalDate localDate = dateOfBirthField.getValue();
         Date birthdate = Date.from(localDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
         System.out.println(birthdate);
@@ -50,6 +52,12 @@ public class CreateAccountView {
         System.out.println(passwordField.getText());
 
         viewModel.createAccount(loginField.getText(), passwordField.getText(), nameField.getText(), surnameField.getText(), birthdate);
+        viewModel.openCreateAccountAndLogIn();
+        }
+
+    }
+    @FXML
+    void goBack(ActionEvent event) throws IOException {
         viewModel.openCreateAccountAndLogIn();
     }
 

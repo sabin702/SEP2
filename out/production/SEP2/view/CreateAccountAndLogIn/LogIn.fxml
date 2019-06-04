@@ -17,7 +17,8 @@
       </Label>
       <Label layoutX="94.0" layoutY="94.0" text="Username:" />
       <Label layoutX="96.0" layoutY="159.0" text="Password:" />
-      <Button layoutX="208.0" layoutY="210.0" mnemonicParsing="false" onAction="#logIn" text="Log In" />
       <PasswordField fx:id="passwordField" layoutX="159.0" layoutY="155.0" promptText="Password" />
+      <Button layoutX="208.0" layoutY="210.0" mnemonicParsing="false" onAction="#logIn" text="Log In" />
+      <Button layoutY="246.0" mnemonicParsing="false" onAction="#goBack" text="Back" />
    </children>
 </AnchorPane>

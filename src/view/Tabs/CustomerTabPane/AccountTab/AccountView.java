@@ -38,12 +38,18 @@ public class AccountView {
             passwordTextField.setEditable(true);
             editButton.setText("Save");
         } else if (editButton.getText().equals("Save")) {
-            nameTextField.setEditable(false);
-            surnameTextField.setEditable(false);
-            passwordTextField.setEditable(false);
-            Customer customer = viewModel.getCustomer(viewModel.getUsername());
-            viewModel.editCustomer(customer.getUsername(), nameTextField.getText(), surnameTextField.getText(), passwordTextField.getText());
-            editButton.setText("Edit");
+            if (nameTextField.getText().equals("") || surnameTextField.getText().equals("") || passwordTextField.getText().equals("")) {
+                viewModel.openEmptyTextFields();
+                editButton.setText("Save");
+            }
+            else {
+                nameTextField.setEditable(false);
+                surnameTextField.setEditable(false);
+                passwordTextField.setEditable(false);
+                Customer customer = viewModel.getCustomer(viewModel.getUsername());
+                viewModel.editCustomer(customer.getUsername(), nameTextField.getText(), surnameTextField.getText(), passwordTextField.getText());
+                editButton.setText("Edit");
+            }
         }
 
     }
@@ -52,8 +58,9 @@ public class AccountView {
     private AccountViewModel accountViewModel;
 
     @FXML
-    void logOut(ActionEvent event) throws IOException {
-        viewModel.openCreateAccountAndLogin();
+    void logOut(ActionEvent event) {
+        viewModel.openLogOutReminder();
+
     }
 
 
@@ -65,7 +72,7 @@ public class AccountView {
             passwordTextField.setVisible(true);*/
     }
 
-    public void init(AccountViewModel accountViewModel){
+    public void init(AccountViewModel accountViewModel) {
         this.viewModel = accountViewModel;
         Customer customer = null;
         try {

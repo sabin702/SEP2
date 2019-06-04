@@ -48,6 +48,7 @@ public class ReservationsView {
     @FXML
     void approveReservation(ActionEvent event) throws RemoteException {
         viewModel.approveReservation(tableView.getSelectionModel().getSelectedItem().getReservationId());
+        viewModel.openReservationAccepted();
     }
 
     @FXML
@@ -55,6 +56,7 @@ public class ReservationsView {
         int selectedIndex = tableView.getSelectionModel().getSelectedIndex();
         if (selectedIndex >= 0) {
             viewModel.deleteReservation(tableView.getItems().get(selectedIndex).getReservationId());
+            viewModel.openReservationDeleted();
         }
     }
 

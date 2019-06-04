@@ -37,16 +37,22 @@ public class AddCarView implements Initializable {
 
     @FXML
     void addCar(ActionEvent event) {
-        int mileage = Integer.parseInt(carMileage.getText());
-        int productionYear = Integer.parseInt(carProduction.getText());
-        int price = Integer.parseInt(carPrice.getText());
-        int availability = 0;
-        try {
-            viewModel.addCar(registrationNumber.getText(),carMake.getText(),mileage,carColor.getText(),productionYear,carCategory.getValue(),price, availability);
-        } catch (RemoteException e) {
-            e.printStackTrace();
+        if(carMileage.getText().equals("") || carPrice.getText().equals("") || carProduction.getText().equals("") || carColor.getText().equals("") || carMake.getText().equals("") || carCategory.getValue() == null){
+            viewModel.openEmptyTextFields();
         }
-        clearFields();
+        else {
+            int mileage = Integer.parseInt(carMileage.getText());
+            int productionYear = Integer.parseInt(carProduction.getText());
+            int price = Integer.parseInt(carPrice.getText());
+            int availability = 0;
+            try {
+                viewModel.addCar(registrationNumber.getText(), carMake.getText(), mileage, carColor.getText(), productionYear, carCategory.getValue(), price, availability);
+            } catch (RemoteException e) {
+                e.printStackTrace();
+            }
+            clearFields();
+            viewModel.openCarAdded();
+        }
 
     }
 

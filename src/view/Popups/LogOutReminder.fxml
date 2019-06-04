@@ -12,7 +12,7 @@
             <Font size="15.0" />
          </font>
       </Label>
-      <Button layoutX="59.0" layoutY="50.0" mnemonicParsing="false" onAction="#closePopUpAndLogOut" prefHeight="21.0" prefWidth="58.0" text="Yes" />
-      <Button layoutX="190.0" layoutY="50.0" mnemonicParsing="false" onAction="#closePopUp" prefHeight="21.0" prefWidth="58.0" text="No" />
+      <Button fx:id="logOutButton" layoutX="59.0" layoutY="50.0" mnemonicParsing="false" onAction="#logOut" prefHeight="21.0" prefWidth="58.0" text="Yes" />
+      <Button fx:id="closeButton" layoutX="190.0" layoutY="50.0" mnemonicParsing="false" onAction="#closePopUp" prefHeight="21.0" prefWidth="58.0" text="No" />
    </children>
 </AnchorPane>

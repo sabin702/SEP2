@@ -14,11 +14,13 @@ public class CarsViewModel {
 
     private EmployeeModel model;
     private ObservableList<Car> cars;
+    private ViewHandler viewHandler;
 
-    public CarsViewModel (EmployeeModel model) throws RemoteException {
+    public CarsViewModel (ViewHandler viewHandler,EmployeeModel model) throws RemoteException {
         cars = FXCollections.observableArrayList();
 
         this.model = model;
+        this.viewHandler = viewHandler;
 
         getCars();
 
@@ -91,4 +93,7 @@ public class CarsViewModel {
         return -1;
     }
 
+    public void openCarDeleted() {
+        viewHandler.openCarDeleted();
+    }
 }

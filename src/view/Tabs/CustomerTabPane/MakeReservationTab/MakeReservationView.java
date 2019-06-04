@@ -46,45 +46,51 @@ public class MakeReservationView {
 
     @FXML
     void confirmReservation(ActionEvent event) {
-        LocalDate localDate = dateFrom.getValue();
-        Date dateFrom1 = Date.from(localDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
-        localDate = dateTo.getValue();
-        Date dateTo1 = Date.from(localDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
-        int insurance;
-
-        System.out.println(car.getItems().get(car.getSelectionModel().getSelectedIndex()));
-
-        if(insuranceType.getSelectionModel().getSelectedItem().equals("Basic (25 DKK/day)"))
-            insurance = 1;
-        else if(insuranceType.getSelectionModel().getSelectedItem().equals("Basic (50 DKK/day)"))
-            insurance = 2;
-        else if(insuranceType.getSelectionModel().getSelectedItem().equals("Full Coverage (100 DKK/day)"))
-            insurance = 3;
-        else
-            insurance = 0;
-
-        System.out.println("Insurance: " + insurance);
-
-        Random random = new Random();
-        String reservationId = "R" + (random.nextInt(88888)+10000);
-        int price = getCar().getPrice() * getNumberOfDays(dateFrom1, dateTo1);
-        int navigationOption = 0;
-        int childSeatOption = 0;
-        if(navigation.isSelected())
-            navigationOption = 1;
-        if(childSeat.isSelected())
-            childSeatOption = 1;
-
-
-        try {
-            Customer customer = viewModel.getCustomer(viewModel.getUsername());
-            viewModel.makeReservation(reservationId, getCar().getRegistrationNumber(), customer.getUsername(), dateFrom1, dateTo1, navigationOption, childSeatOption, customer.getFirstName(), customer.getLastName(), customer.getAge(), price, 2, 0);
-        } catch (RemoteException e) {
-            System.out.println("not working");
-            e.printStackTrace();
+        if(dateFrom.getValue() == null || dateTo.getValue() == null || car.getValue() == null){
+            viewModel.openEmptyTextFields();
         }
+        else {
+            LocalDate localDate = dateFrom.getValue();
+            Date dateFrom1 = Date.from(localDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
+            localDate = dateTo.getValue();
+            Date dateTo1 = Date.from(localDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
+            int insurance;
 
-        clearFields();
+            System.out.println(car.getItems().get(car.getSelectionModel().getSelectedIndex()));
+
+            if (insuranceType.getSelectionModel().getSelectedItem().equals("Basic (25 DKK/day)"))
+                insurance = 1;
+            else if (insuranceType.getSelectionModel().getSelectedItem().equals("Basic (50 DKK/day)"))
+                insurance = 2;
+            else if (insuranceType.getSelectionModel().getSelectedItem().equals("Full Coverage (100 DKK/day)"))
+                insurance = 3;
+            else
+                insurance = 0;
+
+            System.out.println("Insurance: " + insurance);
+
+            Random random = new Random();
+            String reservationId = "R" + (random.nextInt(88888) + 10000);
+            int price = getCar().getPrice() * getNumberOfDays(dateFrom1, dateTo1);
+            int navigationOption = 0;
+            int childSeatOption = 0;
+            if (navigation.isSelected())
+                navigationOption = 1;
+            if (childSeat.isSelected())
+                childSeatOption = 1;
+
+
+            try {
+                Customer customer = viewModel.getCustomer(viewModel.getUsername());
+                viewModel.makeReservation(reservationId, getCar().getRegistrationNumber(), customer.getUsername(), dateFrom1, dateTo1, navigationOption, childSeatOption, customer.getFirstName(), customer.getLastName(), customer.getAge(), price, 2, 0);
+            } catch (RemoteException e) {
+                System.out.println("not working");
+                e.printStackTrace();
+            }
+
+            clearFields();
+            viewModel.openReservationPlaced();
+        }
     }
 
     public void init(MakeReservationViewModel makeReservationViewModel){
@@ -122,7 +128,7 @@ public class MakeReservationView {
         car.getItems().removeAll(car.getItems());
         car.setItems(viewModel.getCarsList());
         /*car.getItems().removeAll(car.getItems());
-        *//*cars = new ObservableList<Car>() {
+         *//*cars = new ObservableList<Car>() {
         };
         try {
             cars = viewModel.getCars();

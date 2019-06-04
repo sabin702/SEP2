@@ -3,11 +3,13 @@ package viewmodel;
 
 
 import Model.*;
+import com.sun.glass.ui.View;
 import view.ViewHandler;
 import viewmodel.AccountAndLogIn.CreateAccountAndLogInViewModel;
 import viewmodel.AccountAndLogIn.CreateAccountViewModel;
 import viewmodel.AccountAndLogIn.LogInViewModel;
 import viewmodel.AccountTab.AccountViewModel;
+import viewmodel.AccountTab.LogOutViewModel;
 import viewmodel.CarsTab.AddCarViewModel;
 import viewmodel.CarsTab.CarsViewModel;
 
@@ -31,6 +33,7 @@ public class ViewModelProvider implements Serializable {
     private ReservationsViewModel reservationsViewModel;
     private UsersViewModel usersViewModel;
     private ViewReservationsViewModel viewReservationsViewModel;
+    private LogOutViewModel logOutViewModel;
 
     private CustomerModel cm;
     private EmployeeModel em;
@@ -47,6 +50,11 @@ public class ViewModelProvider implements Serializable {
             logInViewModel = new LogInViewModel(viewHandler, cm);
         }
     }
+    public void instantiateLogOutViewModel(ViewHandler viewHandler){
+        if(logOutViewModel == null){
+            logOutViewModel = new LogOutViewModel(viewHandler);
+        }
+    }
 
     public void instantiateCreateAccountAndLogInViewModel(ViewHandler viewHandler) {
         if (createAccountAndLogInViewModel == null) {
@@ -60,15 +68,15 @@ public class ViewModelProvider implements Serializable {
         }
     }
 
-    public void instantiateAddCarViewModel() {
+    public void instantiateAddCarViewModel(ViewHandler viewHandler) {
         if (addCarViewModel == null) {
-            addCarViewModel = new AddCarViewModel(em);
+            addCarViewModel = new AddCarViewModel(viewHandler,em);
         }
     }
 
-    public void instantiateCarsViewModel() throws RemoteException {
+    public void instantiateCarsViewModel(ViewHandler viewHandler) throws RemoteException {
         if (carsViewModel == null) {
-            carsViewModel = new CarsViewModel(em);
+            carsViewModel = new CarsViewModel(viewHandler,em);
         }
     }
 
@@ -87,9 +95,9 @@ public class ViewModelProvider implements Serializable {
         makeReservationViewModel.setUserName(logInViewModel.getUsername());
     }
 
-    public void instantiateReservationsViewModel() throws RemoteException {
+    public void instantiateReservationsViewModel(ViewHandler viewHandler) throws RemoteException {
         if (reservationsViewModel == null) {
-            reservationsViewModel = new ReservationsViewModel(em);
+            reservationsViewModel = new ReservationsViewModel(viewHandler,em);
         }
     }
 
@@ -99,9 +107,9 @@ public class ViewModelProvider implements Serializable {
         }
     }
 
-    public void instantiateViewReservationsViewModel() throws RemoteException {
+    public void instantiateViewReservationsViewModel(ViewHandler viewHandler) throws RemoteException {
         if (viewReservationsViewModel == null) {
-            viewReservationsViewModel = new ViewReservationsViewModel(cm);
+            viewReservationsViewModel = new ViewReservationsViewModel(viewHandler,cm);
         }
     }
 
@@ -145,5 +153,10 @@ public class ViewModelProvider implements Serializable {
     public ViewReservationsViewModel getViewReservationsViewModel() {
         return viewReservationsViewModel;
     }
+
+    public LogOutViewModel getLogOutViewModel() {
+        return logOutViewModel;
+    }
+
 }
 

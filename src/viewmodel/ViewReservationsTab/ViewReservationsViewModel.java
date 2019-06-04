@@ -6,6 +6,7 @@ import DataModel.ReservationList;
 import Model.CustomerModel;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import view.ViewHandler;
 
 import java.beans.PropertyChangeEvent;
 import java.io.Serializable;
@@ -15,9 +16,11 @@ public class ViewReservationsViewModel implements Serializable {
 
     private  CustomerModel model;
     private  ObservableList<Reservation> reservations;
+    private ViewHandler viewHandler;
 
-    public ViewReservationsViewModel(CustomerModel model) throws RemoteException {
+    public ViewReservationsViewModel(ViewHandler viewHandler,CustomerModel model) throws RemoteException {
         reservations = FXCollections.observableArrayList();
+        this.viewHandler = viewHandler;
 
         this.model = model;
 
@@ -87,5 +90,8 @@ public class ViewReservationsViewModel implements Serializable {
         return -1;
     }
 
+    public void openDeleteReservation() {
+        viewHandler.openReservationDeleted();
+    }
 }
 

@@ -13,7 +13,8 @@ import java.io.Serializable;
 public class LogInView implements Serializable {
 
     private LogInViewModel viewModel;
-    public void init(LogInViewModel logInViewModel){
+
+    public void init(LogInViewModel logInViewModel) {
         this.viewModel = logInViewModel;
     }
 
@@ -26,12 +27,22 @@ public class LogInView implements Serializable {
 
     @FXML
     void logIn(ActionEvent event) throws IOException {
-        if(viewModel.logIn(usernameField.getText(), passwordField.getText()))
-            viewModel.openCustomerTabPane();
-        else
-            System.out.println("No match");
+        if (usernameField.getText().equals("") || passwordField.getText().equals("")) {
+            viewModel.openEmptyTextFields();
+        } else {
+            if (viewModel.logIn(usernameField.getText(), passwordField.getText())){
+                viewModel.openCustomerTabPane();
+            viewModel.openLogInWelcome();}
+            else{
+                viewModel.openWrongUsernamePassword();
+            }
+            }
+        }
+    @FXML
+    void goBack(ActionEvent event) throws IOException {
+        viewModel.openCreateAccountAndLogIn();
     }
 
 
-}
+    }
 

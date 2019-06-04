@@ -79,4 +79,12 @@ public class MakeReservationViewModel {
     public Customer getCustomer(String userName) throws RemoteException {
         return model.getCustomer(userName);
     }
+
+    public void openEmptyTextFields() {
+        viewHandler.openEmptyTextFields();
+    }
+
+    public void openReservationPlaced() {
+        viewHandler.openReservationPlaced();
+    }
 }

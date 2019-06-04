@@ -7,6 +7,8 @@ import javafx.stage.Stage;
 import view.CreateAccountAndLogIn.CreateAccountAndLogInView;
 import view.CreateAccountAndLogIn.CreateAccountView;
 import view.CreateAccountAndLogIn.LogInView;
+import view.Popups.ClosePopUpView;
+import view.Popups.LogOutReminderView;
 import view.Tabs.CustomerTabPane.CustomerTabPaneView;
 import view.Tabs.EmployeeTabPane.EmployeeTabPaneView;
 import viewmodel.ViewModelProvider;
@@ -16,11 +18,14 @@ import java.io.Serializable;
 
 public class ViewHandler implements Serializable {
     private Stage stage;
+    private Stage popUpStage;
     private ViewModelProvider viewModelProvider;
 
     public ViewHandler(Stage stage, ViewModelProvider vmp) {
         this.stage = stage;
+        popUpStage = new Stage();
         viewModelProvider = vmp;
+
     }
 
     public void startEmployee() throws Exception {
@@ -36,10 +41,10 @@ public class ViewHandler implements Serializable {
     }
 
     public void openEmployeeTabPane() throws IOException {
-        viewModelProvider.instantiateReservationsViewModel();
-        viewModelProvider.instantiateCarsViewModel();
+        viewModelProvider.instantiateReservationsViewModel(this);
+        viewModelProvider.instantiateCarsViewModel(this);
         viewModelProvider.instantiateUsersViewModel();
-        viewModelProvider.instantiateAddCarViewModel();
+        viewModelProvider.instantiateAddCarViewModel(this);
         FXMLLoader loader = new FXMLLoader();
 
         loader.setLocation(getClass().getResource("/view/Tabs/EmployeeTabPane/EmployeeTabPane.fxml"));
@@ -63,7 +68,7 @@ public class ViewHandler implements Serializable {
 
     public void openCustomerTabPane() throws IOException {
         viewModelProvider.instantiateMakeReservationViewModel(this);
-        viewModelProvider.instantiateViewReservationsViewModel();
+        viewModelProvider.instantiateViewReservationsViewModel(this);
         viewModelProvider.instantiateAccountViewModel(this);
         FXMLLoader loader = new FXMLLoader();
 
@@ -161,5 +166,223 @@ public class ViewHandler implements Serializable {
     }
 
     public void openEmptyTextFields() {
+        FXMLLoader loader = new FXMLLoader();
+
+        loader.setLocation(getClass().getResource("/view/Popups/EmptyTextFields.fxml"));
+
+        Parent root = null;
+        try {
+            root = loader.load();
+        } catch (IOException e) {
+
+            e.printStackTrace();
+        }
+        ClosePopUpView view = loader.getController();
+
+
+        Scene scene = new Scene(root);
+
+
+        popUpStage.setTitle("Error");
+
+        popUpStage.setScene(scene);
+        popUpStage.show();
+    }
+
+    public void openLogInWelcome() {
+        FXMLLoader loader = new FXMLLoader();
+
+        loader.setLocation(getClass().getResource("/view/Popups/LogInWelcome.fxml"));
+
+        Parent root = null;
+        try {
+            root = loader.load();
+        } catch (IOException e) {
+
+            e.printStackTrace();
+        }
+        ClosePopUpView view = loader.getController();
+
+
+        Scene scene = new Scene(root);
+
+
+        popUpStage.setTitle("Welcome");
+
+        popUpStage.setScene(scene);
+        popUpStage.show();
+    }
+
+    public void openReservationPlaced() {
+        FXMLLoader loader = new FXMLLoader();
+
+        loader.setLocation(getClass().getResource("/view/Popups/ReservationPlaced.fxml"));
+
+        Parent root = null;
+        try {
+            root = loader.load();
+        } catch (IOException e) {
+
+            e.printStackTrace();
+        }
+        ClosePopUpView view = loader.getController();
+
+
+        Scene scene = new Scene(root);
+
+
+        popUpStage.setTitle("Reservation Placed");
+
+        popUpStage.setScene(scene);
+        popUpStage.show();
+
+    }
+
+    public void openReservationDeleted() {
+        FXMLLoader loader = new FXMLLoader();
+
+        loader.setLocation(getClass().getResource("/view/Popups/ReservationDeleted.fxml"));
+
+        Parent root = null;
+        try {
+            root = loader.load();
+        } catch (IOException e) {
+
+            e.printStackTrace();
+        }
+        ClosePopUpView view = loader.getController();
+
+
+        Scene scene = new Scene(root);
+
+
+        popUpStage.setTitle("Reservation Deleted");
+
+        popUpStage.setScene(scene);
+        popUpStage.show();
+
+    }
+
+    public void openWrongUsernamePassword() {
+        FXMLLoader loader = new FXMLLoader();
+
+        loader.setLocation(getClass().getResource("/view/Popups/WrongUsernamePassword.fxml"));
+
+        Parent root = null;
+        try {
+            root = loader.load();
+        } catch (IOException e) {
+
+            e.printStackTrace();
+        }
+        ClosePopUpView view = loader.getController();
+
+
+        Scene scene = new Scene(root);
+
+
+        popUpStage.setTitle("Error!");
+
+        popUpStage.setScene(scene);
+        popUpStage.show();
+    }
+
+    public void openLogOutReminder() {
+        viewModelProvider.instantiateLogOutViewModel(this);
+        FXMLLoader loader = new FXMLLoader();
+
+        loader.setLocation(getClass().getResource("/view/Popups/LogOutReminder.fxml"));
+
+        Parent root = null;
+        try {
+            root = loader.load();
+        } catch (IOException e) {
+
+            e.printStackTrace();
+        }
+        LogOutReminderView view = loader.getController();
+        view.init(viewModelProvider.getLogOutViewModel());
+
+
+        Scene scene = new Scene(root);
+
+
+        popUpStage.setTitle("Logging out");
+
+        popUpStage.setScene(scene);
+        popUpStage.show();
+    }
+
+    public void openCarDeleted() {
+        FXMLLoader loader = new FXMLLoader();
+
+        loader.setLocation(getClass().getResource("/view/Popups/CarDeleted.fxml"));
+
+        Parent root = null;
+        try {
+            root = loader.load();
+        } catch (IOException e) {
+
+            e.printStackTrace();
+        }
+        ClosePopUpView view = loader.getController();
+
+
+        Scene scene = new Scene(root);
+
+
+        popUpStage.setTitle("Logging out");
+
+        popUpStage.setScene(scene);
+        popUpStage.show();
+    }
+    public void openCarAdded(){
+        FXMLLoader loader = new FXMLLoader();
+
+        loader.setLocation(getClass().getResource("/view/Popups/CarAdded.fxml"));
+
+        Parent root = null;
+        try {
+            root = loader.load();
+        } catch (IOException e) {
+
+            e.printStackTrace();
+        }
+        ClosePopUpView view = loader.getController();
+
+
+        Scene scene = new Scene(root);
+
+
+        popUpStage.setTitle("Logging out");
+
+        popUpStage.setScene(scene);
+        popUpStage.show();
+
+    }
+
+    public void openReservationAccepted() {
+
+        FXMLLoader loader = new FXMLLoader();
+
+        loader.setLocation(getClass().getResource("/view/Popups/ReservationAccepted.fxml"));
+
+        Parent root = null;
+        try {
+            root = loader.load();
+        } catch (IOException e) {
+
+            e.printStackTrace();
+        }
+        ClosePopUpView view = loader.getController();
+
+
+        Scene scene = new Scene(root);
+
+
+        popUpStage.setTitle("Reservation accepted");
+
+        popUpStage.setScene(scene);
+        popUpStage.show();
     }
 }

@@ -31,6 +31,20 @@ public class LogInViewModel implements Serializable {
     public String getUsername(){
         return userName;
     }
+    public void openEmptyTextFields() {
+        viewHandler.openEmptyTextFields();
+    }
 
 
+    public void openLogInWelcome() {
+        viewHandler.openLogInWelcome();
+    }
+
+    public void openCreateAccountAndLogIn() throws IOException {
+        viewHandler.openCreateAccountAndLogIn();
+    }
+
+    public void openWrongUsernamePassword() {
+        viewHandler.openWrongUsernamePassword();
+    }
 }

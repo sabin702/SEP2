@@ -12,6 +12,6 @@
             <Font size="15.0" />
          </font>
       </Label>
-      <Button layoutX="127.0" layoutY="50.0" mnemonicParsing="false" onAction="#closePopUp" prefHeight="21.0" prefWidth="58.0" text="Ok" />
+      <Button fx:id="closeButton" layoutX="127.0" layoutY="50.0" mnemonicParsing="false" onAction="#closePopUp" prefHeight="21.0" prefWidth="58.0" text="Ok" />
    </children>
 </AnchorPane>

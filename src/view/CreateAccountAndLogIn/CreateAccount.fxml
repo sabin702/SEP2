@@ -26,5 +26,6 @@
       <Label layoutX="142.0" layoutY="208.0" text="Date of birth:" />
       <Label layoutX="159.0" layoutY="260.0" text="Username:" />
       <Label layoutX="163.0" layoutY="314.0" text="Password:" />
+      <Button layoutX="14.0" layoutY="361.0" mnemonicParsing="false" onAction="#goBack" text="Back" />
    </children>
 </AnchorPane>
