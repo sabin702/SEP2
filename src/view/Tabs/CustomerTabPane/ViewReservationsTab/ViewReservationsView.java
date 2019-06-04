@@ -5,7 +5,9 @@ import javafx.beans.property.ObjectProperty;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TablePosition;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import viewmodel.ReservationsTab.ReservationsViewModel;
@@ -52,9 +54,6 @@ public class ViewReservationsView {
         }
     }
 
-    private ObjectProperty< ObservableList<Reservation> > propertyReservations;
-
-
     public void init(ViewReservationsViewModel viewReservationsViewModel) {
         this.viewModel = viewReservationsViewModel;
 
@@ -69,6 +68,13 @@ public class ViewReservationsView {
         statusColumn.setCellValueFactory(new PropertyValueFactory<>("status"));
         insuranceColumn.setCellValueFactory(new PropertyValueFactory<>("insurance"));
         priceColumn.setCellValueFactory(new PropertyValueFactory<>("price"));
+
+        for (int i = 0; i < tableView.getItems().size(); i++) {
+            System.out.println(statusColumn.getCellObservableValue(i).getValue());
+            statusColumn.getCellObservableValue(i).getValue();
+            statusColumn.getCellObservableValue(i);
+        }
+
     }
 
 }

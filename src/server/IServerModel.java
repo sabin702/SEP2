@@ -29,6 +29,8 @@ public interface IServerModel extends Remote {
 
     void deleteReservation(String reservationId) throws RemoteException;
 
+    void approveReservation(String reservationId) throws RemoteException;
+
     Reservation getReservation(String registrationId) throws RemoteException;
 
     ReservationList getReservations() throws RemoteException;
@@ -36,6 +38,8 @@ public interface IServerModel extends Remote {
     void addCustomer(String username, String password, String firstName, String lastName, Date dateOfBirth) throws RemoteException;
 
     void deleteCustomer(String username) throws RemoteException;
+
+    void editCustomer(String username, String firstName, String lastName, String password) throws RemoteException;
 
     Customer getCustomer(String username) throws RemoteException;
 

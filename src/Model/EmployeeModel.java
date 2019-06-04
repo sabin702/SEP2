@@ -11,7 +11,7 @@ public interface EmployeeModel{
 
     void setClient(Client client);
 
-    void approveReservation(String reservationID);
+    void approveReservation(String reservationID) throws RemoteException;
 
     void deleteReservation(String reservationID) throws RemoteException;
 

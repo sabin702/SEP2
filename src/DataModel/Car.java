@@ -104,7 +104,7 @@ public class Car implements Serializable {
 
     public String toString(){
 
-        return make + ", " + category;
+        return make + ", " + category + " (" + getPrice() + " DKK/day)";
     }
 
     public boolean equals(Object obj){

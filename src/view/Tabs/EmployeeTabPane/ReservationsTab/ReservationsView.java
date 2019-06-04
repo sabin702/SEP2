@@ -47,7 +47,7 @@ public class ReservationsView {
 
     @FXML
     void approveReservation(ActionEvent event) throws RemoteException {
-
+        viewModel.approveReservation(tableView.getSelectionModel().getSelectedItem().getReservationId());
     }
 
     @FXML
@@ -60,6 +60,8 @@ public class ReservationsView {
 
     public void init(ReservationsViewModel reservationsViewModel) {
         this.viewModel = reservationsViewModel;
+
+
 
         //System.out.println(viewModel.getReservationsList().size());
 

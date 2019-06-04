@@ -88,6 +88,11 @@ public class RMIClient  implements IRMIClient{
     }
 
     @Override
+    public void approveReservation(String reservationID) throws RemoteException {
+        serverModel.approveReservation(reservationID);
+    }
+
+    @Override
     public Reservation getReservation(String reservationId) throws RemoteException {
         return serverModel.getReservation(reservationId);
     }
@@ -112,6 +117,11 @@ public class RMIClient  implements IRMIClient{
     @Override
     public void deleteCustomer(String username) throws RemoteException {
         serverModel.deleteCustomer(username);
+    }
+
+    @Override
+    public void editCustomer(String username, String firstName, String lastName, String password) throws RemoteException {
+        serverModel.editCustomer(username, firstName, lastName, password);
     }
 
     @Override

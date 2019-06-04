@@ -25,22 +25,24 @@ public class AccountView {
     private TextField surnameTextField;
 
     @FXML
-    private PasswordField passwordTextField;
+    private TextField passwordTextField;
 
     @FXML
     private CheckBox passwordVisibilityCheckBox;
 
     @FXML
-    void editUserData(ActionEvent event) {
+    void editUserData(ActionEvent event) throws RemoteException {
         if (editButton.getText().equals("Edit")) {
             nameTextField.setEditable(true);
             surnameTextField.setEditable(true);
-            //passwordTextField.setEditable(true);
+            passwordTextField.setEditable(true);
             editButton.setText("Save");
         } else if (editButton.getText().equals("Save")) {
             nameTextField.setEditable(false);
             surnameTextField.setEditable(false);
-            //passwordTextField.setEditable(false);
+            passwordTextField.setEditable(false);
+            Customer customer = viewModel.getCustomer(viewModel.getUsername());
+            viewModel.editCustomer(customer.getUsername(), nameTextField.getText(), surnameTextField.getText(), passwordTextField.getText());
             editButton.setText("Edit");
         }
 

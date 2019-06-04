@@ -23,8 +23,8 @@ public class EmployeeModelImpl implements EmployeeModel, Serializable{
     }
 
     @Override
-    public void approveReservation(String reservationID) {
-
+    public void approveReservation(String reservationID) throws RemoteException {
+        client.approveReservation(reservationID);
     }
 
     @Override

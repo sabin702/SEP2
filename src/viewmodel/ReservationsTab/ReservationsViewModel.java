@@ -72,6 +72,10 @@ public class ReservationsViewModel {
         System.out.println("Item deleted");
     }
 
+    public void approveReservation(String reservationId) throws RemoteException {
+        model.approveReservation(reservationId);
+    }
+
     /*public void reservationAdded(PropertyChangeEvent evt){
         System.out.println("here");
         //reservations.add((Reservation) evt.getNewValue());

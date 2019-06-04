@@ -1,6 +1,5 @@
 package Client;
 
-import CustomerClient.CustomerClient;
 import Model.*;
 import javafx.application.Application;
 import javafx.stage.Stage;

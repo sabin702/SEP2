@@ -16,6 +16,8 @@ public interface CustomerModel {
 
     void createAccount(String username, String password, String firstName, String lastName, Date dateOfBirth) throws RemoteException;
 
+    void editCustomer(String username, String firstName, String lastName, String password) throws RemoteException;
+
     Customer getCustomer(String username) throws RemoteException;
 
     boolean logIn(String username, String password) throws RemoteException;

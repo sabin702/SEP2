@@ -39,6 +39,8 @@ public class Reservation implements Serializable {
         this.lastName = lastName;
         this.age = age;
         this.price = price;
+        this.insurance = insurance;
+        this.status = status;
         navigationOption = "no";
         childSeatOption = "no";
         insuranceOption = "no";
@@ -51,7 +53,11 @@ public class Reservation implements Serializable {
             navigationOption = "yes";
         }
         if(insurance == 1){
-            insuranceOption = "yes";
+            insuranceOption = "Basic";
+        } else if(insurance == 2){
+            insuranceOption = "Medium";
+        } else if(insurance == 3){
+            insuranceOption = "Full Coverage";
         }
 
     }

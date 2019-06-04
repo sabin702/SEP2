@@ -207,6 +207,27 @@ public class Database implements Serializable {
 
     }
 
+    public void approveReservation(String reservationId){
+        String sql = "UPDATE \"SEP2\".reservation SET "
+                + "status=" + 1
+                + " WHERE reservationId="
+                + "'" + reservationId + "'";
+
+        try {
+
+            connectToDatabase();
+
+            stmt.executeUpdate(sql);
+
+            stmt.close();
+            c.close();
+        } catch (SQLException e) {
+            System.out.println("Oops something went wrong with " +
+                    "the sql syntax for deleting a car(Database.java)");
+            e.printStackTrace();
+        }
+    }
+
     public Reservation getReservation(String reservationId){
         String sql = "SELECT * FROM \"SEP2\".reservation WHERE reservationId = '" +  reservationId + "'";
 
@@ -317,6 +338,29 @@ public class Database implements Serializable {
         }
     }
 
+    public void editCustomer(String username, String firstName, String lastName, String password){
+        String sql = "UPDATE \"SEP2\".customer SET "
+                + "firstName='" + firstName + "', "
+                + "lastName='" + lastName + "', "
+                + "password='" + password
+                + "' WHERE username="
+                + "'" + username + "'";
+
+        try {
+
+            connectToDatabase();
+
+            stmt.executeUpdate(sql);
+
+            stmt.close();
+            c.close();
+        } catch (SQLException e) {
+            System.out.println("Oops something went wrong with " +
+                    "the sql syntax for deleting a car(Database.java)");
+            e.printStackTrace();
+        }
+    }
+
     public Customer getCustomer(String username){
         String sql = "SELECT * FROM \"SEP2\".customer" + " WHERE username ="
                 + "'" + username + "'";
@@ -378,7 +422,7 @@ public class Database implements Serializable {
         try {
             Class.forName("org.postgresql.Driver");
             c = DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres",
-                    "postgres", "1357");
+                    "postgres", "password");
             System.out.println("Database open ok");
 
             stmt = c.createStatement();

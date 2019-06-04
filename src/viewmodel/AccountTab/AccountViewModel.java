@@ -29,6 +29,10 @@ public class AccountViewModel {
         return userName;
     }
 
+    public void editCustomer(String username, String firstName, String lastName, String password) throws RemoteException {
+        cm.editCustomer(username, firstName, lastName, password);
+    }
+
     public Customer getCustomer(String userName) throws RemoteException {
         return cm.getCustomer(userName);
     }

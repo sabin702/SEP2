@@ -93,6 +93,12 @@ public class ServerModel implements IServerModel {
     }
 
     @Override
+    public void approveReservation(String reservationId) throws RemoteException {
+        database.approveReservation(reservationId);
+        callClientUpdateReservation();
+    }
+
+    @Override
     public Reservation getReservation(String reservationId) throws RemoteException {
         reservationId = reservationId.toUpperCase();
         return database.getReservation(reservationId);
@@ -112,6 +118,12 @@ public class ServerModel implements IServerModel {
     @Override
     public void deleteCustomer(String username) throws RemoteException {
         database.deleteCustomer(username);
+    }
+
+    @Override
+    public void editCustomer(String username, String firstName, String lastName, String password) throws RemoteException {
+        database.editCustomer(username, firstName, lastName, password);
+        callClientUpdateUsers();
     }
 
     @Override

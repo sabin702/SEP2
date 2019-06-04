@@ -56,8 +56,8 @@ public class CarsView {
         int selectedIndex = tableView.getSelectionModel().getSelectedIndex();
         if (editButton.getText().equals("Edit")) {
             if (selectedIndex >= 0) {
-                //tableView.getSelectionModel();
-                System.out.println(tableView.getItems().get(selectedIndex).getRegistrationNumber());
+                //mileageColumn.getColumns().get(tableView.getSelectionModel().getSelectedIndex()).setEditable(true);
+                //System.out.println(tableView.getItems().get(selectedIndex).getRegistrationNumber());
             }
             editButton.setText("Save");
         }else if(editButton.getText().equals("Save")) {
@@ -83,6 +83,8 @@ public class CarsView {
         yearColumn.setCellValueFactory(new PropertyValueFactory<>("productionYear"));
         availabilityColumn.setCellValueFactory(new PropertyValueFactory<>("availability"));
         priceColumn.setCellValueFactory(new PropertyValueFactory<>("price"));
+
+
     }
 
 

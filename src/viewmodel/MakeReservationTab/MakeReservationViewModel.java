@@ -5,6 +5,7 @@ import DataModel.CarList;
 import DataModel.Customer;
 import DataModel.ReservationList;
 import Model.CustomerModel;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import view.ViewHandler;
 
@@ -19,6 +20,7 @@ public class MakeReservationViewModel {
     private ObservableList<Car> cars;
 
     public MakeReservationViewModel(ViewHandler viewHandler, CustomerModel cm) throws RemoteException {
+        cars = FXCollections.observableArrayList();
         this.viewHandler = viewHandler;
         this.model = cm;
         model.addListener("CarsUpdated",this::updateCarsList);
@@ -27,7 +29,7 @@ public class MakeReservationViewModel {
     }
 
     private void updateCarsList(PropertyChangeEvent propertyChangeEvent) {
-        cars.clear();
+        cars.removeAll();
         System.out.println(cars.size());
         System.out.println("updated");
 

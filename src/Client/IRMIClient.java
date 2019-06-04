@@ -29,6 +29,8 @@ public interface IRMIClient extends Remote {
 
     void deleteReservation(String reservationId) throws RemoteException;
 
+    void approveReservation(String reservationID) throws RemoteException;
+
     Reservation getReservation(String reservationId) throws RemoteException;
 
     ReservationList getReservations() throws RemoteException;
@@ -36,6 +38,8 @@ public interface IRMIClient extends Remote {
     void addCustomer(Customer customer) throws RemoteException;
 
     void deleteCustomer(String username) throws RemoteException;
+
+    void editCustomer(String username, String firstName, String lastName, String password) throws RemoteException;
 
     Customer getCustomer(String username) throws RemoteException;
 

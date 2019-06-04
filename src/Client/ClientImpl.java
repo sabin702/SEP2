@@ -56,6 +56,11 @@ public class ClientImpl implements Client {
     }
 
     @Override
+    public void approveReservation(String reservationId) throws RemoteException {
+        client.approveReservation(reservationId);
+    }
+
+    @Override
     public Reservation getReservation(String reservationId) throws RemoteException {
         return client.getReservation(reservationId);
     }
@@ -73,6 +78,11 @@ public class ClientImpl implements Client {
     @Override
     public void deleteCustomer(String username) throws RemoteException {
         client.deleteCustomer(username);
+    }
+
+    @Override
+    public void editCustomer(String username, String firstName, String lastName, String password) throws RemoteException {
+        client.editCustomer(username, firstName, lastName, password);
     }
 
     @Override

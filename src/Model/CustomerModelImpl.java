@@ -38,6 +38,11 @@ public class CustomerModelImpl implements CustomerModel, Serializable {
     }
 
     @Override
+    public void editCustomer(String username, String firstName, String lastName, String password) throws RemoteException {
+        client.editCustomer(username, firstName, lastName, password);
+    }
+
+    @Override
     public Customer getCustomer(String username) throws RemoteException {
         return client.getCustomer(username);
     }
