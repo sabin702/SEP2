@@ -6,13 +6,13 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="510.0" prefWidth="745.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.Tabs.EmployeeTabPane.CarsTab.CarsView">
+<AnchorPane prefHeight="510.0" prefWidth="745.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.Tabs.EmployeeTabPane.CarsTab.CarsView">
    <children>
       <Button layoutX="23.0" layoutY="107.0" mnemonicParsing="false" onAction="#deleteCar" prefHeight="57.0" prefWidth="90.0" text="Delete" />
       <Button fx:id="editButton" layoutX="23.0" layoutY="358.0" mnemonicParsing="false" onAction="#editCar" prefHeight="57.0" prefWidth="90.0" text="Edit" />
       <ScrollPane layoutX="126.0" prefHeight="510.0" prefWidth="619.0">
          <content>
-            <TableView fx:id="tableView" prefHeight="511.0" prefWidth="620.0">
+            <TableView fx:id="tableView" editable="true" prefHeight="511.0" prefWidth="620.0">
                <columns>
                   <TableColumn fx:id="registrationColumn" prefWidth="99.0" text="Registration" />
                   <TableColumn fx:id="makeColumn" prefWidth="109.0" text="Make" />

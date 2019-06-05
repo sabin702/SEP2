@@ -9,7 +9,7 @@
    <children>
       <ImageView fitHeight="213.0" fitWidth="367.0">
          <image>
-            <Image url="@../../../../../Desktop/rent%20n%20go.jpg" />
+            <Image url="@../../photos/rent%20n%20go.jpg" />
          </image>
       </ImageView>
       <Button layoutX="57.0" layoutY="155.0" mnemonicParsing="false" onAction="#viewCreateAccountFields" text="Create account" />
