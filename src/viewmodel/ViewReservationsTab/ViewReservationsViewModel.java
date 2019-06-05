@@ -3,7 +3,7 @@ package viewmodel.ViewReservationsTab;
 
 import DataModel.Reservation;
 import DataModel.ReservationList;
-import Model.CustomerModel;
+import Model.Customer.CustomerModel;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import view.ViewHandler;
@@ -26,10 +26,7 @@ public class ViewReservationsViewModel implements Serializable {
 
         getReservations();
 
-        model.addListener("ReservationsUpdated", this::updateReservationList);
-
-
-
+        model.addListener("CustomerReservationsUpdated", this::updateReservationList);
     }
 
     private void updateReservationList(PropertyChangeEvent propertyChangeEvent) {
@@ -47,8 +44,8 @@ public class ViewReservationsViewModel implements Serializable {
 
     private void getReservations() {
         try {
-            for (int i = 0; i < model.viewReservations().size(); i++) {
-                Reservation temp = model.viewReservations().getReservation(i);
+            for (int i = 0; i < model.getCustomerReservations().size(); i++) {
+                Reservation temp = model.getCustomerReservations().getReservation(i);
                 reservations.add(temp);
             }
         } catch (RemoteException e) {
@@ -93,5 +90,6 @@ public class ViewReservationsViewModel implements Serializable {
     public void openDeleteReservation() {
         viewHandler.openReservationDeleted();
     }
+
 }
 

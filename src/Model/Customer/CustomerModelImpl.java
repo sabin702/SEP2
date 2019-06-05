@@ -1,7 +1,6 @@
-package Model;
+package Model.Customer;
 
-import Client.Client;
-import Client.ClientProvider;
+import Client.CustomerClient.CustomerClient;
 import DataModel.CarList;
 import DataModel.Customer;
 import DataModel.Reservation;
@@ -14,16 +13,10 @@ import java.util.Date;
 
 public class CustomerModelImpl implements CustomerModel, Serializable {
 
-    private Client client;
-    private ClientProvider provider;
-
-
-    public CustomerModelImpl()  {
-
-    }
+    private CustomerClient client;
 
     @Override
-    public void setClient(Client client) {
+    public void setClient(CustomerClient client) {
         this.client = client;
     }
 
@@ -65,9 +58,7 @@ public class CustomerModelImpl implements CustomerModel, Serializable {
 
     @Override
     public void deleteReservation(String reservationId) throws RemoteException {
-        Reservation reservation = client.getReservation(reservationId);
         client.deleteReservation(reservationId);
-        //changeSupport.firePropertyChange("ReservationDeleted", null, reservation);
     }
 
     @Override
@@ -76,13 +67,13 @@ public class CustomerModelImpl implements CustomerModel, Serializable {
     }
 
     @Override
-    public void changeUserData() {
-
+    public ReservationList viewReservations() throws RemoteException {
+        return client.getReservations();
     }
 
     @Override
-    public ReservationList viewReservations() throws RemoteException {
-        return client.getReservations();
+    public ReservationList getCustomerReservations() throws RemoteException {
+        return client.getCustomerReservations();
     }
 
     @Override
@@ -95,26 +86,5 @@ public class CustomerModelImpl implements CustomerModel, Serializable {
         client.addListener(eventName, listener);
     }
 
-    @Override
-    public void fireUpdateReservations() throws RemoteException {
-        client.fireUpdateReservations();
 
-    }
-
-    /*@Override
-    public void addListener(String eventName, PropertyChangeListener listener) throws RemoteException {
-
-            client.addListener(eventName,listener);
-
-    }*/
-
-
-    /*public void addListener(IServerListener listener) {
-        try {
-            client.addServerListener(listener);
-            System.out.println("Dodany listener");
-        } catch (RemoteException e) {
-            e.printStackTrace();
-        }
-    }*/
 }

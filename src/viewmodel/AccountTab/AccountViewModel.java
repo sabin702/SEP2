@@ -1,7 +1,7 @@
 package viewmodel.AccountTab;
 
 import DataModel.Customer;
-import Model.CustomerModel;
+import Model.Customer.CustomerModel;
 import view.ViewHandler;
 
 import java.io.IOException;

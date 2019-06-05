@@ -18,15 +18,8 @@ public class CarsDAOImpl implements CarsDAO{
 
         database = new Database();
 
-        /*c = null;
-
-        stmt = null;
-
-        connectToDatabase();
-*/
         c = database.getC();
         stmt = database.getStmt();
-
     }
 
     @Override
@@ -124,7 +117,6 @@ public class CarsDAOImpl implements CarsDAO{
             }
             rs.close();
 
-            //stmt.close();
             c.close();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -158,7 +150,6 @@ public class CarsDAOImpl implements CarsDAO{
             }
             rs.close();
 
-            //stmt.close();
             c.close();
         } catch (SQLException e) {
             e.printStackTrace();

@@ -1,23 +1,17 @@
-package Client;
+package Client.EmployeeClient;
 
+import Client.RMIClient.IRMIClient;
 import DataModel.*;
 
 import java.beans.PropertyChangeListener;
 import java.rmi.RemoteException;
 
-public class ClientImpl implements Client {
+public class EmployeeClientImpl implements EmployeeClient{
 
-    private CarList cars;
     private IRMIClient client;
 
-    public ClientImpl(IRMIClient client){
-        cars = new CarList();
+    public EmployeeClientImpl(IRMIClient client) {
         this.client = client;
-    }
-
-    @Override
-    public boolean logIn(String username, String password) throws RemoteException {
-        return client.logIn(username, password);
     }
 
     @Override
@@ -46,11 +40,6 @@ public class ClientImpl implements Client {
     }
 
     @Override
-    public void addReservation(Reservation reservation) throws RemoteException {
-        client.addReservation(reservation);
-    }
-
-    @Override
     public void deleteReservation(String reservationId) throws RemoteException {
         client.deleteReservation(reservationId);
     }
@@ -71,21 +60,6 @@ public class ClientImpl implements Client {
     }
 
     @Override
-    public void addCustomer(Customer customer) throws RemoteException {
-        client.addCustomer(customer);
-    }
-
-    @Override
-    public void deleteCustomer(String username) throws RemoteException {
-        client.deleteCustomer(username);
-    }
-
-    @Override
-    public void editCustomer(String username, String firstName, String lastName, String password) throws RemoteException {
-        client.editCustomer(username, firstName, lastName, password);
-    }
-
-    @Override
     public Customer getCustomer(String username) throws RemoteException {
         return client.getCustomer(username);
     }
@@ -99,20 +73,4 @@ public class ClientImpl implements Client {
     public void addListener(String eventName, PropertyChangeListener listener) throws RemoteException {
         client.addListener(eventName, listener);
     }
-
-    @Override
-    public void fireUpdateReservations() throws RemoteException {
-        client.fireUpdateReservations();
-    }
-
-    @Override
-    public void fireUpdateUsers() throws RemoteException {
-        client.fireUpdateUsers();
-    }
-
-    @Override
-    public void fireUpdateCars() throws RemoteException {
-        client.fireUpdateCars();
-    }
-
 }

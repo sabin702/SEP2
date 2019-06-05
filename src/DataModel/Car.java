@@ -50,10 +50,6 @@ public class Car implements Serializable {
         return make;
     }
 
-    public void setMake(String make) {
-        this.make = make;
-    }
-
     public int getMileage() {
         return mileage;
     }
@@ -66,16 +62,8 @@ public class Car implements Serializable {
         return color;
     }
 
-    public void setColor(String color) {
-        this.color = color;
-    }
-
     public int getProductionYear() {
         return productionYear;
-    }
-
-    public void setProductionYear(int productionYear) {
-        this.productionYear = productionYear;
     }
 
     public int getAvailability() {

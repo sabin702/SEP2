@@ -1,9 +1,9 @@
-package Employee_Client;
+package Client.EmployeeClient;
 
 import DataModel.*;
 
+import java.beans.PropertyChangeListener;
 import java.rmi.RemoteException;
-import java.util.Date;
 
 public interface EmployeeClient {
 
@@ -19,14 +19,16 @@ public interface EmployeeClient {
 
     void deleteReservation(String reservationId) throws RemoteException;
 
-    Reservation getReservation(String registrationId) throws RemoteException;
+    void approveReservation(String reservationId) throws RemoteException;
+
+    Reservation getReservation(String reservationId) throws RemoteException;
 
     ReservationList getReservations() throws RemoteException;
 
-    void deleteCustomer(String username);
-
     Customer getCustomer(String username) throws RemoteException;
 
-    CustomerList getCustomers();
+    CustomerList getCustomers() throws RemoteException;
+
+    void addListener(String eventName, PropertyChangeListener listener) throws RemoteException;
 
 }

@@ -1,12 +1,10 @@
 package viewmodel.UsersTab;
 
-import DataModel.Car;
 import DataModel.Customer;
 import DataModel.CustomerList;
-import Model.EmployeeModel;
+import Model.Employee.EmployeeModel;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import view.ViewHandler;
 
 import java.beans.PropertyChangeEvent;
 import java.rmi.RemoteException;

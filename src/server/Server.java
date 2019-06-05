@@ -11,7 +11,7 @@ public class Server {
 
         try {
             Registry registry = LocateRegistry.createRegistry(1099);
-            ServerModel serverModel = new ServerModel();
+            IServerModel serverModel = new ServerModel();
             registry.bind("server", serverModel);
 
             System.out.println("Server has been started!");

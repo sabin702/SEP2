@@ -17,6 +17,8 @@ public interface ReservationsDAO {
 
     ReservationList getReservations();
 
+    ReservationList getCustomerReservations(String userName);
+
     void connectToDatabase();
 
 }

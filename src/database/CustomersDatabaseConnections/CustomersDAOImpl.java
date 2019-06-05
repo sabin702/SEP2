@@ -21,13 +21,6 @@ public class CustomersDAOImpl implements CustomersDAO{
         c = database.getC();
 
         stmt = database.getStmt();
-
-       /* c = null;
-
-        stmt = null;
-
-        connectToDatabase();
-*/
     }
 
     @Override
@@ -142,7 +135,6 @@ public class CustomersDAOImpl implements CustomersDAO{
             }
             rs.close();
 
-            //stmt.close();
             c.close();
         } catch (SQLException e) {
             e.printStackTrace();

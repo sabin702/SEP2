@@ -3,7 +3,8 @@ package viewmodel;
 
 
 import Model.*;
-import com.sun.glass.ui.View;
+import Model.Customer.CustomerModel;
+import Model.Employee.EmployeeModel;
 import view.ViewHandler;
 import viewmodel.AccountAndLogIn.CreateAccountAndLogInViewModel;
 import viewmodel.AccountAndLogIn.CreateAccountViewModel;

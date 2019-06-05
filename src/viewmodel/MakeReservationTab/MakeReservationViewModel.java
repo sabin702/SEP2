@@ -4,7 +4,7 @@ import DataModel.Car;
 import DataModel.CarList;
 import DataModel.Customer;
 import DataModel.ReservationList;
-import Model.CustomerModel;
+import Model.Customer.CustomerModel;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import view.ViewHandler;
@@ -29,7 +29,7 @@ public class MakeReservationViewModel {
     }
 
     private void updateCarsList(PropertyChangeEvent propertyChangeEvent) {
-        cars.removeAll();
+        cars.clear();
         System.out.println(cars.size());
         System.out.println("updated");
 

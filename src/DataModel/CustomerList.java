@@ -19,14 +19,6 @@ public class CustomerList implements Serializable {
         customers.add(index, customer);
     }
 
-    public void removeCustomer(Customer customer){
-        customers.remove(customer);
-    }
-
-    public void removeCustomer(int index){
-        customers.remove(index);
-    }
-
     public int size(){
         return customers.size();
     }

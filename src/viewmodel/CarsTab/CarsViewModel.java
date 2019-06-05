@@ -2,7 +2,7 @@ package viewmodel.CarsTab;
 
 import DataModel.Car;
 import DataModel.CarList;
-import Model.EmployeeModel;
+import Model.Employee.EmployeeModel;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import view.ViewHandler;

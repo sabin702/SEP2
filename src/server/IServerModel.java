@@ -1,10 +1,8 @@
 package server;
 
-import Client.IRMIClient;
+import Client.RMIClient.IRMIClient;
 import DataModel.*;
 
-import java.beans.PropertyChangeListener;
-import java.io.Serializable;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.Date;
@@ -12,8 +10,6 @@ import java.util.Date;
 public interface IServerModel extends Remote {
 
     boolean logIn(String userName, String password, IRMIClient client) throws RemoteException;
-
-    //void addClient(IRMIClient IRMIClient) throws RemoteException;
 
     void addCar(Car car) throws RemoteException;
 
@@ -35,6 +31,8 @@ public interface IServerModel extends Remote {
 
     ReservationList getReservations() throws RemoteException;
 
+    ReservationList getCustomerReservations(String userName) throws RemoteException;
+
     void addCustomer(String username, String password, String firstName, String lastName, Date dateOfBirth) throws RemoteException;
 
     void deleteCustomer(String username) throws RemoteException;
@@ -46,8 +44,13 @@ public interface IServerModel extends Remote {
     CustomerList getCustomers() throws RemoteException;
 
     void callClientUpdateReservation()throws RemoteException;
+
+    void callCustomerClientUpdateReservation()throws RemoteException;
+
     void addClient(IRMIClient c) throws RemoteException;
+
     void callClientUpdateUsers() throws RemoteException;
+
     void callClientUpdateCars() throws RemoteException;
 
 

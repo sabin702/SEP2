@@ -1,28 +1,37 @@
 package Client;
 
+import Client.CustomerClient.*;
+import Client.EmployeeClient.EmployeeClient;
+import Client.EmployeeClient.EmployeeClientImpl;
+import Client.RMIClient.IRMIClient;
+import Client.RMIClient.RMIClient;
+
 import java.io.Serializable;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 
 public class ClientProvider implements Serializable {
 
-    private Client client;
-   private IRMIClient rmiClient;
+    private CustomerClient customerClient;
+    private EmployeeClient employeeClient;
+    private IRMIClient rmiClient;
 
     public ClientProvider() throws RemoteException, NotBoundException {
 
             rmiClient = new RMIClient();
-            client = new ClientImpl(rmiClient);
-
+            customerClient = new CustomerClientImpl(rmiClient);
+            employeeClient = new EmployeeClientImpl(rmiClient);
     }
 
-    public Client getClient() throws RemoteException, NotBoundException {
-
-        return client;
+    public CustomerClient getCustomerClient(){
+        return customerClient;
     }
 
-    public IRMIClient getRMIClient() throws RemoteException, NotBoundException {
+    public EmployeeClient getEmployeeClient(){
+        return employeeClient;
+    }
 
+    public IRMIClient getRMIClient(){
         return rmiClient;
     }
 }

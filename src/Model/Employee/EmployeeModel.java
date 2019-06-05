@@ -1,15 +1,14 @@
-package Model;
+package Model.Employee;
 
-import Client.Client;
 import DataModel.*;
+import Client.EmployeeClient.EmployeeClient;
 
 import java.beans.PropertyChangeListener;
-import java.io.Serializable;
 import java.rmi.RemoteException;
 
 public interface EmployeeModel{
 
-    void setClient(Client client);
+    void setClient(EmployeeClient client);
 
     void approveReservation(String reservationID) throws RemoteException;
 
@@ -30,11 +29,6 @@ public interface EmployeeModel{
     ReservationList getReservations() throws RemoteException;
 
     void addListener(String eventName, PropertyChangeListener listener) throws RemoteException;
-
-    void fireUpdateReservations() throws RemoteException;
-    void fireUpdateUsers() throws RemoteException;
-    void fireUpdateCars() throws RemoteException;
-
 
     CustomerList getCustomers() throws RemoteException;
 }

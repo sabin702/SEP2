@@ -122,8 +122,6 @@ public class Reservation implements Serializable {
         return lastName;
     }
 
-
-
     public int getAge() {
         return age;
     }
@@ -138,22 +136,6 @@ public class Reservation implements Serializable {
 
     public int getStatus() {
         return status;
-    }
-
-    public String getNavigationOption() {
-        return navigationOption;
-    }
-
-    public String getChildSeatOption() {
-        return childSeatOption;
-    }
-
-    public String getInsuranceOption() {
-        return insuranceOption;
-    }
-
-    public String getReservationStatus() {
-        return reservationStatus;
     }
 
     public String toString(){

@@ -19,14 +19,6 @@ public class CarList implements Serializable {
         cars.add(index, car);
     }
 
-    public void removeCar(Car car){
-        cars.remove(car);
-    }
-
-    public void removeCar(int index){
-        cars.remove(index);
-    }
-
     public int size(){
         return cars.size();
     }

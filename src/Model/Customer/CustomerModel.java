@@ -1,6 +1,6 @@
-package Model;
+package Model.Customer;
 
-import Client.Client;
+import Client.CustomerClient.CustomerClient;
 import DataModel.CarList;
 import DataModel.Customer;
 import DataModel.Reservation;
@@ -12,7 +12,7 @@ import java.util.Date;
 
 public interface CustomerModel {
 
-    void setClient(Client client);
+    void setClient(CustomerClient client);
 
     void createAccount(String username, String password, String firstName, String lastName, Date dateOfBirth) throws RemoteException;
 
@@ -28,17 +28,13 @@ public interface CustomerModel {
 
     Reservation getReservation(String reservationId) throws RemoteException;
 
-    void changeUserData();
-
     ReservationList viewReservations() throws RemoteException;
 
+    ReservationList getCustomerReservations() throws RemoteException;
+
     CarList getCars() throws RemoteException;
+
     void addListener(String eventName, PropertyChangeListener listener) throws RemoteException;
 
-    void fireUpdateReservations() throws RemoteException;
-
-    /*void addListener(String eventName, PropertyChangeListener listener) throws RemoteException;*/
-
-    /*void addListener(IServerListener listener) throws RemoteException;*/
 
 }

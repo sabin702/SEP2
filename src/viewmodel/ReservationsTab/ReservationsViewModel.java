@@ -4,14 +4,12 @@ package viewmodel.ReservationsTab;
 import DataModel.Customer;
 import DataModel.Reservation;
 import DataModel.ReservationList;
-import Model.CustomerModel;
-import Model.EmployeeModel;
+import Model.Employee.EmployeeModel;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import view.ViewHandler;
 
 import java.beans.PropertyChangeEvent;
-import java.io.Serializable;
 import java.rmi.RemoteException;
 
 public class ReservationsViewModel {

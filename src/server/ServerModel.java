@@ -1,6 +1,6 @@
 package server;
 
-import Client.IRMIClient;
+import Client.RMIClient.IRMIClient;
 import DataModel.*;
 import database.CarsDatabaseConnection.CarsDAO;
 import database.CarsDatabaseConnection.CarsDAOImpl;
@@ -83,6 +83,7 @@ public class ServerModel implements IServerModel {
     public void addReservation(String reservationId, String carRegNo, String username, Date dateFrom, Date dateTo, int navigation, int childseat, String firstName, String lastName, int age, int price, int insurance, int status) throws RemoteException {
         reservationsDAO.addReservation(reservationId, carRegNo, username, dateFrom, dateTo, navigation, childseat, firstName, lastName, age, price, insurance, status);
         callClientUpdateReservation();
+        callCustomerClientUpdateReservation();
     }
 
     @Override
@@ -90,13 +91,14 @@ public class ServerModel implements IServerModel {
         reservationId = reservationId.toUpperCase();
         reservationsDAO.deleteReservation(reservationId);
         callClientUpdateReservation();
-
+        callCustomerClientUpdateReservation();
     }
 
     @Override
     public void approveReservation(String reservationId) throws RemoteException {
         reservationsDAO.approveReservation(reservationId);
         callClientUpdateReservation();
+        callCustomerClientUpdateReservation();
     }
 
     @Override
@@ -108,6 +110,11 @@ public class ServerModel implements IServerModel {
     @Override
     public ReservationList getReservations() throws RemoteException {
         return reservationsDAO.getReservations();
+    }
+
+    @Override
+    public ReservationList getCustomerReservations(String userName) throws RemoteException {
+        return reservationsDAO.getCustomerReservations(userName);
     }
 
     @Override
@@ -142,6 +149,14 @@ public class ServerModel implements IServerModel {
         System.out.println("call client method");
         for (int i = 0; i < clients.size(); i++) {
             clients.get(i).fireUpdateReservations();
+        }
+    }
+
+    @Override
+    public void callCustomerClientUpdateReservation() throws RemoteException {
+        System.out.println("call customer client method");
+        for (int i = 0; i < clients.size(); i++) {
+            clients.get(i).fireUpdateCustomerReservations();
         }
     }
 

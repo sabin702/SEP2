@@ -1,12 +1,12 @@
-package Client;
+package Client.RMIClient;
 
 import DataModel.*;
 
 import java.beans.PropertyChangeListener;
-import java.io.Serializable;
+import java.rmi.Remote;
 import java.rmi.RemoteException;
 
-public interface Client {
+public interface IRMIClient extends Remote {
 
     boolean logIn(String username, String password) throws RemoteException;
 
@@ -24,11 +24,13 @@ public interface Client {
 
     void deleteReservation(String reservationId) throws RemoteException;
 
-    void approveReservation(String reservationId) throws RemoteException;
+    void approveReservation(String reservationID) throws RemoteException;
 
     Reservation getReservation(String reservationId) throws RemoteException;
 
     ReservationList getReservations() throws RemoteException;
+
+    ReservationList getCustomerReservations() throws RemoteException;
 
     void addCustomer(Customer customer) throws RemoteException;
 
@@ -40,11 +42,11 @@ public interface Client {
 
     CustomerList getCustomers() throws RemoteException;
 
-    void addListener(String eventName, PropertyChangeListener listener) throws RemoteException;
-
-    void fireUpdateReservations()throws RemoteException;
-    void fireUpdateUsers()throws RemoteException;
+    void addListener(String event, PropertyChangeListener listener)throws RemoteException;
+    void fireUpdateReservations() throws RemoteException;
+    void fireUpdateUsers() throws RemoteException;
     void fireUpdateCars() throws RemoteException;
+    void fireUpdateCustomerReservations() throws RemoteException;
 
 
 

@@ -1,8 +1,7 @@
 package viewmodel.AccountAndLogIn;
 
 import DataModel.Customer;
-import Model.CustomerModel;
-import Model.CustomerModelImpl;
+import Model.Customer.CustomerModel;
 import view.ViewHandler;
 
 import java.io.IOException;

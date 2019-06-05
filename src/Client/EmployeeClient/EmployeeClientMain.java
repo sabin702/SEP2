@@ -1,4 +1,4 @@
-package Client;
+package Client.EmployeeClient;
 
 import javafx.application.Application;
 

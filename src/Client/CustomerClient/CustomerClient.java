@@ -1,17 +1,11 @@
-package Client;
+package Client.CustomerClient;
 
 import DataModel.*;
-import Model.CustomerModel;
-import server.IServerModel;
-import server.ServerModel;
 
 import java.beans.PropertyChangeListener;
-import java.io.Serializable;
-import java.rmi.Remote;
 import java.rmi.RemoteException;
-import java.util.Date;
 
-public interface IRMIClient extends Remote {
+public interface CustomerClient {
 
     boolean logIn(String username, String password) throws RemoteException;
 
@@ -29,11 +23,13 @@ public interface IRMIClient extends Remote {
 
     void deleteReservation(String reservationId) throws RemoteException;
 
-    void approveReservation(String reservationID) throws RemoteException;
+    void approveReservation(String reservationId) throws RemoteException;
 
     Reservation getReservation(String reservationId) throws RemoteException;
 
     ReservationList getReservations() throws RemoteException;
+
+    ReservationList getCustomerReservations() throws RemoteException;
 
     void addCustomer(Customer customer) throws RemoteException;
 
@@ -45,11 +41,6 @@ public interface IRMIClient extends Remote {
 
     CustomerList getCustomers() throws RemoteException;
 
-    void addListener(String event, PropertyChangeListener listener)throws RemoteException;
-    void fireUpdateReservations() throws RemoteException;
-    void fireUpdateUsers() throws RemoteException;
-    void fireUpdateCars() throws RemoteException;
-
-
+    void addListener(String eventName, PropertyChangeListener listener) throws RemoteException;
 
 }

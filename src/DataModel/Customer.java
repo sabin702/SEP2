@@ -1,13 +1,9 @@
 package DataModel;
 
 import java.io.Serializable;
-import java.time.Instant;
 import java.time.LocalDate;
-import java.time.Period;
 import java.time.ZoneId;
-import java.util.Calendar;
 import java.util.Date;
-import java.util.GregorianCalendar;
 
 public class Customer implements Serializable {
 
@@ -40,18 +36,6 @@ public class Customer implements Serializable {
 
     public String getLastName() {
         return lastName;
-    }
-
-    public String getDateOfBirth() {
-        Calendar calendar = new GregorianCalendar();
-        calendar.setTime(dateOfBirth);
-        int yearOfBirth = calendar.get(Calendar.YEAR);
-        int monthOfBirth = calendar.get(Calendar.MONTH) + 1;
-        int dayOfBirth = calendar.get(Calendar.DAY_OF_MONTH);
-
-        String str = yearOfBirth + "-" + monthOfBirth + "-" + dayOfBirth;
-
-        return str;
     }
 
     public Date getBirthDate(){

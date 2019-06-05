@@ -1,6 +1,6 @@
 package viewmodel.CarsTab;
 
-import Model.EmployeeModel;
+import Model.Employee.EmployeeModel;
 import view.ViewHandler;
 
 import java.rmi.RemoteException;
