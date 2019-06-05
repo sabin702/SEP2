@@ -1,4 +1,4 @@
-package Client.CustomerClient;
+package RunClients.Customer;
 
 import Client.*;
 import MVVM.Model.*;
