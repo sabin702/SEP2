@@ -9,6 +9,8 @@ import shared.DataModel.ReservationList;
 import java.beans.PropertyChangeListener;
 import java.io.Serializable;
 import java.rmi.RemoteException;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.Date;
 
 public class CustomerModelImpl implements CustomerModel, Serializable {
@@ -79,6 +81,36 @@ public class CustomerModelImpl implements CustomerModel, Serializable {
     @Override
     public CarList getCars() throws RemoteException {
         return client.getCars();
+    }
+
+    public int getNumberOfDays(Date date1, Date date2){
+        long difference = Math.abs(date2.getTime() - date1.getTime());
+        int days = (int) (difference / (1000 * 60 * 60 * 24));
+        return days;
+    }
+
+    @Override
+    public int calculateTotalPrice(String insuranceType, LocalDate localDate1, LocalDate localDate2, int carPrice, int navPrice, int csPrice) {
+        int insurancePrice  = 0;
+        if(insuranceType.equals("Basic (25 DKK/day)"))
+            insurancePrice = 25;
+        else if(insuranceType.equals("Medium (50 DKK/day)"))
+            insurancePrice =  50;
+        else if(insuranceType.equals("Full Coverage (100 DKK/day)"))
+            insurancePrice =  100;
+        int price = insurancePrice;
+        Date dateFrom = Date.from(localDate1.atStartOfDay(ZoneId.systemDefault()).toInstant());
+        Date dateTo = Date.from(localDate2.atStartOfDay(ZoneId.systemDefault()).toInstant());
+        System.out.println("Days: " + getNumberOfDays(dateFrom, dateTo));
+
+        if (dateFrom.equals(null) || dateTo.equals(null))
+            price = (carPrice + navPrice + csPrice + insurancePrice);
+        else if (dateFrom.equals(null) && dateTo.equals(null))
+            price = (carPrice + navPrice + csPrice + insurancePrice);
+        else
+            price = (carPrice + navPrice + csPrice + insurancePrice) * getNumberOfDays(dateFrom, dateTo);
+
+        return price;
     }
 
     @Override

@@ -8,6 +8,7 @@ import shared.DataModel.ReservationList;
 
 import java.beans.PropertyChangeListener;
 import java.rmi.RemoteException;
+import java.time.LocalDate;
 import java.util.Date;
 
 public interface CustomerModel {
@@ -33,6 +34,10 @@ public interface CustomerModel {
     ReservationList getCustomerReservations() throws RemoteException;
 
     CarList getCars() throws RemoteException;
+
+    int getNumberOfDays(Date date1, Date date2);
+
+    int calculateTotalPrice(String insuranceType, LocalDate localDate, LocalDate localDate2, int carPrice, int navPrice, int csPrice);
 
     void addListener(String eventName, PropertyChangeListener listener) throws RemoteException;
 

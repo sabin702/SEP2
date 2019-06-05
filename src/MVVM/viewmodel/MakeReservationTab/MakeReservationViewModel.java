@@ -11,6 +11,7 @@ import MVVM.view.ViewHandler;
 
 import java.beans.PropertyChangeEvent;
 import java.rmi.RemoteException;
+import java.time.LocalDate;
 import java.util.Date;
 
 public class MakeReservationViewModel {
@@ -71,6 +72,14 @@ public class MakeReservationViewModel {
 
     public Customer getCustomer(String userName) throws RemoteException {
         return model.getCustomer(userName);
+    }
+
+    public int getNumberOfDays(Date date1, Date date2){
+        return model.getNumberOfDays(date1, date2);
+    }
+
+    public int calculateTotalPrice(String insuranceType, LocalDate localDate1, LocalDate localDate2, int carPrice, int navPrice, int csPrice){
+        return model.calculateTotalPrice(insuranceType, localDate1, localDate2, carPrice, navPrice, csPrice);
     }
 
     public void openEmptyTextFields() {

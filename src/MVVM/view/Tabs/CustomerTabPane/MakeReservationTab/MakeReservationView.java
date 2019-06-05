@@ -18,6 +18,7 @@ import java.util.Random;
 public class MakeReservationView {
     private MakeReservationViewModel viewModel;
     private ObservableList<Car> cars;
+    private int price;
 
     @FXML
     private DatePicker dateFrom;
@@ -67,7 +68,7 @@ public class MakeReservationView {
 
             Random random = new Random();
             String reservationId = "R" + (random.nextInt(88888) + 10000);
-            int price = getCar().getPrice() * getNumberOfDays(dateFrom1, dateTo1);
+            int price = getCar().getPrice() * viewModel.getNumberOfDays(dateFrom1, dateTo1);
             int navigationOption = 0;
             int childSeatOption = 0;
             if (navigation.isSelected())
@@ -110,10 +111,10 @@ public class MakeReservationView {
         });
 
         LocalDate today = LocalDate.now();
-        LocalDate tommorow = today.plus(1, ChronoUnit.DAYS);
+        LocalDate tomorrow = today.plus(1, ChronoUnit.DAYS);
 
         dateFrom.setValue(today);
-        dateTo.setValue(tommorow);
+        dateTo.setValue(tomorrow);
         setCarList();
         setInsuranceList();
         updatePrice();
@@ -145,12 +146,6 @@ public class MakeReservationView {
         return null;
     }
 
-    public int getNumberOfDays(Date date1, Date date2){
-        long difference = Math.abs(date2.getTime() - date1.getTime());
-        int days = (int) (difference / (1000 * 60 * 60 * 24));
-        return days;
-    }
-
     public void clearFields(){
         dateFrom.getEditor().clear();
         dateTo.getEditor().clear();
@@ -163,7 +158,7 @@ public class MakeReservationView {
 
     public int getCarPrice(){
         car.getSelectionModel().selectedItemProperty().addListener( (options, oldValue, newValue) -> {
-            totalPrice.setText(calculateTotalPrice() + " dkk");
+            totalPrice.setText(price + " dkk");
 
             System.out.println("Insurance price: " + newValue);
                 }
@@ -200,43 +195,21 @@ public class MakeReservationView {
         Date dateFrom1 = Date.from(localDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
         localDate = dateTo.getValue();
         Date dateTo1 = Date.from(localDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
-        int price = getCarPrice() * getNumberOfDays(dateFrom1, dateTo1);
-        totalPrice.setText(100 + " dkk");
+        int price = getCarPrice() * viewModel.getNumberOfDays(dateFrom1, dateTo1);
+        totalPrice.setText(price + " dkk");
     }
 
-    public int calculateTotalPrice(){
-        int insurancePrice  = 0;
-        if(insuranceType.getValue().equals("Basic (25 DKK/day)"))
-            insurancePrice = 25;
-        else if(insuranceType.getSelectionModel().getSelectedItem().equals("Medium (50 DKK/day)"))
-            insurancePrice =  50;
-        else if(insuranceType.getSelectionModel().getSelectedItem().equals("Full Coverage (100 DKK/day)"))
-            insurancePrice =  100;
-        int price = insurancePrice;
-        LocalDate localDate = dateFrom.getValue();
-        Date dateFrom1 = Date.from(localDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
-        localDate = dateTo.getValue();
-        Date dateTo1 = Date.from(localDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
-        System.out.println("Days: " + getNumberOfDays(dateFrom1, dateTo1));
-
-        int carPrice = car.getSelectionModel().getSelectedItem().getPrice();
-        int navPrice = getNavigationPrice();
-        int csPrice = getChildSeatPrice();
-
-        if (dateFrom1.equals(null) || dateTo1.equals(null))
-            price = (carPrice + navPrice + csPrice + insurancePrice);
-        else if (dateFrom1.equals(null) && dateTo1.equals(null))
-            price = (carPrice + navPrice + csPrice + insurancePrice);
-        else
-            price = (carPrice + navPrice + csPrice + insurancePrice) * getNumberOfDays(dateFrom1, dateTo1);
-
-        return price;
-    }
 
     public void updatePrice(){
         insuranceType.getSelectionModel().selectedItemProperty().addListener( (options, oldValue, newValue) -> {
 
-                    totalPrice.setText(calculateTotalPrice() + " dkk");
+                    int carPrice = car.getSelectionModel().getSelectedItem().getPrice();
+                    int navigationPrice = getNavigationPrice();
+                    int csPrice = getChildSeatPrice();
+
+                    this.price = viewModel.calculateTotalPrice(insuranceType.getValue(), dateFrom.getValue(), dateTo.getValue(), carPrice, navigationPrice, csPrice);
+
+                    totalPrice.setText(price + " dkk");
 
                     System.out.println("Insurance price: " + newValue);
                 }

@@ -1,6 +1,7 @@
 package RunClients.Employee;
 
-import Client.*;
+
+import Client.ClientProvider;
 import MVVM.Model.*;
 import javafx.application.Application;
 import javafx.stage.Stage;
