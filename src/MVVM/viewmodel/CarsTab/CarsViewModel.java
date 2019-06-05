@@ -27,12 +27,12 @@ public class CarsViewModel {
         model.addListener("CarsUpdated", this::updateCarsList);
     }
 
-    private void updateCarsList(PropertyChangeEvent propertyChangeEvent) {
+    private void updateCarsList(PropertyChangeEvent evt) {
         cars.clear();
 
         System.out.println("updated");
 
-        CarList reservationList = (CarList) propertyChangeEvent.getNewValue();
+        CarList reservationList = (CarList) evt.getNewValue();
 
         for (int i = 0; i <reservationList.size(); i++) {
             Car temp = reservationList.getCar(i);
@@ -40,7 +40,7 @@ public class CarsViewModel {
         }
     }
 
-    private void getCars() {
+    public void getCars() {
         try {
             for (int i = 0; i < model.getCars().size(); i++) {
                 Car temp = model.getCars().getCar(i);

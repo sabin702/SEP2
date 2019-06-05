@@ -8,11 +8,11 @@ import MVVM.view.Tabs.CustomerTabPane.MakeReservationTab.MakeReservationView;
 import MVVM.view.Tabs.CustomerTabPane.ViewReservationsTab.ViewReservationsView;
 
 
-import MVVM.viewmodel.ViewModelProvider;
+import MVVM.viewmodel.VMProvider;
 
 public class CustomerTabPaneView {
 
-    public void init(ViewModelProvider vmp) {
+    public void init(VMProvider vmp) {
         accountViewController.init(vmp.getAccountViewModel());
         makeReservationViewController.init(vmp.getMakeReservationViewModel());
         viewReservationsViewController.init(vmp.getViewReservationsViewModel());

@@ -7,11 +7,11 @@ import MVVM.view.Tabs.EmployeeTabPane.CarsTab.CarsView;
 import MVVM.view.Tabs.EmployeeTabPane.ReservationsTab.ReservationsView;
 import MVVM.view.Tabs.EmployeeTabPane.UsersTab.UsersView;
 import javafx.fxml.FXML;
-import MVVM.viewmodel.ViewModelProvider;
+import MVVM.viewmodel.VMProvider;
 
 public class EmployeeTabPaneView {
 
-    public void init(ViewModelProvider vmp) {
+    public void init(VMProvider vmp) {
         reservationsViewController.init(vmp.getReservationsViewModel());
         carsViewController.init(vmp.getCarsViewModel());
         usersViewController.init(vmp.getUsersViewModel());

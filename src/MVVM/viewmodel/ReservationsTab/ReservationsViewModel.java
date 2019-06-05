@@ -18,24 +18,24 @@ public class ReservationsViewModel {
     private ObservableList<Customer> customers;
     private ViewHandler viewHandler;
 
-    public ReservationsViewModel(ViewHandler viewHandler,EmployeeModel em) throws RemoteException {
+    public ReservationsViewModel(ViewHandler vh,EmployeeModel em) throws RemoteException {
         reservations = FXCollections.observableArrayList();
         customers = FXCollections.observableArrayList();
 
         this.model = em;
-        this.viewHandler = viewHandler;
+        this.viewHandler = vh;
 
         getReservations();
 
         model.addListener("ReservationsUpdated", this::updateReservationList);
     }
 
-    public void updateReservationList(PropertyChangeEvent propertyChangeEvent) {
+    public void updateReservationList(PropertyChangeEvent evt) {
         reservations.clear();
         System.out.println(reservations.size());
         System.out.println("updated");
 
-        ReservationList reservationList = (ReservationList) propertyChangeEvent.getNewValue();
+        ReservationList reservationList = (ReservationList) evt.getNewValue();
 
             for (int i = 0; i <reservationList.size(); i++) {
                 Reservation temp = reservationList.getReservation(i);

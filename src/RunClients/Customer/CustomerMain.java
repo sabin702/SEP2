@@ -5,7 +5,7 @@ import MVVM.Model.*;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import MVVM.view.ViewHandler;
-import MVVM.viewmodel.ViewModelProvider;
+import MVVM.viewmodel.VMProvider;
 
 
 public class CustomerMain extends Application {
@@ -13,7 +13,7 @@ public class CustomerMain extends Application {
     public void start(Stage stage) throws Exception {
         ClientProvider clientProvider = new ClientProvider();
         ModelProvider mp = new ModelProvider(clientProvider);
-        ViewModelProvider vmp = new ViewModelProvider(mp);
+        VMProvider vmp = new VMProvider(mp);
         ViewHandler vh = new ViewHandler(stage,vmp);
         vh.startCustomer();
     }

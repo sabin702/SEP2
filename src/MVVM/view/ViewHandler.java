@@ -11,7 +11,7 @@ import MVVM.view.Popups.ClosePopUpView;
 import MVVM.view.Popups.LogOutReminderView;
 import MVVM.view.Tabs.CustomerTabPane.CustomerTabPaneView;
 import MVVM.view.Tabs.EmployeeTabPane.EmployeeTabPaneView;
-import MVVM.viewmodel.ViewModelProvider;
+import MVVM.viewmodel.VMProvider;
 
 import java.io.IOException;
 import java.io.Serializable;
@@ -19,9 +19,9 @@ import java.io.Serializable;
 public class ViewHandler implements Serializable {
     private Stage stage;
     private Stage popUpStage;
-    private ViewModelProvider viewModelProvider;
+    private VMProvider viewModelProvider;
 
-    public ViewHandler(Stage stage, ViewModelProvider vmp) {
+    public ViewHandler(Stage stage, VMProvider vmp) {
         this.stage = stage;
         popUpStage = new Stage();
         viewModelProvider = vmp;

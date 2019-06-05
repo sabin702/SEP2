@@ -20,7 +20,7 @@ import MVVM.viewmodel.ViewReservationsTab.ViewReservationsViewModel;
 import java.io.Serializable;
 import java.rmi.RemoteException;
 
-public class ViewModelProvider implements Serializable {
+public class VMProvider implements Serializable {
 
     private LogInViewModel logInViewModel;
     private CreateAccountAndLogInViewModel createAccountAndLogInViewModel;
@@ -38,7 +38,7 @@ public class ViewModelProvider implements Serializable {
     private EmployeeModel em;
     private ModelProvider modelProvider;
 
-    public ViewModelProvider(ModelProvider modelProvider) {
+    public VMProvider(ModelProvider modelProvider) {
         this.modelProvider = modelProvider;
         cm = modelProvider.getCustomerModel();
         em = modelProvider.getEmployeeModel();
