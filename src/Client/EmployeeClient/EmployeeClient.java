@@ -1,6 +1,6 @@
 package Client.EmployeeClient;
 
-import DataModel.*;
+import shared.DataModel.*;
 
 import java.beans.PropertyChangeListener;
 import java.rmi.RemoteException;

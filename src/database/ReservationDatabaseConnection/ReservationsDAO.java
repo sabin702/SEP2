@@ -1,7 +1,7 @@
 package database.ReservationDatabaseConnection;
 
-import DataModel.Reservation;
-import DataModel.ReservationList;
+import shared.DataModel.Reservation;
+import shared.DataModel.ReservationList;
 
 import java.util.Date;
 

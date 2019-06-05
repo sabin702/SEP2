@@ -1,7 +1,7 @@
 package Test;
 
 import Client.RMIClient.IRMIClient;
-import DataModel.*;
+import shared.DataModel.*;
 import database.CarsDatabaseConnection.CarsDAO;
 import database.CarsDatabaseConnection.CarsDAOImpl;
 import database.CustomersDatabaseConnections.CustomersDAO;

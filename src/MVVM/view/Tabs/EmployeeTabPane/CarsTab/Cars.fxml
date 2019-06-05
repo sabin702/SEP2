@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="510.0" prefWidth="745.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MVVM.view.Tabs.EmployeeTabPane.CarsTab.CarsView">
+   <children>
+      <Button layoutX="23.0" layoutY="107.0" mnemonicParsing="false" onAction="#deleteCar" prefHeight="57.0" prefWidth="90.0" text="Delete" />
+      <Button fx:id="editButton" layoutX="23.0" layoutY="358.0" mnemonicParsing="false" onAction="#editCar" prefHeight="57.0" prefWidth="90.0" text="Edit" />
+      <ScrollPane layoutX="126.0" prefHeight="510.0" prefWidth="619.0">
+         <content>
+            <TableView fx:id="tableView" editable="true" prefHeight="511.0" prefWidth="620.0">
+               <columns>
+                  <TableColumn fx:id="registrationColumn" prefWidth="99.0" text="Registration" />
+                  <TableColumn fx:id="makeColumn" prefWidth="109.0" text="Make" />
+                  <TableColumn fx:id="mileageColumn" prefWidth="88.0" text="Mileage" />
+                  <TableColumn fx:id="colorColumn" prefWidth="76.0" text="Color" />
+                  <TableColumn fx:id="yearColumn" prefWidth="87.0" text="Year" />
+                  <TableColumn fx:id="availabilityColumn" prefWidth="100.0" text="Availability" />
+                  <TableColumn fx:id="priceColumn" prefWidth="100.0" text="Price" />
+               </columns>
+            </TableView>
+         </content>
+      </ScrollPane>
+   </children>
+</AnchorPane>

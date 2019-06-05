@@ -1,7 +1,7 @@
 package database.CarsDatabaseConnection;
 
-import DataModel.Car;
-import DataModel.CarList;
+import shared.DataModel.Car;
+import shared.DataModel.CarList;
 
 public interface CarsDAO {
 

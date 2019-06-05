@@ -1,6 +1,6 @@
 package Client.RMIClient;
 
-import DataModel.*;
+import shared.DataModel.*;
 import server.IServerModel;
 
 import java.beans.PropertyChangeListener;

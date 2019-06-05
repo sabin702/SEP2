@@ -1,7 +1,7 @@
 package server;
 
 import Client.RMIClient.IRMIClient;
-import DataModel.*;
+import shared.DataModel.*;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
@@ -52,8 +52,4 @@ public interface IServerModel extends Remote {
     void callClientUpdateUsers() throws RemoteException;
 
     void callClientUpdateCars() throws RemoteException;
-
-
-
-
 }

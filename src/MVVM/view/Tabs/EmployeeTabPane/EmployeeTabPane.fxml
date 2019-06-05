@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+
+<TabPane fx:id="employeeTabPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="538.0" prefWidth="749.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MVVM.view.Tabs.EmployeeTabPane.EmployeeTabPaneView">
+   <tabs>
+      <Tab fx:id="reservationsTab" text="Reservations">
+         <content>
+            <fx:include fx:id="reservationsView" source="ReservationsTab/Reservations.fxml" />
+         </content>
+      </Tab>
+      <Tab fx:id="carsTab" text="Cars">
+      <content>
+         <fx:include fx:id="carsView" source="CarsTab/Cars.fxml" />
+      </content>
+   </Tab>
+      <Tab fx:id="addCarTab" text="Add Car">
+         <content>
+            <fx:include fx:id="addCarView" source="AddCarTab/AddCar.fxml" />
+         </content>
+      </Tab>
+      <Tab fx:id="usersTab" text="Users">
+         <content>
+            <fx:include fx:id="usersView" source="UsersTab/Users.fxml" />
+         </content>
+      </Tab>
+   </tabs>
+</TabPane>

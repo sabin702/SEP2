@@ -1,11 +1,11 @@
 package Client.EmployeeClient;
 
 import Client.*;
-import Model.*;
+import MVVM.Model.*;
 import javafx.application.Application;
 import javafx.stage.Stage;
-import view.ViewHandler;
-import viewmodel.ViewModelProvider;
+import MVVM.view.ViewHandler;
+import MVVM.viewmodel.ViewModelProvider;
 
 public class EmployeeMain extends Application {
     public void start(Stage stage) throws Exception {

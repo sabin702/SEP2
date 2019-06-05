@@ -1,6 +1,6 @@
 package Client.RMIClient;
 
-import DataModel.*;
+import shared.DataModel.*;
 
 import java.beans.PropertyChangeListener;
 import java.rmi.Remote;

@@ -1,7 +1,7 @@
 package server;
 
 import Client.RMIClient.IRMIClient;
-import DataModel.*;
+import shared.DataModel.*;
 import database.CarsDatabaseConnection.CarsDAO;
 import database.CarsDatabaseConnection.CarsDAOImpl;
 import database.CustomersDatabaseConnections.CustomersDAO;
@@ -178,6 +178,4 @@ public class ServerModel implements IServerModel {
             clients.get(i).fireUpdateCars();
         }
     }
-
-
 }

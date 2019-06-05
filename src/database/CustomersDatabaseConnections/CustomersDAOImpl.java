@@ -1,7 +1,7 @@
 package database.CustomersDatabaseConnections;
 
-import DataModel.Customer;
-import DataModel.CustomerList;
+import shared.DataModel.Customer;
+import shared.DataModel.CustomerList;
 import database.Database;
 
 import java.sql.*;
