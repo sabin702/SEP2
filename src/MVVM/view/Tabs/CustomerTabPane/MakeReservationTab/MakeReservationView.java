@@ -51,20 +51,6 @@ public class MakeReservationView {
             Date dateFrom1 = Date.from(localDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
             localDate = dateTo.getValue();
             Date dateTo1 = Date.from(localDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
-            int insurance;
-
-            System.out.println(car.getItems().get(car.getSelectionModel().getSelectedIndex()));
-
-            if (insuranceType.getSelectionModel().getSelectedItem().equals("Basic (25 DKK/day)"))
-                insurance = 1;
-            else if (insuranceType.getSelectionModel().getSelectedItem().equals("Basic (50 DKK/day)"))
-                insurance = 2;
-            else if (insuranceType.getSelectionModel().getSelectedItem().equals("Full Coverage (100 DKK/day)"))
-                insurance = 3;
-            else
-                insurance = 0;
-
-            System.out.println("Insurance: " + insurance);
 
             Random random = new Random();
             String reservationId = "R" + (random.nextInt(88888) + 10000);
@@ -78,7 +64,7 @@ public class MakeReservationView {
 
             try {
                 Customer customer = viewModel.getCustomer(viewModel.getUsername());
-                viewModel.makeReservation(reservationId, getCar().getRegistrationNumber(), customer.getUsername(), dateFrom1, dateTo1, navigationOption, childSeatOption, customer.getFirstName(), customer.getLastName(), customer.getAge(), this.price, 2, 0);
+                viewModel.makeReservation(reservationId, getCar().getRegistrationNumber(), customer.getUsername(), dateFrom1, dateTo1, navigationOption, childSeatOption, customer.getFirstName(), customer.getLastName(), customer.getAge(), this.price, getInsuranceType(), 0);
             } catch (RemoteException e) {
                 System.out.println("not working");
                 e.printStackTrace();
@@ -213,6 +199,21 @@ public class MakeReservationView {
                     System.out.println("Insurance price: " + newValue);
                 }
         );
+    }
+
+    public int getInsuranceType(){
+        int insurance;
+
+        if (insuranceType.getSelectionModel().getSelectedItem().equals("Basic (25 DKK/day)"))
+            insurance = 1;
+        else if (insuranceType.getSelectionModel().getSelectedItem().equals("Basic (50 DKK/day)"))
+            insurance = 2;
+        else if (insuranceType.getSelectionModel().getSelectedItem().equals("Full Coverage (100 DKK/day)"))
+            insurance = 3;
+        else
+            insurance = 0;
+
+        return insurance;
     }
 
 }
