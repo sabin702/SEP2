@@ -25,8 +25,9 @@ public class ReservationsDAOImpl implements ReservationsDAO{
     }
 
     @Override
-    public void addReservation(String reservationId, String carRegNo, String username, Date dateFrom, Date dateTo, int navigation, int childseat, String firstName, String lastName, int age, int price, int insurance, int status) {
-        //Reservation reservation = new Reservation(reservationId, carRegNo, username, dateFrom, dateTo, navigation, childseat, firstName, lastName, age, price, insurance, status);
+    public void addReservation(String reservationId, String carRegNo, String username, Date dateFrom,
+                               Date dateTo, int navigation, int childseat, String firstName, String lastName,
+                               int age, int price, int insurance, int status) {
 
         String sql = "INSERT INTO  \"SEP2\".reservation " + "VALUES('" + reservationId + "','"
                 + carRegNo + "','"

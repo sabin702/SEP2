@@ -13,6 +13,6 @@ public class CustomerModelImplTest {
 
     @Test
     public void calculateTotalPrice() {
-        
+
     }
 }

@@ -46,7 +46,7 @@ public class CustomersDAOImpl implements CustomersDAO{
 
     @Override
     public void deleteCustomer(String username) {
-        String sql = "DELETE FROM \"SEP2\".customer" + "WHERE username =" + username;
+        String sql = "DELETE FROM \"SEP2\".customer" + " WHERE username =" + username;
 
         connectToDatabase();
 
