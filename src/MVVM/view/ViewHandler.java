@@ -374,4 +374,28 @@ public class ViewHandler implements Serializable {
         popUpStage.setScene(scene);
         popUpStage.show();
     }
+    public void openAccountCreated(){
+        FXMLLoader loader = new FXMLLoader();
+
+        loader.setLocation(getClass().getResource("/MVVM/view/Popups/AccountCreated.fxml"));
+
+        Parent root = null;
+        try {
+            root = loader.load();
+        } catch (IOException e) {
+
+            e.printStackTrace();
+        }
+        ClosePopUpView view = loader.getController();
+
+
+        Scene scene = new Scene(root);
+
+
+        popUpStage.setTitle("Account Created!");
+
+        popUpStage.setScene(scene);
+        popUpStage.show();
+
+    }
 }

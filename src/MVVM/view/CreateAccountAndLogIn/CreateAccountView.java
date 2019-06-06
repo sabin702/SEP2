@@ -48,6 +48,7 @@ public class CreateAccountView {
 
         viewModel.createAccount(loginField.getText(), passwordField.getText(), nameField.getText(), surnameField.getText(), birthdate);
         viewModel.openCreateAccountAndLogIn();
+        viewModel.openAccountCreated();
         }
 
     }

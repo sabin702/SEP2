@@ -26,4 +26,8 @@ public class CreateAccountViewModel {
     public void openEmptyTextFields() {
         viewHandler.openEmptyTextFields();
     }
+
+    public void openAccountCreated() {
+        viewHandler.openAccountCreated();
+    }
 }
