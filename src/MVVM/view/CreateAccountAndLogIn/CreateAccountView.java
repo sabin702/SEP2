@@ -2,6 +2,7 @@ package MVVM.view.CreateAccountAndLogIn;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.DateCell;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -58,5 +59,16 @@ public class CreateAccountView {
 
     public void init(CreateAccountViewModel createAccountViewModel) {
         this.viewModel = createAccountViewModel;
+
+        LocalDate min = LocalDate.of(1950, 01, 02);
+        LocalDate max = LocalDate.of(1998, 06, 13);
+        dateOfBirthField.setDayCellFactory(d ->
+                new DateCell() {
+                    @Override public void updateItem(LocalDate item, boolean empty) {
+                        super.updateItem(item, empty);
+                        setDisable(item.isAfter(max) || item.isBefore(min));
+                    }});
+
+        dateOfBirthField.setValue(max);
     }
 }
