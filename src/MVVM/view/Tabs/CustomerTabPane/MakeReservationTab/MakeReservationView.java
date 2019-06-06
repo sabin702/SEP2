@@ -206,7 +206,7 @@ public class MakeReservationView {
 
         if (insuranceType.getSelectionModel().getSelectedItem().equals("Basic (25 DKK/day)"))
             insurance = 1;
-        else if (insuranceType.getSelectionModel().getSelectedItem().equals("Basic (50 DKK/day)"))
+        else if (insuranceType.getSelectionModel().getSelectedItem().equals("Medium (50 DKK/day)"))
             insurance = 2;
         else if (insuranceType.getSelectionModel().getSelectedItem().equals("Full Coverage (100 DKK/day)"))
             insurance = 3;
