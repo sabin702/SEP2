@@ -14,9 +14,9 @@ public class CarsDAOImpl implements CarsDAO{
 
     private Database database;
 
-    public CarsDAOImpl() {
+    public CarsDAOImpl(Database database) {
 
-        database = new Database();
+        this.database = database;
 
         c = database.getC();
         stmt = database.getStmt();

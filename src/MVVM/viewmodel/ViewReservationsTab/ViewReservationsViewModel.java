@@ -17,9 +17,9 @@ public class ViewReservationsViewModel implements Serializable {
     private  ObservableList<Reservation> reservations;
     private ViewHandler viewHandler;
 
-    public ViewReservationsViewModel(ViewHandler viewHandler,CustomerModel model) throws RemoteException {
+    public ViewReservationsViewModel(ViewHandler vh,CustomerModel model) throws RemoteException {
         reservations = FXCollections.observableArrayList();
-        this.viewHandler = viewHandler;
+        this.viewHandler = vh;
 
         this.model = model;
 

@@ -15,8 +15,8 @@ public class CustomersDAOImpl implements CustomersDAO{
 
     private Database database;
 
-    public CustomersDAOImpl() {
-        database = new Database();
+    public CustomersDAOImpl(Database database) {
+       this.database = database;
 
         c = database.getC();
 

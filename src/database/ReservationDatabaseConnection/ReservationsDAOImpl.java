@@ -15,8 +15,9 @@ public class ReservationsDAOImpl implements ReservationsDAO{
 
     private Database database;
 
-    public ReservationsDAOImpl() {
-        database = new Database();
+    public ReservationsDAOImpl(Database database) {
+
+        this.database = database;
 
         c = database.getC();
 

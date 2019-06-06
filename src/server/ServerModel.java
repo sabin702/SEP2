@@ -24,16 +24,17 @@ public class ServerModel implements IServerModel {
     List<IRMIClient> clients;
     private PropertyChangeSupport changeSupport;
 
-    public ServerModel() throws RemoteException {
+    public ServerModel(CarsDAO carsDAO, CustomersDAO customersDAO, ReservationsDAO reservationsDAO) throws RemoteException {
 
         try {
             UnicastRemoteObject.exportObject(this, 0);
         } catch (RemoteException e) {
             e.printStackTrace();
         }
-        carsDAO = new CarsDAOImpl();
-        customersDAO = new CustomersDAOImpl();
-        reservationsDAO = new ReservationsDAOImpl();
+
+        this.carsDAO = carsDAO;
+        this.customersDAO = customersDAO;
+        this.reservationsDAO = reservationsDAO;
         changeSupport = new PropertyChangeSupport(this);
         clients = new ArrayList<IRMIClient>();
 

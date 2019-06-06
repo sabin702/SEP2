@@ -3,7 +3,7 @@ package database;
 import java.io.Serializable;
 import java.sql.*;
 
-public class Database implements Serializable {
+public class Database {
 
     Connection c;
     Statement stmt;
@@ -64,6 +64,6 @@ public class Database implements Serializable {
 
     //Use your database password
     public String getDatabasePassword(){
-        return "password";
+        return "1357";
     }
 }
