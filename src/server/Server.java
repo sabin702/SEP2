@@ -4,7 +4,7 @@ import database.CarsDatabaseConnection.CarsDAO;
 import database.CarsDatabaseConnection.CarsDAOImpl;
 import database.CustomersDatabaseConnections.CustomersDAO;
 import database.CustomersDatabaseConnections.CustomersDAOImpl;
-import database.Database;
+import database.DatabaseConnection;
 import database.ReservationDatabaseConnection.ReservationsDAO;
 import database.ReservationDatabaseConnection.ReservationsDAOImpl;
 
@@ -19,7 +19,7 @@ public class Server {
 
         try {
             Registry registry = LocateRegistry.createRegistry(1099);
-            Database database = new Database();
+            DatabaseConnection database = new DatabaseConnection();
             CarsDAO carsDAO = new CarsDAOImpl(database);
             CustomersDAO customersDAO = new CustomersDAOImpl(database);
             ReservationsDAO reservationsDAO = new ReservationsDAOImpl(database);

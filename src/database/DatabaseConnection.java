@@ -3,12 +3,12 @@ package database;
 import java.io.Serializable;
 import java.sql.*;
 
-public class Database {
+public class DatabaseConnection {
 
     Connection c;
     Statement stmt;
 
-    public Database() {
+    public DatabaseConnection() {
         c = null;
         stmt = null;
 
@@ -21,7 +21,7 @@ public class Database {
             Class.forName("org.postgresql.Driver");
             c = DriverManager.getConnection(getDatabaseUrl(),
                     getDatabaseUser(), getDatabasePassword());
-            System.out.println("Database open ok");
+            System.out.println("DatabaseConnection open ok");
 
             stmt = c.createStatement();
         } catch (ClassNotFoundException | SQLException e) {
@@ -34,7 +34,7 @@ public class Database {
             Class.forName("org.postgresql.Driver");
             c = DriverManager.getConnection(getDatabaseUrl(),
                     getDatabaseUser(), getDatabasePassword());
-            System.out.println("Database open ok");
+            System.out.println("DatabaseConnection open ok");
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         } catch (SQLException e) {
@@ -57,7 +57,7 @@ public class Database {
         return "jdbc:postgresql://localhost:5432/postgres";
     }
 
-    //Use you Database user
+    //Use you DatabaseConnection user
     public String getDatabaseUser(){
         return "postgres";
     }

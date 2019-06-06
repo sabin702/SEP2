@@ -1,8 +1,8 @@
 package database.CustomersDatabaseConnections;
 
+import database.DatabaseConnection;
 import shared.DataModel.Customer;
 import shared.DataModel.CustomerList;
-import database.Database;
 
 import java.sql.*;
 import java.util.Date;
@@ -13,9 +13,9 @@ public class CustomersDAOImpl implements CustomersDAO{
 
     private Statement stmt;
 
-    private Database database;
+    private DatabaseConnection database;
 
-    public CustomersDAOImpl(Database database) {
+    public CustomersDAOImpl(DatabaseConnection database) {
        this.database = database;
 
         c = database.getC();
@@ -39,7 +39,7 @@ public class CustomersDAOImpl implements CustomersDAO{
             stmt.close();
             c.close();
         } catch (SQLException e) {
-            System.out.println("Unsuccessful sql insert (addCar() method in Database.java)");
+            System.out.println("Unsuccessful sql insert (addCar() method in DatabaseConnection.java)");
             e.printStackTrace();
         }
     }
@@ -79,7 +79,7 @@ public class CustomersDAOImpl implements CustomersDAO{
             c.close();
         } catch (SQLException e) {
             System.out.println("Oops something went wrong with " +
-                    "the sql syntax for deleting a car(Database.java)");
+                    "the sql syntax for deleting a car(DatabaseConnection.java)");
             e.printStackTrace();
         }
     }

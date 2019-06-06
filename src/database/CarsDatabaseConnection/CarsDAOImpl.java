@@ -1,8 +1,8 @@
 package database.CarsDatabaseConnection;
 
+import database.DatabaseConnection;
 import shared.DataModel.Car;
 import shared.DataModel.CarList;
-import database.Database;
 
 import java.sql.*;
 
@@ -12,9 +12,9 @@ public class CarsDAOImpl implements CarsDAO{
 
     private Statement stmt;
 
-    private Database database;
+    private DatabaseConnection database;
 
-    public CarsDAOImpl(Database database) {
+    public CarsDAOImpl(DatabaseConnection database) {
 
         this.database = database;
 
@@ -41,7 +41,7 @@ public class CarsDAOImpl implements CarsDAO{
             stmt.close();
             c.close();
         } catch (SQLException e) {
-            System.out.println("Unsuccessful sql insert (addCar() method in Database.java)");
+            System.out.println("Unsuccessful sql insert (addCar() method in DatabaseConnection.java)");
             e.printStackTrace();
         }
     }
@@ -63,7 +63,7 @@ public class CarsDAOImpl implements CarsDAO{
             c.close();
         } catch (SQLException e) {
             System.out.println("Oops something went wrong with " +
-                    "the sql syntax for deleting a car(Database.java)");
+                    "the sql syntax for deleting a car(DatabaseConnection.java)");
             e.printStackTrace();
         }
     }
@@ -87,7 +87,7 @@ public class CarsDAOImpl implements CarsDAO{
             c.close();
         } catch (SQLException e) {
             System.out.println("Oops something went wrong with " +
-                    "the sql syntax for deleting a car(Database.java)");
+                    "the sql syntax for deleting a car(DatabaseConnection.java)");
             e.printStackTrace();
         }
     }

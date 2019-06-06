@@ -2,7 +2,7 @@ package database.ReservationDatabaseConnection;
 
 import shared.DataModel.Reservation;
 import shared.DataModel.ReservationList;
-import database.Database;
+import database.DatabaseConnection;
 
 import java.sql.*;
 import java.util.Date;
@@ -13,9 +13,9 @@ public class ReservationsDAOImpl implements ReservationsDAO{
 
     private Statement stmt;
 
-    private Database database;
+    private DatabaseConnection database;
 
-    public ReservationsDAOImpl(Database database) {
+    public ReservationsDAOImpl(DatabaseConnection database) {
 
         this.database = database;
 
@@ -50,7 +50,7 @@ public class ReservationsDAOImpl implements ReservationsDAO{
             stmt.close();
             c.close();
         } catch (SQLException e) {
-            System.out.println("Unsuccessful sql insert (addReservation() method in Database.java)");
+            System.out.println("Unsuccessful sql insert (addReservation() method in DatabaseConnection.java)");
             e.printStackTrace();
         }
     }
@@ -89,7 +89,7 @@ public class ReservationsDAOImpl implements ReservationsDAO{
             c.close();
         } catch (SQLException e) {
             System.out.println("Oops something went wrong with " +
-                    "the sql syntax for deleting a car(Database.java)");
+                    "the sql syntax for deleting a car(DatabaseConnection.java)");
             e.printStackTrace();
         }
     }
