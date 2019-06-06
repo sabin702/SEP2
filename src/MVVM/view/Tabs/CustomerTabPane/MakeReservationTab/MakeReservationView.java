@@ -68,7 +68,6 @@ public class MakeReservationView {
 
             Random random = new Random();
             String reservationId = "R" + (random.nextInt(88888) + 10000);
-            int price = getCar().getPrice() * viewModel.getNumberOfDays(dateFrom1, dateTo1);
             int navigationOption = 0;
             int childSeatOption = 0;
             if (navigation.isSelected())
@@ -79,7 +78,7 @@ public class MakeReservationView {
 
             try {
                 Customer customer = viewModel.getCustomer(viewModel.getUsername());
-                viewModel.makeReservation(reservationId, getCar().getRegistrationNumber(), customer.getUsername(), dateFrom1, dateTo1, navigationOption, childSeatOption, customer.getFirstName(), customer.getLastName(), customer.getAge(), price, 2, 0);
+                viewModel.makeReservation(reservationId, getCar().getRegistrationNumber(), customer.getUsername(), dateFrom1, dateTo1, navigationOption, childSeatOption, customer.getFirstName(), customer.getLastName(), customer.getAge(), this.price, 2, 0);
             } catch (RemoteException e) {
                 System.out.println("not working");
                 e.printStackTrace();
