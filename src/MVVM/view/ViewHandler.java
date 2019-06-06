@@ -320,7 +320,7 @@ public class ViewHandler implements Serializable {
         Scene scene = new Scene(root);
 
 
-        popUpStage.setTitle("Logging out");
+        popUpStage.setTitle("Car deleted!");
 
         popUpStage.setScene(scene);
         popUpStage.show();
@@ -343,7 +343,7 @@ public class ViewHandler implements Serializable {
         Scene scene = new Scene(root);
 
 
-        popUpStage.setTitle("Logging out");
+        popUpStage.setTitle("Car added!");
 
         popUpStage.setScene(scene);
         popUpStage.show();
